@@ -21,6 +21,7 @@
       "harfbuzz"
       "handbrake"
       "helm"
+      "mas" # for mac app store.
       "mkvtoolnix"
       "nmap"
       "nvm"
@@ -42,15 +43,11 @@
       "mongodb/brew/mongodb-community@7.0"
       "timescale/tap/timescaledb"
     ];
-    # todo: why are these in homebrew anyways? this shit outdated asf 
     casks = [
         "sublime-text"
-#      "alt-tab"
-#      "dotnet-sdk"
-#      "ghostty"
-#      "monitorcontrol"
-#      "stats"
     ];
+    # mac app store:
+    # mas search "<app name>"
     masApps = {
 #      "1Password for Safari" = 1569813296;
 #      "pairvpn" = 1347012179;
