@@ -1,13 +1,48 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "My nix-darwin system flake";
 
   inputs = {
+    # nix
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    
+    # homebrew
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    homebrew-argoproj = {
+      url = "github:argoproj/homebrew-tap";
+      flake = false;
+    };
+    
+    # todo use home manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ 
+    self,
+    nix-darwin,
+    nixpkgs,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
+    homebrew-bundle,
+    homebrew-argoproj
+  }:
   # todo can delete this whole block as it'll come from the modules
   let 
   username = "jsteenblik";
