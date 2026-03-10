@@ -11,10 +11,10 @@
   system.defaults.trackpad = {
     ActuationStrength = 0; # haptic feedback
     Clicking = true; # tap to click
-    FirstClickThreshold = 0;
-    SecondClickThreshold = 0;
-    TrackpadPinch = true;
-    TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
+    FirstClickThreshold = 0; # up to 2: force required
+    SecondClickThreshold = 0; # up to 2: force required
+    TrackpadPinch = true; # pinch to zoom
+    TrackpadTwoFingerFromRightEdgeSwipeGesture = 3; # notification center swipe
     TrackpadThreeFingerHorizSwipeGesture = 2;
     TrackpadThreeFingerTapGesture = 0;
 
@@ -40,7 +40,7 @@
   system.defaults.NSGlobalDomain = {
     "com.apple.swipescrolldirection" = false;
     "com.apple.keyboard.fnState" = true; # use f keys as f keys
-  }
+  };
 
   # system.defaults.WindowManager.EnableStandardClickToShowDesktop = false; # Disable/Enable standard click to show desktop
   # You can add more Mac defaults here as well...
