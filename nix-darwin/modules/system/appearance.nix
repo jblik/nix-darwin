@@ -8,7 +8,7 @@ in
     autohide = true;
     orientation = "bottom";
     persistent-apps = [
-      "/${pkgs.iterm2}/Applications/iTerm2.app"
+      "/${pkgs.iterm2}/Applications/iTerm2.app" # Use the nixpkgs path to the app for apps installed via nix. This will automatically use the latest nix store path.
       "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
       # todo get these from nix as well
       "${homeDirectory}/Applications/Rider.app"
@@ -23,21 +23,10 @@ in
       "/System/Applications/Messages.app"
       "/System/Applications/System Settings.app"
       "/System/Applications/iPhone Mirroring.app"
-      # "/Applications/Zen Browser.app"
-      # "/Applications/Vivaldi.app"
-      # "/Applications/Ghostty.app"
-      # "/Applications/Cursor.app"
-      # Use the nixpkgs path to the app for apps installed via nix. This will automatically use the latest nix store path.
-      # "/${pkgs.lens}/Applications/Lens.app"
-      # "/${pkgs.slack}/Applications/Slack.app"
-      # "/${pkgs.discord}/Applications/Discord.app"
-      # "/${pkgs.spotify}/Applications/Spotify.app"
-      # "/Applications/joplin.app"
-      # Add your persistent apps here
     ];
     persistent-others = [
       # "${homeDirectory}/code"
-      "${homeDirectory}/Downloads"
+      { folder = { path = "${homeDirectory}/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
       # "${homeDirectory}/Applications/Home Manager Apps"
       # Add your persistent others here
     ];
