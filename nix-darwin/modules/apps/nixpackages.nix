@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true; # for sublime
-
   environment.systemPackages = with pkgs; [
     pkgs.alt-tab-macos      # windows like alt-tab
     pkgs.docker             # docker!
@@ -14,7 +12,6 @@
     pkgs.monitorcontrol     # for adjusting brightness of external monitors
     pkgs.opentofu           # open source fork of terraform
     pkgs.stats              # show various mac-os stats
-    pkgs.sublime4           # text editor
     pkgs.tailscale          # vpn for home server
     pkgs.terraform          # tool for building, changing, and versioning infrastructure
     pkgs.uv                 # python package manager
