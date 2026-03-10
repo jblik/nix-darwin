@@ -83,11 +83,12 @@
               taps = {
                 "homebrew/homebrew-core"   = inputs.homebrew-core;
                 "homebrew/homebrew-cask"   = inputs.homebrew-cask;
+                # todo these two may not be needed
                 "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
                 "argoproj/homebrew-tap"    = inputs.homebrew-argoproj;
               };
               autoMigrate = true;
-              mutableTaps = true;
+              mutableTaps = true; # set to false if you want to disable brew tap
             };
           }
           # todo get started with home-manager:
