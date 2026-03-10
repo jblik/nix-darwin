@@ -43,7 +43,7 @@
     ];
     # todo: why are these in homebrew anyways? this shit outdated asf 
     casks = [
-        sublime-text
+        "sublime-text"
 #      "alt-tab"
 #      "dotnet-sdk"
 #      "ghostty"
