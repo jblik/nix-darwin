@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true; # for sublime
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     pkgs.alt-tab-macos      # windows like alt-tab
     pkgs.docker             # docker!
