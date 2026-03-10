@@ -21,7 +21,6 @@
       "harfbuzz"
       "handbrake"
       "helm"
-      "mas" # for mac app store.
       "mkvtoolnix"
       "nmap"
       "nvm"
@@ -49,12 +48,10 @@
     # mac app store:
     # mas search "<app name>"
     masApps = {
-#      "1Password for Safari" = 1569813296;
-#      "pairvpn" = 1347012179;
+       "Vimlike" = 1584519802;
+       "uBlock Origin Lite" = 6745342698;
 #      "tailscale" = 1475387142;
 #      "Windows App" = 1295203466;
-#      "wireguard" = 1451685025;
-#      "wipr" = 1320666476;
     };
   };
 }
