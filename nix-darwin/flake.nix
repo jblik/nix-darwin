@@ -60,14 +60,16 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#jsteenblik
+    # $ sudo darwin-rebuild switch --flake .#jsteenblik
     darwinConfigurations.jsteenblik = nix-darwin.lib.darwinSystem {
       specialArgs = {
         inherit username;
       };
       modules = [ 
-          configuration
+          configuration # todo pass the primaryUser to the configuration instead of defining it in there
           ./modules/default.nix
-          inputs.nix-homebrew.darwinModules.nix-homebrew {
+          inputs.nix-homebrew.darwinModules.nix-homebrew 
+          {
             nix-homebrew = {
               enable = true;
               enableRosetta = true;
