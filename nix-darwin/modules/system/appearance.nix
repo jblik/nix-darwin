@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, ... }:
+{ config, pkgs ,pkgs-unstable, lib, username, ... }:
 let
   homeDirectory = "/Users/${username}";
 in
@@ -10,11 +10,11 @@ in
     persistent-apps = [
       "${pkgs.ghostty-bin}/Applications/Ghostty.app"
       "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
-      "${pkgs.jetbrains.rider}/Applications/Rider.app"
+      "${pkgs-unstable.jetbrains.rider}/Applications/Rider.app"
       "${homeDirectory}/Applications/DataGrip.app"
       "${homeDirectory}/Applications/IntelliJ IDEA.app"
       "${homeDirectory}/Applications/WebStorm.app"
-      "${pkgs.jetbrains.pycharm}/Applications/PyCharm.app"
+      "${pkgs-unstable.jetbrains.pycharm}/Applications/PyCharm.app"
       "${homeDirectory}/Applications/RustRover.app"
       "${homeDirectory}/Applications/CLion.app"
       "/System/Applications/Calendar.app"

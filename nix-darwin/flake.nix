@@ -4,6 +4,8 @@
   inputs = {
     # nix
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable-darwin";
+
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     
@@ -33,12 +35,18 @@
 #    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj }:
-  # todo can delete this whole block as it'll come from the modules
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj }:
+  
   let 
   username = "jsteenblik";
+  system = "aarch64-darwin";
+ 
+  pkgs-unstable = import nixpkgs-unstable {
+    inherit system;
+    config.allowUnfree = true;
+  };
+      
   configuration = { pkgs, ... }: {
-    # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";
 
     # Enable alternative shell support in nix-darwin.
@@ -54,7 +62,7 @@
     system.primaryUser = username;
 
     # The platform the configuration will be used on.
-    nixpkgs.hostPlatform = "aarch64-darwin";
+    nixpkgs.hostPlatform = system;
   };
   in
   {
@@ -64,7 +72,7 @@
     # $ darwin-rebuild check // to check without applying 
     darwinConfigurations.jsteenblik = nix-darwin.lib.darwinSystem {
       specialArgs = {
-        inherit username;
+        inherit username pkgs-unstable;
       };
       modules = [ 
           configuration # todo pass the primaryUser to the configuration instead of defining it in there
@@ -78,7 +86,7 @@
               taps = {
                 "homebrew/homebrew-core"   = inputs.homebrew-core;
                 "homebrew/homebrew-cask"   = inputs.homebrew-cask;
-                # todo these two may not be needed
+                # todo are these two may not be needed
                 "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
                 "argoproj/homebrew-tap"    = inputs.homebrew-argoproj;
               };
