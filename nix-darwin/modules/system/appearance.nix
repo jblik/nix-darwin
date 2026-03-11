@@ -8,14 +8,13 @@ in
     autohide = true;
     orientation = "bottom";
     persistent-apps = [
-      "/${pkgs.iterm2}/Applications/iTerm2.app" # Use the nixpkgs path to the app for apps installed via nix. This will automatically use the latest nix store path.
+      "${pkgs.ghostty-bin}/Applications/Ghostty.app"
       "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
-      # todo get these from nix as well
-      "${homeDirectory}/Applications/Rider.app"
+      "${pkgs.jetbrains.rider}/Applications/Rider.app"
       "${homeDirectory}/Applications/DataGrip.app"
       "${homeDirectory}/Applications/IntelliJ IDEA.app"
       "${homeDirectory}/Applications/WebStorm.app"
-      "${homeDirectory}/Applications/PyCharm.app"
+      "${pkgs.jetbrains.pycharm}/Applications/PyCharm.app"
       "${homeDirectory}/Applications/RustRover.app"
       "${homeDirectory}/Applications/CLion.app"
       "/System/Applications/Calendar.app"
@@ -25,13 +24,11 @@ in
       "/System/Applications/iPhone Mirroring.app"
     ];
     persistent-others = [
-      # "${homeDirectory}/code"
       { folder = { path = "${homeDirectory}/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
       # "${homeDirectory}/Applications/Home Manager Apps"
-      # Add your persistent others here
     ];
     show-recents = true;
-    tilesize = 62; # Set the icon size on the dock; default is 64
+    tilesize = 62;
   };
 
   system.defaults.NSGlobalDomain = {
