@@ -21,6 +21,7 @@
       "harfbuzz"
       "handbrake"
       "helm"
+      "mas"
       "mkvtoolnix"
       "nmap"
       "nvm"
@@ -50,7 +51,7 @@
     masApps = {
        "Vimlike" = 1584519802;
        "uBlock Origin Lite" = 6745342698;
-#      "tailscale" = 1475387142;
+#       "Tailscale" = 1475387142;
 #      "Windows App" = 1295203466;
     };
   };

@@ -13,7 +13,6 @@
     pkgs.monitorcontrol     # for adjusting brightness of external monitors
     pkgs.opentofu           # open source fork of terraform
     pkgs.stats              # show various mac-os stats
-    pkgs.tailscale          # vpn for home server
     pkgs.terraform          # tool for building, changing, and versioning infrastructure
     pkgs.uv                 # python package manager
     pkgs.vault              # tool for managing secrets
