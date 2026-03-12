@@ -30,9 +30,9 @@
     system.defaults.CustomUserPreferences = {
       NSGlobalDomain = {
         NSUserKeyEquivalents = {
-            "Move to SAMSUNG" = "@^~\\UF703"; # Cmd+Ctrl+Alt+Right Arrow
-            "Move to E241N" = "@^~\\UF702"; # Cmd+Ctrl+Alt+Left Arrow
-            "Move to S34C65xV" = "@^~\\UF702"; # Cmd+Ctrl+Alt+Left Arrow
+            "Move to SAMSUNG" = "@^~\UF703"; # Cmd+Ctrl+Alt+Right Arrow
+            "Move to E241N" = "@^~\UF702"; # Cmd+Ctrl+Alt+Left Arrow
+            "Move to S34C65xV" = "@^~\UF702"; # Cmd+Ctrl+Alt+Left Arrow
       };
     };
   };
@@ -42,8 +42,8 @@
   # can also think about system.defaults.CustomUserPreferences instead
   system.defaults.CustomSystemPreferences = {
     "com.apple.Safari" = {
-      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\UF70C"; # f12
-      "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\UF70C"; # f12
+      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\UF70C"; # f12
+      "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\UF70C"; # f12
     };
   };
 
