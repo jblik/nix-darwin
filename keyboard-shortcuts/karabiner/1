@@ -1,0 +1,49 @@
+{
+    "description": "Change fn+yuio to home, pgup, pgdown, end",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "y",
+                "modifiers": {
+                    "mandatory": ["fn"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [{ "key_code": "home" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "u",
+                "modifiers": {
+                    "mandatory": ["fn"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [{ "key_code": "page_down" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "i",
+                "modifiers": {
+                    "mandatory": ["fn"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [{ "key_code": "page_up" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "o",
+                "modifiers": {
+                    "mandatory": ["fn"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [{ "key_code": "end" }],
+            "type": "basic"
+        }
+    ]
+}
