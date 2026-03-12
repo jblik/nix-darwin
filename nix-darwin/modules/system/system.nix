@@ -31,7 +31,8 @@
       NSGlobalDomain = {
         NSUserKeyEquivalents = {
             "Move to SAMSUNG" = "@^~\\Uf703"; # Cmd+Ctrl+Alt+Right Arrow
-            "Move to E241N" = "@^~\\Uf702";
+            "Move to E241N" = "@^~\\Uf702"; # Cmd+Ctrl+Alt+Left Arrow
+            "Move to S34C65xV" = "@^~\\Uf702"; # Cmd+Ctrl+Alt+Left Arrow
       };
     };
   };
@@ -41,7 +42,7 @@
   # can also think about system.defaults.CustomUserPreferences instead
   system.defaults.CustomSystemPreferences = {
     "com.apple.Safari" = {
-      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\Uf70f"; # f12
+#      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\Uf70f"; # f12
       "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\Uf70f"; # f12
     };
   };
@@ -50,4 +51,12 @@
     "com.apple.swipescrolldirection" = false;
     "com.apple.keyboard.fnState" = true; # use f keys as f keys
   };
+  
+  # deletes all CUSTOM keyboard shortcuts for all apps (settings/keyboard shortcuts/all applications)
+  system.activationScripts.postActivation.text = ''
+      echo "Resetting NSUserKeyEquivalents to declarative-only..."
+      # Remove global (all apps) custom shortcuts
+      defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
+  '';
+      
 }
