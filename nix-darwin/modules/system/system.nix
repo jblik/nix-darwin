@@ -46,12 +46,12 @@
   # check this:
   # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.defaults.CustomSystemPreferences
   # can also think about system.defaults.CustomUserPreferences instead
-  system.defaults.CustomSystemPreferences = {
-    "com.apple.Safari" = {
-#      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\Uf70f"; # f12
-      "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\Uf70f"; # f12
-    };
-  };
+#  system.defaults.CustomSystemPreferences = {
+#    "com.apple.Safari" = {
+##      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\Uf70f"; # f12
+#      "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\Uf70f"; # f12
+#    };
+#  };
 
   system.defaults.NSGlobalDomain = {
     "com.apple.swipescrolldirection" = false;
