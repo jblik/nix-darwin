@@ -7,6 +7,7 @@
     pkgs.alt-tab-macos      # windows like alt-tab
     pkgs.ansible            # configuration management tool
     pkgs.docker             # docker
+    pkgs.duti               # for setting default apps
     pkgs.k9s                # kubernetes cluster manager   
     pkgs.karabiner-elements # key remapping software
     pkgs.kubernetes-helm    # package manager for kubernetes
@@ -14,6 +15,7 @@
     pkgs.openssh
     pkgs.opentofu           # open source fork of terraform
     pkgs.stats              # show various mac-os stats
+    pkgs.tailscale          # vpn
     pkgs.terraform          # tool for building, changing, and versioning infrastructure
     pkgs.uv                 # python package manager
     pkgs.vault              # tool for managing secrets

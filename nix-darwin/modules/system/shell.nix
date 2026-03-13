@@ -10,6 +10,13 @@ in
   users.users.${username} = {
     shell = "/bin/zsh";
   };
+  
+  # programs.zsh.variables = [
+  #   "todo"
+  #   "todo"
+  # ];
+  
+  # programs.zsh.enableAutosuggestions = true;
 
   environment.shellAliases = {
     nix-update = "nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeRef}";
