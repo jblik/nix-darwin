@@ -1,5 +1,5 @@
 # find these here: https://nix-darwin.github.io/nix-darwin/manual/index.html
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 { 
     system.defaults.screencapture = {
