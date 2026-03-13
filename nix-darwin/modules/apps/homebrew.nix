@@ -10,7 +10,6 @@
     brews = [
         # these need to be removed, this is to keep my current mac working
         "node"
-        #      "duti"                               # Utility for setting default macOS app handlers for file types and URL schemes from the command line.
         "git-lfs"                             # Git Large File Storage extension for versioning large binary files outside normal Git blobs.
         "nmap"                                # Network scanner for discovering hosts, open ports, and services.
         "ripgrep"                             # Very fast recursive text search tool, commonly used as a better grep.
