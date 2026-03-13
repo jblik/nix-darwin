@@ -13,7 +13,7 @@
 
   system.defaults.NSGlobalDomain = {
       "com.apple.swipescrolldirection" = false; # natural scrolling
-      "com.apple.trackpad.scaling" = 3; # trackpad tracking speed
+      "com.apple.trackpad.scaling" = "3"; # trackpad tracking speed
   };
 
     # Force macOS to re-read trackpad preferences
