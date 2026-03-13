@@ -11,10 +11,9 @@ in
     shell = "/bin/zsh";
   };
   
-  # programs.zsh.variables = [
-  #   "todo"
-  #   "todo"
-  # ];
+  environment.variables = {
+    EDITOR = "vim";
+  };
   
   # programs.zsh.enableAutosuggestions = true;
 
