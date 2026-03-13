@@ -32,7 +32,7 @@ in
 
     system.defaults.NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";
-        AppleIconAppearanceTheme = "ClearDark";
+        AppleIconAppearanceTheme = "RegularDark";
         AppleMetricUnits = 1;
         AppleMeasurementUnits = "Centimeters";
         AppleTemperatureUnit = "Celsius";
