@@ -76,11 +76,13 @@
         ./modules/default.nix
         home-manager.darwinModules.home-manager 
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.verbose = true;
-          backupFileExtension = "backup";
-          
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            verbose = true;
+            backupFileExtension = "backup";
+          };
+
           home-manager.users.${username} = { pkgs, lib, ... }:
           {
             programs.home-manager.enable = true;
