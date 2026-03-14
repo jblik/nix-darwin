@@ -3,11 +3,9 @@
 {
     programs.git = {
         enable = true;
-    
+        userName = "jblik";
+        userEmail = "88430125+jblik@users.noreply.github.com";
         settings = {
-          userName = "jblik";
-          userEmail = "88430125+jblik@users.noreply.github.com";
-
           init.defaultBranch = "master";
           core.editor = "vim";
           core.autocrlf = "input";
