@@ -13,10 +13,10 @@
     system.defaults.CustomUserPreferences = {
         NSGlobalDomain = {
             NSUserKeyEquivalents = {
-               "Move to SAMSUNG" = ''@~^\\U2192''; # Cmd+Ctrl+Alt+Right Arrow
-               "Move to E241N" = ''@~^\\U2190''; # Cmd+Ctrl+Alt+Left Arrow
-               "Move to S34C65xV" = ''@~^\\U2190''; # Cmd+Ctrl+Alt+Left Arrow
-               "Zoom" = ''@^F'';
+               "Move to SAMSUNG" = ''@~^\\U2192''; # Cmd+Alt+Ctrl+Right Arrow
+               "Move to E241N" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
+               "Move to S34C65xV" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
+               "Fill" = ''@^F''; #Cmd+Ctrl+F
            };
         };
     };
