@@ -29,8 +29,8 @@
     };
     
     # deletes all CUSTOM keyboard shortcuts for all apps (settings/keyboard shortcuts/all applications)
-    system.activationScripts.postActivation.text = lib.mkAfter ''
-        echo "Resetting 'All Application' declared keyboard shortcuts to declarative-only..."
-        defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
-    '';
+#    system.activationScripts.postActivation.text = lib.mkAfter ''
+#        echo "Resetting 'All Application' declared keyboard shortcuts to declarative-only..."
+#        defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
+#    '';
 }
