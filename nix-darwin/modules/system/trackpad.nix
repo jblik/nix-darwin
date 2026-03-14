@@ -11,11 +11,12 @@
     TrackpadThreeFingerTapGesture = 0;
   };
 
-  system.defaults.NSGlobalDomain = {
+  system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false;
+#  system.defaults.NSGlobalDomain = {
   # todo: natural scrolling got enabled on the mouse for some reason
-      "com.apple.swipescrolldirection" = false; # natural scrolling
-      "com.apple.trackpad.scaling" = 3.0; # trackpad tracking speed
-  };
+#      "com.apple.swipescrolldirection" = false; # natural scrolling
+#      "com.apple.trackpad.scaling" = 3.0; # trackpad tracking speed
+#  };
 
     # Force macOS to re-read trackpad preferences
     # todo: I don't think these settings work at all! or this part doesn't work 
