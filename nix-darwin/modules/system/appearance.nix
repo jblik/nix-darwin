@@ -27,7 +27,7 @@ in
             { folder = { path = "${homeDirectory}/Documents/Screenshots"; arrangement = "date-added"; showas = "fan"; }; }
             { folder = { path = "${homeDirectory}/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
         ];
-        show-recents = true;
+        show-recents = false;
         tilesize = 62;
     };
 
