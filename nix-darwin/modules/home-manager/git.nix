@@ -6,7 +6,7 @@
         userName = "jblik";
         userEmail = "88430125+jblik@users.noreply.github.com";
     
-        extraConfig = {
+        settings = {
           init.defaultBranch = "master";
 
           core.editor = "vim";
