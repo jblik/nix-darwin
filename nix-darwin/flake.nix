@@ -29,13 +29,13 @@
     };
     
     # todo use home manager
-#    home-manager = {
-#      url = "github:nix-community/home-manager";
-#      inputs.nixpkgs.follows = "nixpkgs";
-#    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj, home-manager }:
   
   let 
   username = "jsteenblik";
@@ -86,7 +86,6 @@
               taps = {
                 "homebrew/homebrew-core"   = inputs.homebrew-core;
                 "homebrew/homebrew-cask"   = inputs.homebrew-cask;
-                # todo are these two may not be needed
                 "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
                 "argoproj/homebrew-tap"    = inputs.homebrew-argoproj;
               };
@@ -94,24 +93,23 @@
               mutableTaps = true; # set to false if you want to disable brew tap
             };
           }
-
-          # todo get started with home-manager:
-          # home-manager.darwinModules.home-manager {
-          #   home-manager.useGlobalPkgs = true;
-          #   home-manager.useUserPackages = true;
-          #   home-manager.verbose = true;
-
-          #   home-manager.users.${userVars.userA.username} = { pkgs, lib, ... }:
-          #   {
-          #     home.stateVersion = "24.05";
-          #     home.homeDirectory = lib.mkForce (userVars.userA.homeDirectory);
-          #     programs.zsh.enable  = (userVars.userA.shell == "zsh");
-          #     programs.fish.enable = (userVars.userA.shell == "fish");
-          #     imports = [
-          #       ./modules/home/${userVars.userA.username}/default.nix
-          #     ];
-          #   };
-          # }
+          home-manager.darwinModules.home-manager {
+             home-manager.useGlobalPkgs = true;
+             home-manager.useUserPackages = true;
+             home-manager.verbose = true;
+            
+             home-manager.users.${username} = { pkgs, lib, ... }:
+             {
+               programs.home-manager.enable = true;
+               home.stateVersion = "25.11";
+               home.username = username;
+               home.homeDirectory = lib.mkForce "/Users/${username}";
+               programs.zsh.enable  = true;
+               imports = [
+                 ./modules/home-manager/default.nix
+               ];
+             };
+          }
       ];
     };
   };
