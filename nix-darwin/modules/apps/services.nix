@@ -7,7 +7,7 @@
   
   # services.karabiner-elements.enable = true; # todo somehow not working on this machine now
 
-  # make stats a login item
+  # login items
   launchd.user.agents.stats = {
     serviceConfig = {
       RunAtLoad = true;
@@ -15,6 +15,16 @@
       ProgramArguments = [
         "/usr/bin/open"
         "${pkgs.stats}/Applications/Stats.app"
+      ];
+    };
+  };
+  launchd.user.agents.monitorcontrol = {
+    serviceConfig = {
+      RunAtLoad = true;
+      KeepAlive = false;
+      ProgramArguments = [
+        "/usr/bin/open"
+        "${pkgs.monitorcontrol}/Applications/MonitorControl.app"
       ];
     };
   };
