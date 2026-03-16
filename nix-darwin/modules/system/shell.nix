@@ -14,8 +14,9 @@ in
   };
 
   environment.shellAliases = {
-    nix-update = ''nix flake update --flake ${flakePath} && git add ${flakePath}/flake.lock && git commit -m "update flake.lock" && sudo darwin-rebuild switch --flake ${flakeRef}'';
-    nix-update-gc = ''nix flake update --flake ${flakePath} && git add ${flakePath}/flake.lock && git commit -m "update flake.lock" && sudo darwin-rebuild switch --flake ${flakeRef} && nix-gc'';
+    # todo if there were changes to the flake.lock, commit then
+    nix-update = ''nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeRef}'';
+    nix-update-gc = ''nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeRef} && nix-gc'';
     nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
   };
   
