@@ -62,57 +62,68 @@
     # The platform the configuration will be used on.
     nixpkgs.hostPlatform = system;
   };
+  
+  myDarwinConfiguration = { homebrewUpdate ? false }:
+   {
+        specialArgs = {
+          inherit username pkgs-unstable;
+        };
+        modules = [ 
+          configuration # todo pass the primaryUser to the configuration instead of defining it in there
+          ./modules
+          {
+            homebrewUpdate.enable = homebrewUpdate;
+          }
+          home-manager.darwinModules.home-manager 
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              verbose = true;
+              backupFileExtension = "backup";
+            };
+  
+            home-manager.users.${username} = { pkgs, lib, ... }:
+            {
+              programs.home-manager.enable = true;
+              home.stateVersion = "25.11";
+              home.username = username;
+              home.homeDirectory = lib.mkForce "/Users/${username}";
+              imports = [
+                ./modules/home-manager
+              ];
+            };
+          }
+          inputs.nix-homebrew.darwinModules.nix-homebrew 
+          {
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = username;
+              taps = {
+                "homebrew/homebrew-core"   = inputs.homebrew-core;
+                "homebrew/homebrew-cask"   = inputs.homebrew-cask;
+                "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+                "argoproj/homebrew-tap"    = inputs.homebrew-argoproj;
+              };
+              autoMigrate = true;
+              mutableTaps = true;
+            };
+          }
+        ];
+      };
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#jsteenblik // build only
     # $ sudo darwin-rebuild switch --flake .#jsteenblik // apply
     # $ darwin-rebuild check // to check without applying 
-    darwinConfigurations.jsteenblik = nix-darwin.lib.darwinSystem {
-      specialArgs = {
-        inherit username pkgs-unstable;
-      };
-      modules = [ 
-        configuration # todo pass the primaryUser to the configuration instead of defining it in there
-        ./modules
-        home-manager.darwinModules.home-manager 
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            verbose = true;
-            backupFileExtension = "backup";
-          };
-
-          home-manager.users.${username} = { pkgs, lib, ... }:
-          {
-            programs.home-manager.enable = true;
-            home.stateVersion = "25.11";
-            home.username = username;
-            home.homeDirectory = lib.mkForce "/Users/${username}";
-            imports = [
-              ./modules/home-manager
-            ];
-          };
-        }
-        inputs.nix-homebrew.darwinModules.nix-homebrew 
-        {
-          nix-homebrew = {
-            enable = true;
-            enableRosetta = true;
-            user = username;
-            taps = {
-              "homebrew/homebrew-core"   = inputs.homebrew-core;
-              "homebrew/homebrew-cask"   = inputs.homebrew-cask;
-              "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-              "argoproj/homebrew-tap"    = inputs.homebrew-argoproj;
-            };
-            autoMigrate = true;
-            mutableTaps = true; # set to false if you want to disable brew tap
-          };
-        }
-      ];
-    };
+    darwinConfigurations.jsteenblik = myDarwinConfiguration {
+     homebrewUpgrade = true;
+   };
+    darwinConfigurations.jsteenblik-updatehomebrew = myDarwinConfiguration {
+     homebrewUpgrade = true;
+   };
   };
 }
 

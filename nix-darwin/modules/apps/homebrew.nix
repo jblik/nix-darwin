@@ -1,21 +1,19 @@
 { config, pkgs, lib, ... }:
 
 {
-  # options = {
-  #   homebrew-update.enable = lib.mkEnableOption "enable homebrew updating";
-  # };
-  # config = lib.mkIf config.homebrew-update.enable {
-  #   homebrew.onActivation = {
-  #       autoUpdate = true;
-  #       upgrade = true;
-  #   };
-  # };
-  
-  homebrew = {
+  options = {
+    homebrewUpdate.enable = lib.mkEnableOption "enable Homebrew auto-update and upgrade during activation";
+  };
+
+  config = {
     enable = true;
     taps = builtins.attrNames config.nix-homebrew.taps;
     onActivation = {
         cleanup = "uninstall";
+    }
+    // lib.optionalAttrs config.homebrewUpdate.enable {
+      autoUpdate = true;
+      upgrade = true;
     };
 
     brews = [
