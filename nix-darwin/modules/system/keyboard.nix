@@ -3,7 +3,7 @@
 { 
     system.keyboard = {
         swapLeftCtrlAndFn = false; # Swap left control and function keys
-        enableKeyMapping = true; # Enable key mapping
+        enableKeyMapping = true; # Enable key mapping todo don't actually need this as I'm not mapping now
     };
     
     system.defaults.NSGlobalDomain = {
