@@ -21,6 +21,8 @@
   # todo: natural scrolling got enabled on the mouse for some reason
       "com.apple.swipescrolldirection" = false; # natural scrolling
       "com.apple.trackpad.scaling" = 3.0; # trackpad tracking speed
+      AppleEnableSwipeNavigateWithScrolls = false; # enable swipe to navigate backwards & forwards
+      AppleEnableMouseSwipeNavigateWithScrolls = false; # enable swipe to navigate backwards & forwards
   };
 
     # Force macOS to re-read trackpad preferences

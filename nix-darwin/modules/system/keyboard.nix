@@ -8,6 +8,10 @@
     
     system.defaults.NSGlobalDomain = {
         "com.apple.keyboard.fnState" = true; # use f keys as f keys
+        NSAutomaticCapitalizationEnabled = false;
+        NSAutomaticInlinePredictionEnabled = false;
+        NSAutomaticPeriodSubstitutionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = false;
     };
 
      # deletes all CUSTOM keyboard shortcuts for all apps (settings/keyboard shortcuts/all applications)
@@ -25,6 +29,13 @@
                "Fill" = ''@^F''; #Cmd+Ctrl+F
                "Full Screen" = ''@^$F''; #Cmd+Ctrl+Shift+F
            };
+        };
+        pbs = {
+          NSServicesStatus = {
+            "com.mitchellh.ghostty - New Ghostty Window Here - openWindow" = {
+              key_equivalent = ''^$t'';
+            };
+          };
         };
     };
 
