@@ -5,8 +5,6 @@ let
   flakeRef = "${flakePath}#${username}";
 in
 {
-  programs.zsh.enable = true;
-
   users.users.${username} = {
     shell = "/bin/zsh";
   };
@@ -14,8 +12,6 @@ in
   environment.variables = {
     EDITOR = "vim";
   };
-  
-  # programs.zsh.enableAutosuggestions = true;
 
   environment.shellAliases = {
     nix-update = ''nix flake update --flake ${flakePath} && git add ${flakePath}/flake.lock && git commit -m "update flake.lock" && sudo darwin-rebuild switch --flake ${flakeRef}'';
