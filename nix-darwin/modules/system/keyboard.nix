@@ -16,7 +16,7 @@
 
      # deletes all CUSTOM keyboard shortcuts for all apps (settings/keyboard shortcuts/all applications)
      system.activationScripts.postActivation.text = ''
-         echo "resetting keyboard shortcuts set manually in the Settings"
+         echo "resetting manually set keyboard shortcuts"
          defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
      '';
 
@@ -24,7 +24,7 @@
         NSGlobalDomain = {
             NSUserKeyEquivalents = {
                "Move to SAMSUNG" = ''@~^\\U2192''; # Cmd+Alt+Ctrl+Right Arrow
-               "Move to Built-in Retina Display" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow (left arrow seems to be '\')
+               "Move to Built-in Retina Display" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow (left arrow seems to be '\') todo not working
                "Move to E241N" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
                "Move to S34C65xV" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
                "Fill" = ''@^F''; #Cmd+Ctrl+F

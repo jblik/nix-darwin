@@ -25,7 +25,8 @@
             source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
           fi
           
-          # this loads in my .p10k.zsh configuration #todo this part should maybe be at the end
+          # this loads in the .p10k.zsh configuration from this repo, 
+          # maybe think about just configuring it when you set up a new machine
           [[ ! -f ~/configuration/.p10k.zsh ]] || source ~/configuration/.p10k.zsh
         '';
     };
