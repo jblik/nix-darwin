@@ -29,6 +29,8 @@ in
             { folder = { path = "${homeDirectory}/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
         ];
         autohide-delay = 0.0;
+        showDesktopGestureEnabled = true;
+        showMissionControlGestureEnabled = false;
         show-recents = false;
         tilesize = 62;
     };
