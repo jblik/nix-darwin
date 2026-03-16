@@ -23,6 +23,7 @@
                "Move to E241N" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
                "Move to S34C65xV" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
                "Fill" = ''@^F''; #Cmd+Ctrl+F
+               "Full Screen" = ''@^$F''; #Cmd+Ctrl+Shift+F
            };
         };
     };

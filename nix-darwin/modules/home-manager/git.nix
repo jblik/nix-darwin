@@ -22,11 +22,13 @@
                 cb  = ''!git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {sub(\"refs/heads/\", \"\", $1); print $1}'); do git branch -D $branch; done'';
             };
           
+          # todo make gitconfigs with home manager
+          # can use the ~/.config/git/domain.gitconfig or something
             includes = [
                 {
                   condition = "gitdir:~/school_local";
                   # could do something like this: condition = "hasconfig:remote.*.url:git@school.git.com:*/**";
-                  path = "~/school_local/.gitconfig"; # todo make gitconfigs with home manager
+                  path = "~/school_local/.gitconfig";
                 }
               {
                 condition = "gitdir:~/Projects/";
