@@ -25,7 +25,8 @@
             source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
           fi
           
-          [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+          # this loads in my .p10k.zsh configuration
+          [[ ! -f ~/configuration/.p10k.zsh ]] || source ~/configuration/.p10k.zsh
         '';
     };
 }
