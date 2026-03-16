@@ -3,6 +3,7 @@
 let
   flakePath = "/Users/${username}/configuration/nix-darwin";
   flakeRef = "${flakePath}#${username}";
+  flakeUpdateRef = "${flakePath}#${username}-updatehomebrew";
 in
 {
   users.users.${username} = {
@@ -15,8 +16,8 @@ in
 
   environment.shellAliases = {
     # todo if there were changes to the flake.lock, commit then
-    nix-update = ''nix flake update --flake ${flakePath}-updatehomebrew && sudo darwin-rebuild switch --flake ${flakeRef}'';
-    nix-update-gc = ''nix flake update --flake ${flakePath}-updatehomebrew && sudo darwin-rebuild switch --flake ${flakeRef} && nix-gc'';
+    nix-update = ''nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeUpdateRef}'';
+    nix-update-gc = ''nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeUpdateRef} && nix-gc'';
     nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
   };
   
