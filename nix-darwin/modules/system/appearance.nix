@@ -31,10 +31,6 @@ in
         autohide-delay = 0.0;
         show-recents = false;
         tilesize = 62;
-        # maybe try moving these to trackpad if it works
-        showDesktopGestureEnabled = true;
-        showMissionControlGestureEnabled = true;
-        showLaunchpadGestureEnabled = false;
     };
 
     system.defaults.NSGlobalDomain = {

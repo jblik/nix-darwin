@@ -10,6 +10,12 @@
     TrackpadThreeFingerHorizSwipeGesture = 2;
     TrackpadThreeFingerTapGesture = 0;
   };
+  
+  system.defaults.dock = {
+    showDesktopGestureEnabled = true;
+    showMissionControlGestureEnabled = true;
+    showLaunchpadGestureEnabled = false;  
+  };
 
   system.defaults.NSGlobalDomain = {
   # todo: natural scrolling got enabled on the mouse for some reason
