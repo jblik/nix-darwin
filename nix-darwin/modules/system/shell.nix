@@ -21,6 +21,7 @@ in
   
   programs.zsh.interactiveShellInit = ''
     nix-update() {
+        sudo -v
         nix flake update --flake ${flakePath} || return 1
         
         if ! git -C ${repoPath} diff --quiet -- ${flakePath}/flake.lock; then
