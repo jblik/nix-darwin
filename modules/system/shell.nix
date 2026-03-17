@@ -33,7 +33,7 @@ in
     nix-update-gc() {
         local days="''${1:-10}"
         nix-update
-        nix-gc "''${days}d"
+        nix-gc "''${days}"
     }
     nix-gc() {
         local days="''${1:-10}"
