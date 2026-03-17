@@ -115,10 +115,6 @@
 
     in
     {
-        # Build darwin flake using:
-        # `$ darwin-rebuild build --flake .#jsteenblik` // build only
-        # `$ sudo darwin-rebuild switch --flake .#jsteenblik` // apply
-        # `$ darwin-rebuild check` // to check without applying 
         darwinConfigurations.jsteenblik = myDarwinConfiguration {
            homebrewUpdate = false;
         };
