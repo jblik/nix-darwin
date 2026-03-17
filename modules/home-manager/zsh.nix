@@ -27,8 +27,7 @@
           
           # this loads in the .p10k.zsh configuration from this repo, 
           # maybe think about just configuring it when you set up a new machine
-          [[ ! -f ~/configuration/dotconfig/.p10k.zsh ]] || source ~/configuration/dotconfig/.p10k.zsh
+          [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
         '';
-        # todo move the .p10k.zhs file with home-manager and put it in the correct location!
     };
 }

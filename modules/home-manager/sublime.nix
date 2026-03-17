@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{  }:
 
 {
     home.file."Library/Application Support/Sublime Text/Packages/User/Default (OSX).sublime-keymap".text = ''
