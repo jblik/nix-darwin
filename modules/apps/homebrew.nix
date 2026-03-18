@@ -2,7 +2,7 @@
 
 {
   options = {
-    homebrewUpdate.enable = lib.mkEnableOption "enable Homebrew auto-update and upgrade during activation";
+    updateHomebrew.enable = lib.mkEnableOption "enable Homebrew auto-update and upgrade during activation";
   };
 
   config = {
@@ -12,7 +12,7 @@
       onActivation = {
         cleanup = "uninstall";
       }
-      // lib.optionalAttrs config.homebrewUpdate.enable {
+      // lib.optionalAttrs config.updateHomebrew.enable {
         autoUpdate = true;
         upgrade = true;
       };
