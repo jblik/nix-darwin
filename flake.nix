@@ -1,6 +1,6 @@
 {
     description = "My nix-darwin system flake";
-    
+
     inputs = {
         nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
         nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
@@ -31,9 +31,9 @@
             flake = false;
         };
     };
-    
+
     outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj, home-manager }:
-    
+
     let
     system = "aarch64-darwin"; 
     username = "jsteenblik";
@@ -46,21 +46,21 @@
 
     configuration = { pkgs, ... }: {
         nix.settings.experimental-features = "nix-command flakes";
-        
+
         # Set Git commit hash for darwin-version.
         system.configurationRevision = self.rev or self.dirtyRev or null;
-        
+
         # Used for backwards compatibility, please read the changelog before changing.
         # $ darwin-rebuild changelog
         system.stateVersion = 6;
-        
+
         system.primaryUser = username;
-        
+
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = system;
     };
     
-    myDarwinConfiguration = { homebrewUpdate ? false }:
+    myDarwinConfiguration = { homebrewUpdate ? false }: {}
         nix-darwin.lib.darwinSystem {
             specialArgs = {
                 inherit pkgs-unstable username homeDirectory;
@@ -79,7 +79,7 @@
                         verbose = true;
                         backupFileExtension = "backup";
                     };
-                
+
                     home-manager.users.${username} = { pkgs, lib, ... }:
                     {
                         programs.home-manager.enable = true;
@@ -109,7 +109,7 @@
                 }
             ];
         };
-    
+
     in
     {
         darwinConfigurations.jsteenblik = myDarwinConfiguration {
