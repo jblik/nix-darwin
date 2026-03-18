@@ -25,10 +25,10 @@
     system.defaults.CustomUserPreferences = {
         NSGlobalDomain = {
             NSUserKeyEquivalents = {
-               "Move to SAMSUNG" = ''@~^\\U2192''; # Cmd+Alt+Ctrl+Right Arrow
-               "Move to Built-in Retina Display" = ''@~^\\U2192''; # Cmd+Alt+Ctrl+Right Arrow (left arrow seems to be '\') todo not working
-               "Move to E241N" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
-               "Move to S34C65xV" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
+               "Move to SAMSUNG" = ''@~^\U2192''; # Cmd+Alt+Ctrl+Right Arrow
+               "Move to Built-in Retina Display" = ''@~^\U2192''; # Cmd+Alt+Ctrl+Right Arrow (left arrow seems to be '\') todo these are being set to '@~^\\\\\\\\U2192'
+               "Move to E241N" = ''@~^\U2190''; # Cmd+Alt+Ctrl+Left Arrow
+               "Move to S34C65xV" = ''@~^\U2190''; # Cmd+Alt+Ctrl+Left Arrow
                "Fill" = ''@^f''; #Cmd+Ctrl+F
                "Full Screen" = ''@^$f''; #Cmd+Ctrl+Shift+F
            };
