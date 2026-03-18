@@ -1,46 +1,46 @@
 { username, ... }:
 
 let
-    flakePath = "~/nix-darwin";
-    flakeRef = "${flakePath}#${username}";
-    flakeUpdateRef = "${flakeRef}-updatehomebrew";
+  flakePath = "~/nix-darwin";
+  flakeRef = "${flakePath}#${username}";
+  flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
-    users.users.${username} = {
-        shell = "/bin/zsh";
-    };
-    
-    environment.variables = {
-        EDITOR = "vim";
-    };
-    
-    environment.shellAliases = {
-        nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
-    };
-    
-    programs.zsh.interactiveShellInit = ''
+  users.users.${username} = {
+    shell = "/bin/zsh";
+  };
+
+  environment.variables = {
+    EDITOR = "vim";
+  };
+
+  environment.shellAliases = {
+    nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
+  };
+
+  programs.zsh.interactiveShellInit = ''
         nix-update() {
-            sudo -v
-            nix flake update --flake ${flakePath} || return 1
+          sudo -v
+          nix flake update --flake ${flakePath} || return 1
 
-            if ! git -C ${flakePath} diff --quiet -- ${flakePath}/flake.lock; then
-              git -C ${flakePath} add ${flakePath}/flake.lock || return 1
-              git -C ${flakePath} commit -m "update flake.lock" || return 1
-            fi
+          if ! git -C ${flakePath} diff --quiet -- ${flakePath}/flake.lock; then
+            git -C ${flakePath} add ${flakePath}/flake.lock || return 1
+            git -C ${flakePath} commit -m "update flake.lock" || return 1
+          fi
 
-            sudo darwin-rebuild switch --flake ${flakeUpdateRef}
+          sudo darwin-rebuild switch --flake ${flakeUpdateRef}
         }
         nix-update-gc() {
-            local days="''${1:-10}"
-            nix-update
-            nix-gc "''${days}"
+          local days="''${1:-10}"
+          nix-update
+          nix-gc "''${days}"
         }
         nix-gc() {
-            local days="''${1:-10}"
-            echo "Removing generations older than ''${days}d..."
-            nix-collect-garbage --delete-older-than "''${days}d"
-            echo "Optimizing Nix store..."
-            nix-store --optimise
+          local days="''${1:-10}"
+          echo "Removing generations older than ''${days}d..."
+          nix-collect-garbage --delete-older-than "''${days}d"
+          echo "Optimizing Nix store..."
+          nix-store --optimise
     }
-    '';
+  '';
 }
