@@ -34,9 +34,10 @@
 
     outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj, home-manager }:
    
-    let 
+    let
+    system = "aarch64-darwin"; 
     username = "jsteenblik";
-    system = "aarch64-darwin";
+    homeDirectory = "/Users/${username}";
   
     pkgs-unstable = import nixpkgs-unstable {
         inherit system;
@@ -65,7 +66,7 @@
     myDarwinConfiguration = { homebrewUpdate ? false }:
         nix-darwin.lib.darwinSystem {
             specialArgs = {
-                inherit username pkgs-unstable;
+                inherit pkgs-unstable username homeDirectory;
             };
             modules = [ 
                 configuration # todo pass the primaryUser to the configuration instead of defining it in there
