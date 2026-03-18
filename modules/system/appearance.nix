@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, lib, username, ... }:
+{ pkgs, pkgs-unstable, username, ... }:
 let
   homeDirectory = "/Users/${username}";
 in

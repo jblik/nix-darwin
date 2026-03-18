@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ ... }:
 
 {
 # todo: https://seansantry.com/development/2022/12/14/split-git-nix/
@@ -6,8 +6,8 @@
         enable = true;
         settings = {
             user = {
-              name = "jblik";
-              email = "88430125+jblik@users.noreply.github.com";
+                name = "jblik";
+                email = "88430125+jblik@users.noreply.github.com";
             };
             init.defaultBranch = "master";
             core.editor = "vim";
@@ -27,13 +27,13 @@
         # can use the ~/.config/git/domain.gitconfig or something
         includes = [
             {
-              condition = "gitdir:~/school_local";
-              # could do something like this: condition = "hasconfig:remote.*.url:git@school.git.com:*/**";
-              path = "~/school_local/.gitconfig";
+                condition = "gitdir:~/school_local";
+                # could do something like this: condition = "hasconfig:remote.*.url:git@school.git.com:*/**";
+                path = "~/school_local/.gitconfig";
             }
             {
-              condition = "gitdir:~/Projects/";
-              path = "~/Projects/.gitconfig";
+                condition = "gitdir:~/Projects/";
+                path = "~/Projects/.gitconfig";
             }
         ];
 
