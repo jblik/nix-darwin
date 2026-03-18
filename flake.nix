@@ -60,7 +60,7 @@
         nixpkgs.hostPlatform = system;
     };
     
-    myDarwinConfiguration = { homebrewUpdate ? false }: {}
+    myDarwinConfiguration = { homebrewUpdate ? false }:
         nix-darwin.lib.darwinSystem {
             specialArgs = {
                 inherit pkgs-unstable username homeDirectory;
