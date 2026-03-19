@@ -37,6 +37,7 @@
       # https://github.com/nix-darwin/nix-darwin/issues/518
       "Fill" = "@^f"; # Cmd+Ctrl+F
       "Full Screen" = "@^$f"; # Cmd+Ctrl+Shift+F
+        "Enter Full Screen" = "@^$f"; # Cmd+Ctrl+Shift+F
     };
     pbs.NSServicesStatus = {
       # this maps to Services>Files and Folders
@@ -51,8 +52,6 @@
       # this works though somehow :)
       "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = ''\\Uf70f''; # f12
       "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = ''\\Uf70f''; # f12
-      "Fill" = "@^f"; # Cmd+Ctrl+F
-      "Full Screen" = "@^$f"; # Cmd+Ctrl+Shift+F
     };
   };
 }
