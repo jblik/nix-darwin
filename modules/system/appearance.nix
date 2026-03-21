@@ -12,13 +12,10 @@
       orientation = "bottom";
       persistent-apps = [
         "/Applications/Ghostty.app"
+        "${pkgs-unstable.jetbrains.idea}/Applications/IntelliJ IDEA.app"
         "${pkgs-unstable.jetbrains.rider}/Applications/Rider.app"
         "${pkgs-unstable.jetbrains.datagrip}/Applications/DataGrip.app"
-        "${homeDirectory}/Applications/IntelliJ IDEA.app"
-        "${homeDirectory}/Applications/WebStorm.app"
         "${pkgs-unstable.jetbrains.pycharm}/Applications/PyCharm.app"
-        "${homeDirectory}/Applications/RustRover.app"
-        "${homeDirectory}/Applications/CLion.app"
         "/Applications/Sublime Text.app"
         {
           spacer = {
@@ -48,7 +45,7 @@
           folder = {
             path = "${homeDirectory}/Downloads";
             arrangement = "date-added";
-            showas = "fan";
+            showas = "grid";
           };
         }
       ];
