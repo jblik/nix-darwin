@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ username, ... }:
 
 {
   services.tailscale.enable = true;
@@ -15,7 +15,7 @@
         KeepAlive = false;
         ProgramArguments = [
           "/usr/bin/open"
-          "${pkgs.stats}/Applications/Stats.app"
+          "/Applications/Nix Apps/Stats.app"
         ];
       };
     };
@@ -25,7 +25,7 @@
         KeepAlive = false;
         ProgramArguments = [
           "/usr/bin/open"
-          "${pkgs.monitorcontrol}/Applications/MonitorControl.app"
+          "/Applications/Nix Apps/MonitorControl.app"
         ];
       };
     };
@@ -35,7 +35,7 @@
         KeepAlive = false;
         ProgramArguments = [
           "/usr/bin/open"
-          "${pkgs.alt-tab-macos}/Applications/AltTab.app"
+          "/Applications/Nix Apps/AltTab.app"
         ];
       };
     };
