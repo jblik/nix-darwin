@@ -25,6 +25,8 @@
       ];
       casks = [
         "ghostty"
+        "monitorcontrol"
+        "stats"
         "sublime-text"
       ];
       # mac app store (requires `mas`):
