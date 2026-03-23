@@ -7,16 +7,6 @@
   
     launchd.user.agents = {
       # login items
-      karabiner = {
-        serviceConfig = {
-          RunAtLoad = true;
-          KeepAlive = false;
-          ProgramArguments = [
-            "/usr/bin/open"
-            "/Applications/Nix Apps/Karabiner-EventViewer.app"
-          ];
-        };
-      };
       alttab = {
         serviceConfig = {
           RunAtLoad = true;
