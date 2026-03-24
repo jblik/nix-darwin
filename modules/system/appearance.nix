@@ -1,5 +1,4 @@
 {
-  pkgs,
   pkgs-unstable,
   homeDirectory,
   ...
@@ -45,7 +44,7 @@
           folder = {
             path = "${homeDirectory}/Downloads";
             arrangement = "date-added";
-            showas = "grid";
+            showas = "fan";
           };
         }
       ];
