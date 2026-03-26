@@ -16,6 +16,7 @@ in
 
   environment.shellAliases = {
     nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
+    k = "kubectl";
   };
 
   programs.zsh.interactiveShellInit = ''
