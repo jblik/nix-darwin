@@ -29,5 +29,6 @@
       # maybe think about just configuring it when you set up a new machine
       [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
     '';
+    # todo kubectx merge many contexts into one
   };
 }
