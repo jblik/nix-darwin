@@ -1,4 +1,4 @@
-{ username, ... }:
+{ ... }:
 
 {
   services.tailscale.enable = true;

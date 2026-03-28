@@ -1,9 +1,9 @@
 {
   pkgs-unstable,
-  homeDirectory,
+  users,
   ...
 }:
-
+# todo: need to make this multi-user
 {
   system.defaults = {
     dock = {
@@ -35,14 +35,14 @@
       persistent-others = [
         {
           folder = {
-            path = "${homeDirectory}/Documents/Screenshots";
+            path = "${users.personal.homeDirectory}/Documents/Screenshots";
             arrangement = "date-added";
             showas = "fan";
           };
         }
         {
           folder = {
-            path = "${homeDirectory}/Downloads";
+            path = "${users.personal.homeDirectory}/Downloads";
             arrangement = "date-added";
             showas = "fan";
           };

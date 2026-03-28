@@ -15,8 +15,8 @@
         autoUpdate = true;
         upgrade = true;
       };
-      brews = [];
-      taps = [];
+      brews = [ ];
+      taps = [ ];
       casks = [
         "karabiner-elements"
         "ghostty"
@@ -24,7 +24,6 @@
         "stats"
         "sublime-text"
       ];
-      # mac app store (requires `mas`):
       # mas search "<app name>"
       masApps = {
         "Tailscale" = 1475387142;
