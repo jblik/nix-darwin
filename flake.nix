@@ -31,7 +31,7 @@
         config.allowUnfree = true;
       };
 
-      users = import ./modules/system/users; # todo: should probably not be modules
+      users = import ./users.nix; # todo: could extend with different things such as git email etc
 
       # todo this is the base configuration and should be moved
       baseConfiguration =
@@ -68,7 +68,7 @@
                 verbose = true;
                 backupFileExtension = "backup";
                 extraSpecialArgs = { inherit pkgs-unstable; };
-                users = import ./modules/home-manager/users;
+                users = import ./modules/home-manager { inherit users; };
               };
             }
           ];
