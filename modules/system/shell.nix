@@ -7,9 +7,9 @@ let
 in
 {
   # todo
-#  users.users.jblik = {
-#    shell = "/bin/zsh";
-#  };
+  #  users.users.jblik = {
+  #    shell = "/bin/zsh";
+  #  };
 
   environment.variables = {
     EDITOR = "vim";

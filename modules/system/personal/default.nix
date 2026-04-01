@@ -1,5 +1,5 @@
 {
-imports = [
- ./appearance.nix   
-];
+  imports = [
+    ./appearance.nix
+  ];
 }
