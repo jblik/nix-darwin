@@ -1,6 +1,5 @@
 {
   imports = [
-    ./appearance.nix
     ./finder.nix
     ./keyboard.nix
     ./shell.nix

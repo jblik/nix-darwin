@@ -2,10 +2,11 @@
 
 let
   flakePath = "~/nix-darwin";
-  flakeRef = "${flakePath}#jsteenblik";
+  flakeRef = "${flakePath}#jsteenblik"; # todo
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
+  # todo
   users.users.jsteenblik = {
     shell = "/bin/zsh";
   };
