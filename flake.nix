@@ -77,7 +77,11 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-      darwinConfigurations.jsteenblik = mkDarwinSystem { updateHomebrew = false; };
-      darwinConfigurations."jsteenblik-updatehomebrew" = mkDarwinSystem { updateHomebrew = true; };
+      # personal todo
+#      darwinConfigurations.jsteenblik = mkDarwinSystem { updateHomebrew = false; };
+#      darwinConfigurations."jsteenblik-updatehomebrew" = mkDarwinSystem { updateHomebrew = true; };
+      # work
+      darwinConfigurations."work" = mkDarwinSystem { updateHomebrew = false; };
+      darwinConfigurations."work-updatehomebrew" = mkDarwinSystem { updateHomebrew = true; };
     };
 }

@@ -1,5 +1,5 @@
 { ... }:
-
+# todo: this needs to be user based
 {
   services.tailscale.enable = true;
   # services.tailscale.overrideLocalDns = true; # todo check if this works as expected
