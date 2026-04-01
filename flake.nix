@@ -49,11 +49,12 @@
       darwinSystemPersonal =
         {
           updateHomebrew ? false,
-          profile,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
             inherit pkgs-unstable users;
+            homeDirectory = users.personal.homeDirectory;
+                                          username = users.personal.username;
           };
           modules = [
             baseConfiguration
@@ -61,7 +62,6 @@
             ./modules
             {
               updateHomebrew.enable = updateHomebrew;
-              profile = "personal";
             }
 
             ./modules/personal
@@ -83,11 +83,12 @@
       darwinSystemWork =
         {
           updateHomebrew ? false,
-          profile,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
             inherit pkgs-unstable users;
+            homeDirectory = users.work.homeDirectory;
+                            username = users.work.username;
           };
           modules = [
             baseConfiguration
@@ -95,8 +96,8 @@
             ./modules
             {
               updateHomebrew.enable = updateHomebrew;
-              profile = "work";
             }
+
 
             ./modules/work
 
@@ -117,16 +118,13 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-      darwinConfigurations."personal" = darwinSystemPersonal { updateHomebrew = false; };
+      darwinConfigurations."personal" = darwinSystemPersonal { updateHomebrew = false;};
       darwinConfigurations."personal-updatehomebrew" = darwinSystemPersonal {
         updateHomebrew = true;
-        # todo: need to pass this?
-        profile = "personal";
       };
-      darwinConfigurations."work" = darwinSystemWork { updateHomebrew = false; };
+      darwinConfigurations."work" = darwinSystemWork { updateHomebrew = false;};
       darwinConfigurations."work-updatehomebrew" = darwinSystemWork {
         updateHomebrew = true;
-        profile = "work";
       };
     };
 }
