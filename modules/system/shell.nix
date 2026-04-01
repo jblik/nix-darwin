@@ -1,15 +1,15 @@
-{ ... }:
+{ profile, ... }:
 
 let
   flakePath = "~/nix-darwin";
-  flakeRef = "${flakePath}#jsteenblik"; # todo
+  flakeRef = "${flakePath}#${profile}"; # todo
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
   # todo
-  users.users.jsteenblik = {
-    shell = "/bin/zsh";
-  };
+#  users.users.jblik = {
+#    shell = "/bin/zsh";
+#  };
 
   environment.variables = {
     EDITOR = "vim";
