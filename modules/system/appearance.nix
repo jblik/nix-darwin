@@ -14,7 +14,6 @@
         "${pkgs-unstable.jetbrains.idea}/Applications/IntelliJ IDEA.app"
         "${pkgs-unstable.jetbrains.rider}/Applications/Rider.app"
         "${pkgs-unstable.jetbrains.datagrip}/Applications/DataGrip.app"
-        "${pkgs-unstable.jetbrains.pycharm}/Applications/PyCharm.app"
         "/Applications/Sublime Text.app"
         {
           spacer = {
@@ -22,7 +21,7 @@
           };
         }
         "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
-        "/System/Applications/Messages.app"
+        "/System/Applications/Microsoft Teams.app.app"
         "/System/Applications/System Settings.app"
         "/System/Applications/Utilities/Activity Monitor.app"
         "/System/Applications/iPhone Mirroring.app"
@@ -35,14 +34,14 @@
       persistent-others = [
         {
           folder = {
-            path = "${users.personal.homeDirectory}/Documents/Screenshots";
+            path = "${users.work.homeDirectory}/Documents/Screenshots";
             arrangement = "date-added";
             showas = "fan";
           };
         }
         {
           folder = {
-            path = "${users.personal.homeDirectory}/Downloads";
+            path = "${users.work.homeDirectory}/Downloads";
             arrangement = "date-added";
             showas = "fan";
           };

@@ -30,7 +30,6 @@
     ++ [
       pkgs-unstable.jetbrains.idea # intellij
       pkgs-unstable.jetbrains.rider # c# ide
-      pkgs-unstable.jetbrains.pycharm # python ide
       pkgs-unstable.jetbrains.datagrip # database viewer
     ];
 }
