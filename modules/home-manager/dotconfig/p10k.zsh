@@ -1321,17 +1321,17 @@
   #
   # You can define different colors, icons and content expansions for different classes:
   #
-     typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_FOREGROUND=28
+     typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_FOREGROUND=208
      typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_VISUAL_IDENTIFIER_EXPANSION='⭐'
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
   
   
-     typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=255
-     typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_VISUAL_IDENTIFIER_EXPANSION='🚨'
-  #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
+     typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=9
+     # typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_VISUAL_IDENTIFIER_EXPANSION='🚨'
+     typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_CONTENT_EXPANSION='🚨${P9K_CONTENT} 🚨'
   
   typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
-      '*master|solar*'  PROD    # These values are examples that are unlikely
+      '*solar*|*ops*|*master*'  PROD    # These values are examples that are unlikely
       '*arcadia*'  TEST    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
   typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
