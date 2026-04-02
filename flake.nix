@@ -42,7 +42,7 @@
           system = {
             configurationRevision = self.rev or self.dirtyRev or null;
             stateVersion = 6;
-            primaryUser = users.personal.username;
+            primaryUser = users.work.username;
           };
         };
 
