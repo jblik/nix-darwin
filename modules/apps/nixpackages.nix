@@ -12,7 +12,7 @@
       pkgs.ansible # configuration management tool
       pkgs.docker # docker
       pkgs.duti # tool to set default apps
-      pkgs.fz # fuzzy finder
+      pkgs.fzf # fuzzy finder
       pkgs.inetutils # gnu network utils
       pkgs.k9s # kubernetes cluster manager
       # kubectl krew install kubens kubectx plugins
