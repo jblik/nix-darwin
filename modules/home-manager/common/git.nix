@@ -6,8 +6,8 @@
     enable = true;
     settings = {
       user = {
-            name = "Jacob Steenblik";
-            email = "jacob.steenblik@yarowa.com";
+        name = "Jacob Steenblik";
+        email = "jacob.steenblik@yarowa.com";
       };
       init.defaultBranch = "master";
       core.editor = "vim";
@@ -30,8 +30,8 @@
       {
         contents = {
           user = {
-        name = "jblik";
-        email = "88430125+jblik@users.noreply.github.com"; 
+            name = "jblik";
+            email = "88430125+jblik@users.noreply.github.com";
           };
         };
         condition = "hasconfig:remote.*.url:git@github.com";
