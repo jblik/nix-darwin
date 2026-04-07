@@ -16,8 +16,11 @@
         upgrade = true;
       };
       brews = [ ];
-      taps = [ ];
+      taps = [ 
+        "Arthur-Ficial/tap"
+      ];
       casks = [
+      "apfel"
       "docker-desktop"
         "karabiner-elements"
         "ghostty"
