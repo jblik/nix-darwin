@@ -16,6 +16,8 @@
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
     ];
+    
+    # todo: homebrew not in path
 
     initContent = lib.mkBefore ''
       # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -29,6 +31,5 @@
       # maybe think about just configuring it when you set up a new machine
       [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
     '';
-    # todo kubectx merge many contexts into one
   };
 }

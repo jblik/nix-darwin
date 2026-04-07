@@ -11,12 +11,12 @@
       pkgs.alt-tab-macos # windows like alt-tab
       pkgs.ansible # configuration management tool
       pkgs.docker # docker
+      pkgs.dotnet-aspnetcore_9
       pkgs.duti # tool to set default apps
       pkgs.fzf # fuzzy finder
       pkgs.helmfile
       pkgs.inetutils # gnu network utils
       pkgs.k9s # kubernetes cluster manager
-      # kubectl krew install kubens kubectx plugins
       pkgs.kubectl # kubernetes cli
       pkgs.kubectx # kubernetes context tool
       pkgs.kubernetes-helm # package manager for kubernetes
