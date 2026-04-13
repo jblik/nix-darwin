@@ -3,7 +3,6 @@
   users,
   ...
 }:
-# todo: need to make this multi-user
 {
   system.defaults = {
     dock = {
