@@ -15,10 +15,8 @@
       pkgs.dotnetCorePackages.dotnet_9.sdk
       pkgs.duti # tool to set default apps
       pkgs.fzf # fuzzy finder
-      pkgs.helmfile # 
       pkgs.inetutils # gnu network utils
       pkgs.jetbrains-toolbox
-      pkgs.k9s # kubernetes cluster manager
       pkgs.kubectl # kubernetes cli
       pkgs.kubectx # kubernetes context tool
       pkgs.kubernetes-helm # package manager for kubernetes
@@ -29,12 +27,15 @@
       pkgs.opentofu # open source fork of terraform
       pkgs.ripgrep # faster grep
       pkgs.spotify
-      pkgs.terraform # tool for building, changing, and versioning infrastructure
       pkgs.uv # python package manager
-      pkgs.vault # tool for managing secrets
       pkgs.zsh-powerlevel10k # zsh theme
     ]
     ++ [
+      pkgs-unstable.helmfile #
+      pkgs-unstable.k9s # kubernetes cluster manager
+      pkgs-unstable.terraform # tool for building, changing, and versioning infrastructure
+      pkgs-unstable.vault # hcp tool for managing secrets
+
       pkgs-unstable.jetbrains.idea # intellij
       pkgs-unstable.jetbrains.rider # c# ide
       pkgs-unstable.jetbrains.pycharm # python ide
