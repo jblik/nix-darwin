@@ -17,6 +17,7 @@
       pkgs.fzf # fuzzy finder
       pkgs.helmfile # 
       pkgs.inetutils # gnu network utils
+      pkgs.jetbrains-toolbox
       pkgs.k9s # kubernetes cluster manager
       pkgs.kubectl # kubernetes cli
       pkgs.kubectx # kubernetes context tool
