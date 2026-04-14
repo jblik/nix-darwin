@@ -23,6 +23,7 @@
       pkgs.meslo-lgs-nf # font for powerlevel10k
       pkgs.nmap # network discovery tool
       pkgs.nodejs_24
+      pkgs.ollama # local llms
       pkgs.openssh # ssh tool
       pkgs.opentofu # open source fork of terraform
       pkgs.ripgrep # faster grep
