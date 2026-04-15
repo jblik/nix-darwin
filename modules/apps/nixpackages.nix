@@ -8,7 +8,6 @@
     with pkgs;
     [
       pkgs.azure-cli
-      pkgs.alt-tab-macos # windows like alt-tab
       pkgs.ansible # configuration management tool
       pkgs.coreutils # gnu core utils
       pkgs.dotnetCorePackages.sdk_8_0-bin
