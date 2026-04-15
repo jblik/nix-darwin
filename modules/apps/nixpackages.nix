@@ -10,7 +10,6 @@
       pkgs.azure-cli
       pkgs.alt-tab-macos # windows like alt-tab
       pkgs.ansible # configuration management tool
-      pkgs.docker # docker
       pkgs.dotnetCorePackages.sdk_8_0-bin
       pkgs.dotnetCorePackages.dotnet_9.sdk
       pkgs.duti # tool to set default apps
@@ -31,6 +30,7 @@
       pkgs.zsh-powerlevel10k # zsh theme
     ]
     ++ [
+      pkgs-unstable.docker # docker
       pkgs-unstable.helmfile #
       pkgs-unstable.k9s # kubernetes cluster manager
       pkgs-unstable.ollama # local llms
