@@ -53,23 +53,6 @@
       tilesize = 62;
     };
 
-# todo: consolidate equal ones in a base appearance
-    NSGlobalDomain = {
-      AppleInterfaceStyle = "Dark";
-      AppleIconAppearanceTheme = "RegularDark";
-      AppleMetricUnits = 1;
-      AppleMeasurementUnits = "Centimeters";
-      AppleTemperatureUnit = "Celsius";
-      AppleICUForce24HourTime = true;
-      NSStatusItemSelectionPadding = 0;
-      NSStatusItemSpacing = 0;
-    };
-
-    loginwindow = {
-      GuestEnabled = false;
-      LoginwindowText = "This is not the account you are looking for...";
-    };
-
-    menuExtraClock.IsAnalog = true;
+    loginwindow.LoginwindowText = "This is not the account you are looking for...";
   };
 }
