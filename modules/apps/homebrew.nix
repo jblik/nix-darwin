@@ -30,7 +30,7 @@
       ];
       # mas search "<app name>"
       masApps = {
-        #"Tailscale" = 1475387142;
+        "Tailscale" = 1475387142;
         "uBlock Origin Lite" = 6745342698;
         "Vimlike" = 1584519802;
         #       "Windows App" = 1295203466;
