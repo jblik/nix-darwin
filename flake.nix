@@ -74,10 +74,7 @@
                 useUserPackages = true;
                 verbose = true;
                 backupFileExtension = "backup";
-                extraSpecialArgs = {
-                  inherit pkgs-unstable;
-                  profile = users.personal.profile;
-                };
+                extraSpecialArgs = { inherit pkgs-unstable; profile = users.personal.profile; };
                 users = import ./modules/home-manager { inherit users; };
               };
             }
@@ -113,10 +110,7 @@
                 useUserPackages = true;
                 verbose = true;
                 backupFileExtension = "backup";
-                extraSpecialArgs = {
-                  inherit pkgs-unstable;
-                  profile = users.work.profile;
-                };
+                extraSpecialArgs = { inherit pkgs-unstable; profile = users.work.profile; };
                 users = import ./modules/home-manager { inherit users; };
               };
             }

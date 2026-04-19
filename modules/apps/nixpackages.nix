@@ -31,7 +31,7 @@
     ]
     ++ [
       pkgs-unstable.docker # docker
-      pkgs-unstable.helmfile
+      pkgs-unstable.helmfile #
       pkgs-unstable.k9s # kubernetes cluster manager
       pkgs-unstable.ollama # local llms
       pkgs-unstable.opencode # local agent
