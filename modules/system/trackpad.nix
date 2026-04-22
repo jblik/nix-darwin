@@ -11,12 +11,14 @@
       TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
       TrackpadThreeFingerHorizSwipeGesture = 2;
       TrackpadThreeFingerTapGesture = 0;
+      TrackpadThreeFingerVertSwipeGesture = 2;
     };
 
     dock = {
       showDesktopGestureEnabled = true;
       showMissionControlGestureEnabled = true;
       showLaunchpadGestureEnabled = false;
+      showAppExposeGestureEnabled = true;
     };
 
     NSGlobalDomain = {
