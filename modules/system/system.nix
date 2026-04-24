@@ -1,4 +1,9 @@
-{ pkgs, homeDirectory, username, ... }:
+{
+  pkgs,
+  homeDirectory,
+  username,
+  ...
+}:
 {
   system = {
     defaults.screencapture.location = "${homeDirectory}/Documents/Screenshots";
