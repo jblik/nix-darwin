@@ -20,7 +20,7 @@
     };
   };
 
-  #todo is this needed
+  # todo is this needed
   #    system.defaults.NSGlobalDomain = {
   #        AppleShowAllExtensions = true;
   #        AppleShowAllFiles = true;

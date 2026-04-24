@@ -1,5 +1,4 @@
 { homeDirectory, username, ... }:
-# todo: edit to be multi-user
 {
   system = {
     keyboard = {
