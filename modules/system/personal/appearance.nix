@@ -51,8 +51,5 @@
     tilesize = 62;
   };
 
-  system.loginwindow = {
-    GuestEnabled = false;
-    LoginwindowText = "";
-  };
+  system.defaults.loginwindow.LoginwindowText = "Hello!";
 }
