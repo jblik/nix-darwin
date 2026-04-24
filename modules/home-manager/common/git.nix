@@ -4,11 +4,6 @@
   # todo: https://seansantry.com/development/2022/12/14/split-git-nix/
   programs.git = {
     enable = true;
-    settings = {
-      user = {
-        name = "Jacob Steenblik";
-        email = "jacob.steenblik@yarowa.com";
-      };
       init.defaultBranch = "master";
       core.editor = "vim";
       core.autocrlf = "input";
@@ -23,9 +18,6 @@
       };
     };
 
-    # todo: only in the personal
-    # todo make gitconfigs with home manager
-    # can use the ~/.config/git/domain.gitconfig or something
     includes = [
       {
         contents = {
