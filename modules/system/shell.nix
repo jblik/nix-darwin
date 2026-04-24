@@ -1,8 +1,8 @@
-{ ... }:
+{ profile, ... }:
 
 let
   flakePath = "~/nix-darwin";
-  flakeRef = "${flakePath}#todo";
+  flakeRef = "${flakePath}#${profile}";
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
