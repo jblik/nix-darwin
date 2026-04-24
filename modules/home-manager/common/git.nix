@@ -4,6 +4,7 @@
   # todo: https://seansantry.com/development/2022/12/14/split-git-nix/
   programs.git = {
     enable = true;
+    settings = {
       init.defaultBranch = "master";
       core.editor = "vim";
       core.autocrlf = "input";
