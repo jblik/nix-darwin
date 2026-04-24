@@ -107,7 +107,7 @@
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
     # cpu_arch              # CPU architecture
-    time                    # current time
+    # time                    # current time
     # =========================[ Line #2 ]=========================
     newline                 # \n
     # ip                    # ip address and bandwidth usage for a specified network interface
@@ -291,7 +291,7 @@
   # opening a directory in the file manager simply by clicking the link.
   # Can also be handy when the directory is shortened, as it allows you to see
   # the full directory that was used in previous commands.
-  typeset -g POWERLEVEL9K_DIR_HYPERLINK=false
+  typeset -g POWERLEVEL9K_DIR_HYPERLINK=true
 
   # Enable special styling for non-writable and non-existent directories. See POWERLEVEL9K_LOCK_ICON
   # and POWERLEVEL9K_DIR_CLASSES below.
@@ -299,7 +299,7 @@
 
   # The default icon shown next to non-writable and non-existent directories when
   # POWERLEVEL9K_DIR_SHOW_WRITABLE is set to v3.
-  # typeset -g POWERLEVEL9K_LOCK_ICON='⭐'
+   typeset -g POWERLEVEL9K_LOCK_ICON='🔒'
 
   # POWERLEVEL9K_DIR_CLASSES allows you to specify custom icons and colors for different
   # directories. It must be an array with 3 * N elements. Each triplet consists of:
@@ -350,7 +350,22 @@
   # parameter. For example, if POWERLEVEL9K_DIR_WORK_NOT_WRITABLE_FOREGROUND is not set, it falls
   # back to POWERLEVEL9K_DIR_FOREGROUND.
   #
-  # typeset -g POWERLEVEL9K_DIR_CLASSES=()
+     typeset -g POWERLEVEL9K_DIR_CLASSES=(
+       '~/work(|/*)'        WORK     ''
+       '~/nix-darwin(|/*)'  NIX     ''
+       '~(|/*)'             HOME     ''
+       '*'                  DEFAULT  '')
+  
+     # Styling for WORK.
+     typeset -g POWERLEVEL9K_DIR_WORK_VISUAL_IDENTIFIER_EXPANSION='🏢'
+#     typeset -g POWERLEVEL9K_DIR_WORK_FOREGROUND=202
+#     typeset -g POWERLEVEL9K_DIR_WORK_SHORTENED_FOREGROUND=214
+#     typeset -g POWERLEVEL9K_DIR_WORK_ANCHOR_FOREGROUND=208
+  
+     typeset -g POWERLEVEL9K_DIR_NIX_VISUAL_IDENTIFIER_EXPANSION='❄️'
+#     typeset -g POWERLEVEL9K_DIR_NIX_FOREGROUND=202
+#     typeset -g POWERLEVEL9K_DIR_NIX_SHORTENED_FOREGROUND=214
+#     typeset -g POWERLEVEL9K_DIR_NIX_ANCHOR_FOREGROUND=208
 
   # Custom prefix.
   # typeset -g POWERLEVEL9K_DIR_PREFIX='%248Fin '
@@ -1318,22 +1333,23 @@
   #
   # If your current kubernetes context is "deathray-testing/default", its class is TEST
   # because "deathray-testing/default" doesn't match the pattern '*prod*' but does match '*test*'.
-  #
+    typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
+        '*solar*|*ops*|*master*'  PROD
+        '*arcadia*'  TEST
+        '*'       DEFAULT)
+  
+  
   # You can define different colors, icons and content expansions for different classes:
   #
      typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_FOREGROUND=208
-     typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
+     typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_VISUAL_IDENTIFIER_EXPANSION='⚠️'
+#     typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
   
   
      typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=9
-     # typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_VISUAL_IDENTIFIER_EXPANSION='🚨'
-     typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_CONTENT_EXPANSION='🚨${P9K_CONTENT} 🚨'
+      typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_VISUAL_IDENTIFIER_EXPANSION='🚨'
+#     typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_CONTENT_EXPANSION='🚨${P9K_CONTENT} 🚨'
   
-  typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
-      '*solar*|*ops*|*master*'  PROD    # These values are examples that are unlikely
-      '*arcadia*'  TEST    # to match your needs. Customize them as needed.
-      '*'       DEFAULT)
   typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
   # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
