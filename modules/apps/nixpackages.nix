@@ -13,6 +13,7 @@
     pkgs.dotnetCorePackages.dotnet_9.sdk
     pkgs.duti # tool to set default apps
     pkgs.fzf # fuzzy finder
+    pkgs-unstable.helmfile
     pkgs.inetutils # gnu network utils
     pkgs.jetbrains-toolbox
     pkgs-unstable.k9s # kubernetes cluster manager
