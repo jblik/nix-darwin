@@ -29,7 +29,8 @@
       # maybe think about just configuring it when you set up a new machine
       [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
       export PATH=$PATH:/opt/homebrew/bin
-#      export DOTNET_ROOT=$HOME/.dotnet
+      # todo: remove this dotnet
+      export DOTNET_ROOT=$HOME/.dotnet
       export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
     '';
   };
