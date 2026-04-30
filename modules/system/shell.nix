@@ -16,6 +16,12 @@ in
     ktx = "kubectx";
     kns = "kubens";
   };
+  
+  environment.systemPath = [
+    "/opt/homebrew/bin"
+#    todo: maybe the tools are already in the path?
+    "$DOTNET_ROOT:$DOTNET_ROOT/tools"
+  ];
 
   programs.zsh.interactiveShellInit = ''
     nix-update() {
