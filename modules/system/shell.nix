@@ -6,22 +6,25 @@ let
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
-  environment.variables = {
-    EDITOR = "vim";
-  };
+  environment = {
+    variables = {
+      EDITOR = "vim";
+      OLLAMA_NO_CLOUD = "true";
+    };
 
-  environment.shellAliases = {
-    nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
-    k = "kubectl";
-    ktx = "kubectx";
-    kns = "kubens";
+    shellAliases = {
+      nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
+      k = "kubectl";
+      ktx = "kubectx";
+      kns = "kubens";
+    };
+
+    systemPath = [
+      "/opt/homebrew/bin"
+      #    todo: maybe the tools are already in the path?
+      "$DOTNET_ROOT:$DOTNET_ROOT/tools"
+    ];
   };
-  
-  environment.systemPath = [
-    "/opt/homebrew/bin"
-#    todo: maybe the tools are already in the path?
-    "$DOTNET_ROOT:$DOTNET_ROOT/tools"
-  ];
 
   programs.zsh.interactiveShellInit = ''
     nix-update() {
