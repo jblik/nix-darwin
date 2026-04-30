@@ -4,7 +4,7 @@
   nixpkgs.config.allowUnfree = true;
   
 #  todo make dotnet properly
-#  environment.variables.DOTNET_ROOT = "${combinedSdk}/share/dotnet/";
+  environment.variables.DOTNET_ROOT = "$(dirname $(realpath $(which dotnet)))";
 
   # https://search.nixos.org/packages
   environment.systemPackages = with pkgs; [
