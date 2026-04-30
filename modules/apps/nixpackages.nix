@@ -1,47 +1,40 @@
-{ pkgs, pkgs-unstable, ... }:
+{ dotnet, pkgs, pkgs-unstable, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
-  
+#  dotnet = import ./dotnet.nix;
 #  todo make dotnet properly
-  environment.variables.DOTNET_ROOT = "$(dirname $(realpath $(which dotnet)))";
+#  environment.variables.DOTNET_ROOT = "$(dirname $(realpath $(which dotnet)))";
 
   # https://search.nixos.org/packages
-  environment.systemPackages = with pkgs; [
-    azure-cli
-    ansible # configuration management tool
-    coreutils # gnu core utils
+  environment.systemPackages = [
+    pkgs.azure-cli
+    pkgs.ansible # configuration management tool
+    pkgs.coreutils # gnu core utils
     pkgs-unstable.docker # docker
-    (
-      with pkgs-unstable.dotnetCorePackages;
-      combinePackages [
-        sdk_8_0
-        sdk_9_0
-        sdk_10_0
-      ]
-    )
-    duti # tool to set default apps
-    fzf # fuzzy finder
+    dotnet.sdk
+    pkgs.duti # tool to set default apps
+    pkgs.fzf # fuzzy finder
     pkgs-unstable.helmfile
-    inetutils # gnu network utils
-    jetbrains-toolbox
+    pkgs.inetutils # gnu network utils
+    pkgs.jetbrains-toolbox
     pkgs-unstable.k9s # kubernetes cluster manager
-    kubectl # kubernetes cli
-    kubectx # kubernetes context tool
-    kubernetes-helm # package manager for kubernetes
-    meslo-lgs-nf # font for powerlevel10k
-    nmap # network discovery tool
-    nodejs_24
+    pkgs.kubectl # kubernetes cli
+    pkgs.kubectx # kubernetes context tool
+    pkgs.kubernetes-helm # package manager for kubernetes
+    pkgs.meslo-lgs-nf # font for powerlevel10k
+    pkgs.nmap # network discovery tool
+    pkgs.nodejs_24
     pkgs-unstable.ollama # local llms
     pkgs-unstable.opencode # local agent
-    openssh # ssh tool
-    opentofu # open source fork of terraform
-    ripgrep # faster grep
-    spotify
+    pkgs.openssh # ssh tool
+    pkgs.opentofu # open source fork of terraform
+    pkgs.ripgrep # faster grep
+    pkgs.spotify
     pkgs-unstable.terraform # tool for building, changing, and versioning infrastructure
-    uv # python package manager
+    pkgs.uv # python package manager
     pkgs-unstable.vault # hcp tool for managing secrets
     pkgs-unstable.velero # kubernetes cluster restore tool
-    zsh-powerlevel10k # zsh theme
+    pkgs.zsh-powerlevel10k # zsh theme
   ];
 }
