@@ -13,12 +13,12 @@ in
 
   # https://search.nixos.org/packages
   environment.systemPackages = [
-    dotnet.nuke
-    dotnet.sdk
     pkgs.azure-cli
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
     pkgs-unstable.docker # docker
+    dotnet.nuke # for packaging
+    dotnet.sdk # dotnet sdk
     pkgs.duti # tool to set default apps
     pkgs.fzf # fuzzy finder
     pkgs-unstable.helmfile
