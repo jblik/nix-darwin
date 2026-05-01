@@ -5,7 +5,9 @@
 }:
 let
   dotnet = import ./dotnet.nix {
-    follows = pkgs;
+    buildDotnetGlobalTool = pkgs.buildDotnetGlobalTool;
+    dotnetCorePackages = pkgs.dotnetCorePackages;
+    lib = pkgs.lib;
   };
 in
 {
