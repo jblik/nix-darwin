@@ -40,13 +40,14 @@
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit pkgs-unstable users;
+            inherit pkgs-unstable users updateHomebrew;
             homeDirectory = users.${profile}.homeDirectory;
             username = users.${profile}.username;
             profile = users.${profile}.profile;
           };
           modules = [
             {
+              # general settings
               nix.settings.experimental-features = "nix-command flakes";
               nixpkgs.hostPlatform = system;
               system = {
@@ -57,9 +58,6 @@
             }
 
             ./modules
-            {
-              updateHomebrew.enable = updateHomebrew;
-            }
 
             home-manager.darwinModules.home-manager
             {
@@ -85,7 +83,7 @@
       #                mkShell import ./modules/apps/nixpackages.nix
       #              };
 
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
       darwinConfigurations."personal" = darwinSystem {
         updateHomebrew = false;
         profile = "personal";
