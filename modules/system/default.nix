@@ -1,4 +1,4 @@
-{ profile, ... }:
+{ user, ... }:
 {
   imports = [
     ./appearance.nix
@@ -7,6 +7,6 @@
     ./shell.nix
     ./system.nix
     ./trackpad.nix
-    ./${profile}
+    ./${user.profile}
   ];
 }

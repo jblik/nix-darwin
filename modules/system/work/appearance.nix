@@ -1,7 +1,7 @@
 {
   pkgs,
   pkgs-unstable,
-  users,
+  user,
   ...
 }:
 {
@@ -34,14 +34,14 @@
     persistent-others = [
       {
         folder = {
-          path = "${users.work.homeDirectory}/Documents/Screenshots";
+          path = "${user.homeDirectory}/Documents/Screenshots";
           arrangement = "date-added";
           showas = "fan";
         };
       }
       {
         folder = {
-          path = "${users.work.homeDirectory}/Downloads";
+          path = "${user.homeDirectory}/Downloads";
           arrangement = "date-added";
           showas = "fan";
         };
