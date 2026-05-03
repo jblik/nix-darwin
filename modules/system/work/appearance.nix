@@ -10,9 +10,9 @@
     orientation = "bottom";
     persistent-apps = [
       "/Applications/Ghostty.app"
-      "/Applications/IntelliJ IDEA.app"
-      "/Applications/Rider.app"
-      "/Applications/DataGrip.app"
+      "/Applications/Jetbrains/IntelliJ IDEA.app"
+      "/Applications/Jetbrains/Rider.app"
+      "/Applications/Jetbrains/DataGrip.app"
       "/Applications/Sublime Text.app"
       {
         spacer = {
