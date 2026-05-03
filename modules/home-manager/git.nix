@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, user, ... }:
 
 {
   programs.git = {
@@ -28,7 +28,9 @@
         };
         condition = "hasconfig:remote.*.url:git@github.com:*/**";
       }
-    ];
+    ]
+    # todo: handle this differently
+    ++ lib.optionals (user.profile == "personal") import ./personal/git.nix;
 
     ignores = [
       ".DS_Store"
