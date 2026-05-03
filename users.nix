@@ -3,10 +3,18 @@
     username = "jblik";
     homeDirectory = "/Users/jblik";
     profile = "personal";
+    git = {
+      name = "Jacob Steenblik";
+      email = "jacob@steenblik.org";
+    };
   };
   work = {
     username = "jblik_yarowa";
     homeDirectory = "/Users/jblik_yarowa";
     profile = "work";
+    git = {
+      name = "Jacob Steenblik";
+      email = "jacob.steenblik@yarowa.com";
+    };
   };
 }
