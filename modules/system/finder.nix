@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   system.defaults.finder = {
     FXPreferredViewStyle = "Nlsv"; # list view default

@@ -1,7 +1,14 @@
-{ user, ... }:
+{
+  user,
+  ...
+}:
 let
   mkUser =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      ...
+    }:
     {
       programs.home-manager.enable = true;
       home.stateVersion = "25.11";
