@@ -1,4 +1,4 @@
-[
+pkgs: [
   "/Applications/Ghostty.app"
   "/Applications/Jetbrains/IntelliJ IDEA.app"
   "/Applications/Jetbrains/Rider.app"

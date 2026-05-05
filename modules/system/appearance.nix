@@ -9,7 +9,7 @@
     dock = {
       autohide = true;
       orientation = "bottom";
-      persistent-apps = import ./${user.profile}/persistentApps.nix;
+      persistent-apps = import ./${user.profile}/persistentApps.nix pkgs;
       persistent-others = [
         {
           folder = {
