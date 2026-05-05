@@ -22,7 +22,6 @@ in
     dotnet.nuke # for packaging dotnet projects
     dotnet.sdk # dotnet sdk
     pkgs.duti # tool to set default apps
-    pkgs.firefox # firefox
     pkgs.fzf # fuzzy finder
     pkgs-unstable.helmfile
     pkgs.inetutils # gnu network utils
