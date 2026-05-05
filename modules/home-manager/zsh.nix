@@ -6,7 +6,7 @@
 }:
 
 let
-  flakePath = "~/nix-darwin";
+  flakePath = "${user.homeDirectory}/nix-darwin";
   flakeRef = "${flakePath}#${user.profile}";
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
@@ -28,7 +28,7 @@ in
     ];
 
     shellAliases = {
-      nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
+      nix-rebuild = ''echo "rebuilding profile: ${user.profile}" && sudo darwin-rebuild switch --flake ${flakeRef}'';
     };
 
     siteFunctions = {
@@ -50,9 +50,9 @@ in
       '';
       nix-gc = ''
         local days="''${1:-10}"
-        echo "Removing generations older than ''${days}d..."
+        echo "removing generations older than ''${days}d..."
         nix-collect-garbage --delete-older-than "''${days}d"
-        echo "Optimizing Nix store..."
+        echo "optimizing Nix store..."
         nix-store --optimise
       '';
     };
