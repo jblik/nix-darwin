@@ -14,6 +14,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = [
+  # todo patch jetbrains mono:https://wiki.nixos.org/wiki/Fonts
     pkgs.meslo-lgs-nf # font for powerlevel10k
   ];
 
