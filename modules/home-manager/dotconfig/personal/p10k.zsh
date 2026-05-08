@@ -299,7 +299,7 @@
 
   # The default icon shown next to non-writable and non-existent directories when
   # POWERLEVEL9K_DIR_SHOW_WRITABLE is set to v3.
-   typeset -g POWERLEVEL9K_LOCK_ICON='🔒'
+   typeset -g POWERLEVEL9K_LOCK_ICON='󰌾'
 
   # POWERLEVEL9K_DIR_CLASSES allows you to specify custom icons and colors for different
   # directories. It must be an array with 3 * N elements. Each triplet consists of:
@@ -357,12 +357,12 @@
        '*'                  DEFAULT  '')
   
      # Styling for WORK.
-     typeset -g POWERLEVEL9K_DIR_SCHOOL_VISUAL_IDENTIFIER_EXPANSION='🎓'
+     typeset -g POWERLEVEL9K_DIR_SCHOOL_VISUAL_IDENTIFIER_EXPANSION='󱆀'
 #     typeset -g POWERLEVEL9K_DIR_WORK_FOREGROUND=202
 #     typeset -g POWERLEVEL9K_DIR_WORK_SHORTENED_FOREGROUND=214
 #     typeset -g POWERLEVEL9K_DIR_WORK_ANCHOR_FOREGROUND=208
   
-     typeset -g POWERLEVEL9K_DIR_NIX_VISUAL_IDENTIFIER_EXPANSION='❄'
+     typeset -g POWERLEVEL9K_DIR_NIX_VISUAL_IDENTIFIER_EXPANSION='󱄅'
 #     typeset -g POWERLEVEL9K_DIR_NIX_FOREGROUND=202
 #     typeset -g POWERLEVEL9K_DIR_NIX_SHORTENED_FOREGROUND=214
 #     typeset -g POWERLEVEL9K_DIR_NIX_ANCHOR_FOREGROUND=208
