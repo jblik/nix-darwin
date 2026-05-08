@@ -372,7 +372,7 @@
 
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126 '
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=''#'\uF126 '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
@@ -519,14 +519,14 @@
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=244
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
-    function my_vcs_icon() {
-      if [[ $VCS_STATUS_REMOTE_URL == *codeberg* ]]; then
-        print -n ''
-      else
-        print -n "$P9K_VISUAL_IDENTIFIER"
-      fi
-    }
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='$(my_vcs_icon)'
+  function forgejo_icon() {
+    if [[ $VCS_STATUS_REMOTE_URL == *codeberg* ]]; then
+      print -n ''
+    else
+      print -n "$P9K_VISUAL_IDENTIFIER"
+    fi
+  }
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='$(forgejo_icon)'
   # Custom prefix.
   # typeset -g POWERLEVEL9K_VCS_PREFIX='%248Fon '
 
