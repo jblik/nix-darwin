@@ -519,7 +519,7 @@
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=244
   # Custom icon.
     function forgejo_icon() {
-      if [[ $VCS_STATUS_REMOTE_URL == *codeberg*|*yoda.cloud* ]]; then
+      if [[ $VCS_STATUS_REMOTE_URL == (*codeberg*|*yoda.cloud*) ]]; then
         print -n ''
       else
         print -n "$P9K_VISUAL_IDENTIFIER"
