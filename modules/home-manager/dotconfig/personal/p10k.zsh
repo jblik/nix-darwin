@@ -519,7 +519,14 @@
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=244
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='${${VCS_STATUS_REMOTE_URL:#*forgejo*}:+${P9K_VISUAL_IDENTIFIER}}${${VCS_STATUS_REMOTE_URL:#*forgejo*}:-󰊢}'
+    function my_vcs_icon() {
+      if [[ $VCS_STATUS_REMOTE_URL == *codeberg* ]]; then
+        print -n ''
+      else
+        print -n "$P9K_VISUAL_IDENTIFIER"
+      fi
+    }
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='$(my_vcs_icon)'
   # Custom prefix.
   # typeset -g POWERLEVEL9K_VCS_PREFIX='%248Fon '
 
