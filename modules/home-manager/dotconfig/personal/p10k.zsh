@@ -522,6 +522,8 @@
   function forgejo_icon() {
     if [[ $VCS_STATUS_REMOTE_URL == *codeberg* ]]; then
       print -n ''
+    elif [[ $VCS_STATUS_REMOTE_URL == *gitlab* ]]; then
+      print -n '\ue7eb'
     else
       print -n "$P9K_VISUAL_IDENTIFIER"
     fi
