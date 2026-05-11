@@ -38,7 +38,7 @@
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit pkgs-unstable updateHomebrew;
+            inherit pkgs-unstable updateHomebrew users;
             user = users.${profile};
           };
           modules = [

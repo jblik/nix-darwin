@@ -1,4 +1,9 @@
 {
+  users,
+  ...
+}
+:
+{
   environment = {
     shellAliases = {
       ".." = "cd ..";
@@ -12,6 +17,9 @@
     systemPath = [
       "/opt/homebrew/bin"
       "$DOTNET_ROOT:$DOTNET_ROOT/tools"
+      # todo: iterate
+      "${users.personal.homeDirectory}/.dotnet/tools"
+      "${users.work.homeDirectory}/.dotnet/tools"
     ];
 
     variables = {
