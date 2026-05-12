@@ -69,7 +69,10 @@
                 users = builtins.listToAttrs (
                   map (user: {
                     name = user.username;
-                    value = import ./modules/home-manager { inherit user; pkgs = nixpkgs; };
+                    value = import ./modules/home-manager {
+                      inherit user;
+                      pkgs = nixpkgs.legacyPackages.${system};
+                    };
                   }) (builtins.attrValues users)
                 );
               };
