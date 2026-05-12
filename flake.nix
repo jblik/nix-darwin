@@ -63,12 +63,15 @@
                 verbose = true;
                 backupFileExtension = "backup";
                 extraSpecialArgs = {
+                  inherit nixpkgs;
                   user = users.${profile};
                 };
-                users = import ./modules/home-manager {
-                  user = users.${profile};
-                  lib = nixpkgs.lib;
-                };
+                users = builtins.listToAttrs (
+                  map (user: {
+                    name = user.username;
+                    value = import ./modules/home-manager { inherit user; pkgs = nixpkgs; };
+                  }) (builtins.attrValues users)
+                );
               };
             }
           ];

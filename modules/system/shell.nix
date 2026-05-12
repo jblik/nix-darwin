@@ -1,8 +1,7 @@
 {
   users,
   ...
-}
-:
+}:
 {
   environment = {
     shellAliases = {

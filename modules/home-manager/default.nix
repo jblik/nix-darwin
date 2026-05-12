@@ -1,20 +1,18 @@
 {
-  lib,
+  pkgs,
   user,
   ...
 }:
 {
-  ${user.username} = {
     programs.home-manager.enable = true;
     home.stateVersion = "25.11";
     home.username = user.username;
-    home.homeDirectory = lib.mkForce user.homeDirectory;
+    home.homeDirectory = pkgs.lib.mkForce user.homeDirectory;
     imports = [
-      ./git.nix
+      (import ./git.nix { inherit user; lib = pkgs.lib; })
       ./karabiner.nix
-      ./p10k.nix
+      (import ./p10k.nix { inherit user; })
       ./sublime.nix
-      ./zsh.nix
+      (import ./zsh.nix { inherit pkgs user; lib = pkgs.lib; })
     ];
-  };
 }
