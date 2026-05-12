@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   user,
   ...
@@ -9,16 +10,10 @@
   home.username = user.username;
   home.homeDirectory = pkgs.lib.mkForce user.homeDirectory;
   imports = [
-    (import ./git.nix {
-      inherit user;
-      lib = pkgs.lib;
-    })
+    ./git.nix
     ./karabiner.nix
-    (import ./p10k.nix { inherit user; })
+    ./p10k.nix
     ./sublime.nix
-    (import ./zsh.nix {
-      inherit pkgs user;
-      lib = pkgs.lib;
-    })
+    ./zsh.nix
   ];
 }
