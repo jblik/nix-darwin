@@ -18,10 +18,10 @@
       "/opt/homebrew/bin"
       "$DOTNET_ROOT:$DOTNET_ROOT/tools"
       # todo: iterate
-      "${users.personal.homeDirectory}/.dotnet/tools"
+      "${users.personal.homeDirectory}/.dotnet/tools" # todo: could build my global tools in nix as well
       "${users.work.homeDirectory}/.dotnet/tools"
-      "${users.personal.homeDirectory}/Library/Library/Application Support/Jetbrains/Toolbox/scripts"
-      "${users.work.homeDirectory}/Library/Library/Application Support/Jetbrains/Toolbox/scripts"
+      "${users.personal.homeDirectory}/Library/Library/Application\ Support/Jetbrains/Toolbox/scripts"
+      "${users.work.homeDirectory}/Library/Library/Application\ Support/Jetbrains/Toolbox/scripts"
     ];
 
     variables = {
