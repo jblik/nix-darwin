@@ -14,6 +14,25 @@
     };
   };
 
+# todo: an iteration broke profiles, figure that out:
+
+#error: nix profile requires a sub-command. Available sub-commands:
+#
+#         · add
+#         · diff-closures
+#         · history
+#         · list
+#         · remove
+#         · rollback
+#         · upgrade
+#         · wipe-history
+#Try 'nix --help' for more information.
+#❯ nix profile add
+#error: flake 'git+file:///Users/wookie/nix-darwin' does not provide attribute 'packages.aarch64-darwin.default' or 'defaultPackage.aarch64-darwin'
+#❯ nix profile list
+#❯ nix profile rollback
+#error: no profile version older than the current (0) exists
+
   outputs =
     inputs@{
       self,
