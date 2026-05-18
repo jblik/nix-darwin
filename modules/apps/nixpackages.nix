@@ -20,7 +20,6 @@ in
 
   # https://search.nixos.org/packages
   environment.systemPackages = [
-    pkgs.autoraise
     pkgs.azure-cli
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
