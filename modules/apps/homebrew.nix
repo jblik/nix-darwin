@@ -18,10 +18,10 @@
         autoUpdate = true;
         upgrade = true;
       };
-      brews = [ 
-	"apfel"
+      brews = [
+        "apfel"
         "gonzo" # k8s log tui
-       ];
+      ];
       taps = [
         "Arthur-Ficial/tap" # for apfel
       ];
