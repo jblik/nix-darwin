@@ -14,6 +14,8 @@
     };
 
     systemPath = [
+      "${users.personal.homeDirectory}/.local/bin"
+      "${users.work.homeDirectory}/.local/bin"
       "/opt/homebrew/bin"
       "$DOTNET_ROOT:$DOTNET_ROOT/tools"
       # todo: iterate
