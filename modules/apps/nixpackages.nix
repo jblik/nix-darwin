@@ -48,6 +48,7 @@ in
     pkgs.uv # python package manager
     pkgs-unstable.vault # hcp tool for managing secrets
     pkgs-unstable.velero # kubernetes cluster restore tool
+    pkgs.vlc
     pkgs.zsh-powerlevel10k # zsh theme
   ];
 }
