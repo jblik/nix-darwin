@@ -42,6 +42,7 @@ in
     pkgs-unstable.opencode # local agent
     pkgs.openssh # ssh tool
     pkgs.opentofu # open source fork of terraform
+    pkgs.postman
     pkgs.ripgrep # faster grep
     pkgs.spotify
     pkgs-unstable.terraform # tool for building, changing, and versioning infrastructure
