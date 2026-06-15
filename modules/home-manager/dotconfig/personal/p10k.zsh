@@ -520,10 +520,12 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
   function forgejo_icon() {
-    if [[ $VCS_STATUS_REMOTE_URL == *codeberg* ]]; then
-      print -n ''
+    if [[ $VCS_STATUS_REMOTE_URL == (*forgejo*|*yoda.cloud*) ]]; then
+      print -n '\uf335'
     elif [[ $VCS_STATUS_REMOTE_URL == *gitlab* ]]; then
       print -n '\ue7eb'
+    elif [[ $VCS_STATUS_REMOTE_URL == *codeberg* ]]; then
+      print -n '\uf330'
     else
       print -n "$P9K_VISUAL_IDENTIFIER"
     fi
