@@ -29,6 +29,7 @@ in
     dotnet.nuke # for packaging dotnet projects
     dotnet.sdk # dotnet sdk
     pkgs.duti # tool to set default apps
+    pkgs.forgejo-cli
     pkgs.forgejo-runner
     pkgs.fzf # fuzzy finder
     pkgs-unstable.helmfile
