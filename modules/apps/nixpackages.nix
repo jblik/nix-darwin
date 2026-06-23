@@ -19,39 +19,44 @@ in
   ];
 
   # https://search.nixos.org/packages
-  environment.systemPackages = [
-    pkgs.azure-cli
-    pkgs.ansible # configuration management tool
-    pkgs.coreutils # gnu core utils
-    pkgs.google-chrome
-    pkgs.gnupg # gpg
-    pkgs-unstable.docker # docker
-    dotnet.nuke # for packaging dotnet projects
-    dotnet.sdk # dotnet sdk
-    pkgs.duti # tool to set default apps
-    pkgs.forgejo-cli
-    pkgs.forgejo-runner
-    pkgs.fzf # fuzzy finder
-    pkgs-unstable.helmfile
-    pkgs.inetutils # gnu network utils
-    pkgs.jetbrains-toolbox
-    pkgs-unstable.k9s # kubernetes cluster manager
-    pkgs.kubectl # kubernetes cli
-    pkgs.kubectx # kubernetes context tool
-    pkgs.kubernetes-helm # package manager for kubernetes
-    pkgs.nmap # network discovery tool
-    pkgs.nodejs_24
-#    pkgs-unstable.ollama # local llms todo: xcode install MLX Metal!
-    pkgs-unstable.opencode # local agent
-    pkgs.openssh # ssh tool
-    pkgs.opentofu # open source fork of terraform
-    pkgs.ripgrep # faster grep
-    pkgs.spotify
-    pkgs.tailwindcss
-    pkgs-unstable.terraform # tool for building, changing, and versioning infrastructure
-    pkgs.uv # python package manager
-    pkgs-unstable.vault # hcp tool for managing secrets
-    pkgs-unstable.velero # kubernetes cluster restore tool
-    pkgs.zsh-powerlevel10k # zsh theme
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      azure-cli
+      ansible # configuration management tool
+      coreutils # gnu core utils
+      google-chrome
+      gnupg # gpg
+      dotnet.nuke # for packaging dotnet projects
+      dotnet.sdk # dotnet sdk
+      duti # tool to set default apps
+      forgejo-cli
+      forgejo-runner
+      fzf # fuzzy finder
+      inetutils # gnu network utils
+      jetbrains-toolbox
+      kubectl # kubernetes cli
+      kubectx # kubernetes context tool
+      kubernetes-helm # package manager for kubernetes
+      nmap # network discovery tool
+      nodejs_24
+      openssh # ssh tool
+      opentofu # open source fork of terraform
+      rectangle
+      ripgrep # faster grep
+      spotify
+      tailwindcss
+      uv # python package manager
+      zsh-powerlevel10k # zsh theme
+    ]
+    ++ (with pkgs-unstable; [
+      docker # docker
+      helmfile
+      k9s # kubernetes cluster manager
+      opencode # local agent
+      # ollama # local llms todo: xcode install MLX Metal
+      terraform # tool for building, changing, and versioning infrastructure
+      vault # hcp tool for managing secrets
+      velero # kubernetes cluster restore tool
+    ]);
 }
