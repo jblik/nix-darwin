@@ -30,7 +30,7 @@
       show-recents = false;
       tilesize = 62;
     };
-    spaces.spans-displays = true;
+    spaces.spans-displays = false;
 
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
