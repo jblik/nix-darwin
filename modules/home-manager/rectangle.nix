@@ -1,0 +1,6 @@
+{
+programs.rectangle = {
+enable = true;
+
+};
+}

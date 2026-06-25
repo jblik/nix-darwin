@@ -11,6 +11,7 @@ _: [
     };
   }
   "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
+  "/System/Applications/Mail.app"
   "/System/Applications/Messages.app"
   "/System/Applications/System Settings.app"
   "/System/Applications/Utilities/Activity Monitor.app"
