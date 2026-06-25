@@ -13,6 +13,7 @@
       ./git.nix
       ./karabiner.nix
       ./p10k.nix
+      ./rectangle.nix
       ./sublime.nix
       ./zsh.nix
     ];

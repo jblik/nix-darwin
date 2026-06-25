@@ -43,7 +43,6 @@ in
       nodejs_24
       openssh # ssh tool
       opentofu # open source fork of terraform
-      rectangle
       ripgrep # faster grep
       spotify
       tailwindcss
