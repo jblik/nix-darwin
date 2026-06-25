@@ -27,13 +27,10 @@
         "Arthur-Ficial/tap" # for apfel
       ];
       casks = [
-        "alt-tab"
         "docker-desktop"
         "karabiner-elements"
         "ghostty"
         "jagex"
-        "monitorcontrol"
-        "stats"
         "sublime-text"
         "homerow"
       ];

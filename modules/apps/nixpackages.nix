@@ -22,6 +22,7 @@ in
   environment.systemPackages =
     with pkgs;
     [
+      alt-tab-macos
       azure-cli
       ansible # configuration management tool
       coreutils # gnu core utils
@@ -45,6 +46,7 @@ in
       opentofu # open source fork of terraform
       ripgrep # faster grep
       spotify
+      stats
       tailwindcss
       uv # python package manager
       zsh-powerlevel10k # zsh theme
