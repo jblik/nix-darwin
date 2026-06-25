@@ -1,13 +1,11 @@
 {
   config,
   lib,
+  pkgs,
+  updateHomebrew,
   ...
 }:
 {
-  options = {
-    updateHomebrew = lib.mkEnableOption "enable Homebrew auto-update and upgrade during activation";
-  };
-
   config = {
     homebrew = {
       enable = true;
@@ -15,7 +13,7 @@
         cleanup = "zap";
         extraFlags = [ "--force" ];
       }
-      // lib.optionalAttrs config.updateHomebrew {
+      // lib.optionalAttrs updateHomebrew {
         autoUpdate = true;
         upgrade = true;
       };
@@ -42,5 +40,11 @@
         "Xcode" = 497799835;
       };
     };
+
+    system.activationScripts.postActivation.text = lib.mkIf updateHomebrew ''
+      echo >&2 "Upgrading Mac App Store apps (mas upgrade)..."
+      PATH="${config.homebrew.prefix}/bin:${lib.makeBinPath [ pkgs.mas ]}:$PATH" \
+        mas upgrade || echo >&2 "warning: mas upgrade failed (continuing)"
+    '';
   };
 }
