@@ -12,7 +12,7 @@
       enable = true;
       onActivation = {
         cleanup = "zap";
-        extraFlags = [ "--force" ];
+        extraFlags = [ "--force" "--verbose" ];
       }
       // lib.optionalAttrs updateHomebrew {
         autoUpdate = true;
