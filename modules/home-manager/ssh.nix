@@ -11,7 +11,6 @@
         AddKeysToAgent = "yes";
         UseKeychain = "yes";
       };
-      # todo: move to profile
     }
     // user.ssh;
   };
