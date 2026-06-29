@@ -9,7 +9,7 @@
     settings = {
       "*" = {
         AddKeysToAgent = "yes";
-        AppleUseKeychain = "yes";
+        UseKeychain = "yes";
       };
       # todo: move to profile
     }
