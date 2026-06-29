@@ -14,6 +14,7 @@
       ./karabiner.nix
       ./p10k.nix
       ./rectangle.nix
+      ./ssh.nix
       ./sublime.nix
       ./zsh.nix
     ];
