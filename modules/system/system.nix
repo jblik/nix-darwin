@@ -5,6 +5,16 @@
   ...
 }:
 {
+  launchd.user.agents.ssh-add = {
+    serviceConfig = {
+      ProgramArguments = [
+        "/usr/bin/ssh-add"
+        "--apple-load-keychain"
+      ];
+      RunAtLoad = true;
+    };
+  };
+
   system = {
     defaults.screencapture.location = "${user.homeDirectory}/Documents/Screenshots";
     activationScripts.postActivation.text = ''
