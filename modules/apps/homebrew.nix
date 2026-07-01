@@ -37,6 +37,7 @@
         "homerow"
       ];
       masApps = {
+        "Actions" = 1586435171;
         "Tailscale" = 1475387142;
         "uBlock Origin Lite" = 6745342698;
         "Xcode" = 497799835;
