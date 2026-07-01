@@ -48,6 +48,7 @@ in
       spotify
       stats
       tailwindcss
+      tmux
       uv # python package manager
       zsh-powerlevel10k # zsh theme
     ]
@@ -56,7 +57,7 @@ in
       helmfile
       k9s # kubernetes cluster manager
       opencode # local agent
-      ollama # local llms todo: xcode install MLX Metal
+      ollama # local llms
       terraform # tool for building, changing, and versioning infrastructure
       vault # hcp tool for managing secrets
       velero # kubernetes cluster restore tool
