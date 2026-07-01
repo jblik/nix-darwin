@@ -39,7 +39,7 @@
         User = "jacob.steenblik@yarowa.com";
         IdentityFile = "/Users/wookie/.ssh/azure_devops";
       };
-      "Host git.internal.master.yoda.cloud" = {
+      "git.internal.master.yoda.cloud" = {
         User = "git";
         IdentityFile = "/Users/wookie/.ssh/yarowa_forgejo";
       };
