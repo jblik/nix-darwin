@@ -21,17 +21,6 @@
       };
 
       CustomUserPreferences = {
-        NSGlobalDomain.NSUserKeyEquivalents = {
-          # if a backslash is needed, we cannot place them here:
-          # https://github.com/NixOS/nix/issues/10082
-          # https://github.com/nix-darwin/nix-darwin/issues/518
-          "Fill" = "@^f"; # Cmd+Ctrl+F
-          "Full Screen" = "@^$f"; # Cmd+Ctrl+Shift+F
-          "Enter Full Screen" = "@^$f"; # Cmd+Ctrl+Shift+F
-          "Toggle Full Screen" = "@^$f";
-          "Move to LS32A600N" = "@^l";
-          "Move to Built-in Retina Display" = "@^h";
-        };
         pbs.NSServicesStatus = {
           # this maps to Services>Files and Folders
           "com.mitchellh.ghostty - New Ghostty Window Here - openWindow" = {
@@ -44,14 +33,11 @@
     activationScripts.postActivation.text = ''
       echo "adding additional keyboard settings defined in keyboard.nix..."
       # resets manually defined keyboard shortcuts (settings/keyboard shortcuts/all applications)
-      sudo -u ${user.username} defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
-      sudo -u ${user.username} defaults delete /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents 2>/dev/null || true
-
-      # see the above issues as to why these aren't declared in the CustomUserPreferences block:
-      sudo -u ${user.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to SAMSUNG" '@~^\U2192'
-      sudo -u ${user.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to E241N" '@~^\U2190'
+      # sudo -u ${user.username} defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
 
       # Safari is sandboxed and ignores NSGlobalDomain
+      sudo -u ${user.username} defaults delete /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents 2>/dev/null || true
+
       sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Fill" '@^f'
       sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Full Screen" '@^$f'
       sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Enter Full Screen" '@^$f'
