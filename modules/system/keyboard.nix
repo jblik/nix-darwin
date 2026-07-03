@@ -26,8 +26,8 @@
         "com.apple.Safari" = {
           IncludeDevelopMenu = true; # doesn't technically belong here but eh
           NSUserKeyEquivalents = {
-            "Move Tab to New Window" = "~m";
-            "Merge All Windows" = "~@m";
+            "Move Tab to New Window" = "~@m";
+            "Merge All Windows" = "~@$m";
           };
         };
       };
