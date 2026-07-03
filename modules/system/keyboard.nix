@@ -1,8 +1,4 @@
 {
-  user,
-  ...
-}:
-{
   system = {
     keyboard = {
       enableKeyMapping = true;
@@ -27,26 +23,14 @@
             key_equivalent = "^$t";
           };
         };
+        "com.apple.Safari" = {
+          NSUserKeyEquivalents = {
+            IncludeDevelopMenu = true; # doesn't technically belong here but eh
+            "Move Tab to New Window" = "~m";
+            "Merge All Windows" = "~@m";
+          };
+        };
       };
     };
-
-    activationScripts.postActivation.text = ''
-      echo "adding additional keyboard settings defined in keyboard.nix..."
-      # resets manually defined keyboard shortcuts (settings/keyboard shortcuts/all applications)
-      # sudo -u ${user.username} defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
-
-      # Safari is sandboxed and ignores NSGlobalDomain
-      sudo -u ${user.username} defaults delete /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents 2>/dev/null || true
-
-      sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Fill" '@^f'
-      sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Full Screen" '@^$f'
-      sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Enter Full Screen" '@^$f'
-      sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Toggle Full Screen" '@^$f'
-      sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Show Web Inspector" '\\Uf70f'
-      sudo -u ${user.username} defaults write /${user.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Close Web Inspector" '\\Uf70f'
-
-      # Following line should allow us to avoid a logout/login cycle when changing settings
-      sudo -u ${user.username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    '';
   };
 }
