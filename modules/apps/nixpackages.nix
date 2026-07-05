@@ -15,7 +15,7 @@ in
 
   fonts.packages = with pkgs; [
     # meslo-lgs-nf # font for powerlevel10k
-    pkgs.nerd-fonts.jetbrains-mono
+    nerd-fonts.jetbrains-mono
   ];
 
   # https://search.nixos.org/packages
