@@ -27,6 +27,7 @@
           IncludeDevelopMenu = true; # doesn't technically belong here but eh
           NSUserKeyEquivalents = {
             "Move Tab to New Window" = "~@m";
+            "Move Tab to New Private Window" = "~@m";
             "Merge All Windows" = "~@$m";
           };
         };
