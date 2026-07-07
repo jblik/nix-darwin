@@ -401,11 +401,18 @@
 
     if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
       local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
+      local branch_icon
+
+      if [[ "$branch" == */* ]]; then
+        branch_icon=""
+      else
+        branch_icon="${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}"
+      fi
       # If local branch name is at most 32 characters long, show it in full.
       # Otherwise show the first 12 … the last 12.
       # Tip: To always show local branch name in full without truncation, delete the next line.
       (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
-      res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
+      res+="${clean}${(g::)branch_icon}${branch//\%/%%}"
     fi
 
     if [[ -n $VCS_STATUS_TAG
