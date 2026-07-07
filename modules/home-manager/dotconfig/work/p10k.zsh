@@ -403,7 +403,7 @@
       local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
       local branch_icon
 
-      if [[ "$branch" == */* ]]; then
+      if [[ "$VCS_STATUS_LOCAL_BRANCH" == */* ]]; then
         branch_icon=""
       else
         branch_icon="${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}"
