@@ -31,6 +31,7 @@ in
       dotnet.nuke # for packaging dotnet projects
       dotnet.sdk # dotnet sdk
       duti # tool to set default apps
+      fastfetch
       forgejo-cli
       forgejo-runner
       fzf # fuzzy finder
