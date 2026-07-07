@@ -404,7 +404,7 @@
       local branch_icon
 
       if [[ "$branch" == */* ]]; then
-        branch_icon=""
+        branch_icon=" "
       else
         branch_icon="${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}"
       fi
