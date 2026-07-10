@@ -45,7 +45,7 @@
       };
       "codeberg.org" = {
         User = "git";
-        IdentityFile = "/Users/jblik/.ssh/jblik_forgejo";
+        IdentityFile = "/Users/wookie/.ssh/jblik_forgejo";
       };
     };
   };
