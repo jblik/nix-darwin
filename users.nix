@@ -5,7 +5,7 @@
     profile = "personal";
     git = {
       name = "Jacob Steenblik";
-      email = "jacob@steenblik.org";
+      email = "jacob@steenblik.ch";
     };
     ssh = {
       "github.com" = {
