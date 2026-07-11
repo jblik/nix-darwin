@@ -30,5 +30,7 @@
     keybind = super+ctrl+shift+h=resize_split:left,25
     keybind = super+ctrl+shift+l=resize_split:right,25
     keybind = super+ctrl+shift+k=resize_split:up,25
+
+    keybind = global:cmd+ctrl+t=toggle_quick_terminal
   '';
 }
