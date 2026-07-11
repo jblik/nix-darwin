@@ -28,6 +28,8 @@
       autohide-delay = 0.0;
       show-recents = false;
       tilesize = 62;
+      # mission control for aerospace
+      mru-spaces = false;
     };
     spaces.spans-displays = false;
 
