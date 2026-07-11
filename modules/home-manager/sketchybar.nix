@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  maxIcons = 8;
+  maxIcons = 10;
 
   aerospaceItem = pkgs.writeShellScript "sketchybar-aerospace-item.sh" ''
     source ${pkgs.sketchybar-app-font}/bin/icon_map.sh
@@ -15,10 +15,11 @@ let
       focused="$(${pkgs.aerospace}/bin/aerospace list-workspaces --focused)"
     fi
 
+    # Highlight the entire group (number + icons) via the shared bracket.
     if [ "$focused" = "$sid" ]; then
-      sketchybar --set "$NAME" background.drawing=on
+      sketchybar --set "space.$sid.bracket" background.drawing=on
     else
-      sketchybar --set "$NAME" background.drawing=off
+      sketchybar --set "space.$sid.bracket" background.drawing=off
     fi
 
     # One glyph per distinct app that has a window in this workspace, each in its
@@ -74,6 +75,7 @@ in
       # Custom event AeroSpace triggers on workspace change (see aerospace.nix).
       # On a right-positioned bar, "left" means the top, and items stack downward
       # in the order they're added: number first, then its app-icon slots below.
+      # A bracket groups each workspace's items under one shared highlight.
       sketchybar --add event aerospace_workspace_change
 
       for sid in $(aerospace list-workspaces --all); do
@@ -84,12 +86,10 @@ in
             icon="$sid" \
             icon.font="JetBrainsMono Nerd Font:Bold:14.0" \
             label.drawing=off \
-            background.color=0x44ffffff \
-            background.corner_radius=6 \
-            background.height=26 \
-            background.drawing=off \
             click_script="aerospace workspace $sid" \
             script="${aerospaceItem}"
+
+        members="space.$sid"
 
         # App-icon slots stacked under the number (filled by the updater).
         for i in $(seq 1 ${toString maxIcons}); do
@@ -99,7 +99,15 @@ in
               label.font="sketchybar-app-font:Regular:16.0" \
               drawing=off \
               click_script="aerospace workspace $sid"
+          members="$members space.$sid.icon.$i"
         done
+
+        # One shared, rounded highlight around the whole group.
+        sketchybar --add bracket space.$sid.bracket $members \
+          --set space.$sid.bracket \
+            background.color=0x44ffffff \
+            background.corner_radius=8 \
+            background.drawing=off
       done
 
       # Populate icons + highlight the currently focused workspace (initial state).
