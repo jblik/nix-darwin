@@ -159,6 +159,7 @@ in
         for i in $(seq 1 ${toString maxIcons}); do
           icons="$icons space.$sid.icon.$i"
           ${lib.getExe pkgs.sketchybar} --add item space.$sid.icon.$i left \
+            --subscribe "space.$sid" aerospace_workspace_change \
             --set space.$sid.icon.$i \
               icon.drawing=off \
               label.font="sketchybar-app-font:Regular:16.0" \
@@ -168,6 +169,7 @@ in
               background.drawing=off \
               drawing=off \
               click_script="${lib.getExe pkgs.aerospace} workspace $sid"
+              script="${aerospacer} $sid"
         done
       done
 
