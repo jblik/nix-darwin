@@ -35,3 +35,4 @@
     quick-terminal-position = center
   '';
 }
+# make quick term 6 lines bigger

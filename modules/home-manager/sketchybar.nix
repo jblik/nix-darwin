@@ -31,7 +31,6 @@ in
 {
   home.packages = [
     pkgs.sketchybar-app-font
-    pkgs.nerd-fonts.hack
   ];
 
   programs.sketchybar = {
@@ -127,7 +126,7 @@ in
       ${lib.getExe pkgs.sketchybar} --add item separator left \
         --set separator \
           icon="" \
-          icon.font="Hack Nerd Font:Regular:16.0" \
+          icon.font="${NERD_FONT}:Regular:16.0" \
           background.padding_left=15 \
           background.padding_right=15 \
           label.drawing=off \
