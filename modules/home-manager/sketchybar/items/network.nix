@@ -57,7 +57,9 @@ in
         label.drawing=off \
         update_freq=10 \
         script="${updateNetwork}" \
-        click_script="${networkDetail}; ${sbar} --set wifi popup.drawing=toggle popup.y_offset=-240" \
+        click_script="${networkDetail};
+
+    ${sbar} --set wifi popup.drawing=toggle popup.y_offset=-240" \
       --subscribe wifi wifi_change system_woke
 
     ${sbar} --add item wifi.header popup.wifi \
