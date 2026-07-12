@@ -136,7 +136,7 @@ in
               label.padding_left=5 \
               label.padding_right=5 \
               background.drawing=off \
-              drawing=off \
+              drawing=on \
               click_script="${lib.getExe pkgs.aerospace} workspace $sid"
         done
       done
