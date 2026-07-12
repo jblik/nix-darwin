@@ -115,7 +115,7 @@ in
     ${sbar} --add item battery right \
       --set battery \
         icon=" ${theme.icons.battery."100"}" \
-        icon.font="${theme.fonts.nerd}:Bold:14.0" \
+        icon.font="${theme.fonts.nerd}:Bold:26.0" \
         icon.padding_left=6 \
         icon.padding_right=3 \
         label.font="${theme.fonts.text}:Semibold:11.0" \
