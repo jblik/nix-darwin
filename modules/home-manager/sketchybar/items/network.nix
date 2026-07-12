@@ -52,8 +52,8 @@ in
       --set wifi \
         icon="${theme.icons.wifi}" \
         icon.font="${theme.fonts.nerd}:Bold:20.0" \
-        icon.padding_left=6 \
-        icon.padding_right=6 \
+        icon.padding_left=15 \
+        icon.padding_right=15 \
         label.drawing=off \
         update_freq=10 \
         script="${updateNetwork}" \
