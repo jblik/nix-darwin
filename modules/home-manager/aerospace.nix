@@ -1,4 +1,7 @@
 { pkgs, lib, ... }:
+let
+  refreshIcons = "exec-and-forget ${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(${lib.getExe pkgs.aerospace} list-workspaces --focused)";
+in
 {
   programs.aerospace = {
     enable = true;
@@ -23,13 +26,10 @@
         "${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
       ];
 
-      # Refresh the workspace app icons when a window opens/moves, so changes
-      # within the current workspace update without a workspace switch. Query
-      # the focused workspace so the highlight isn't cleared.
+      # Refresh the workspace app icons when a window opens, so a newly opened
+      # app appears without a workspace switch.
       on-window-detected = [
-        {
-          run = "exec-and-forget ${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(${lib.getExe pkgs.aerospace} list-workspaces --focused)";
-        }
+        { run = refreshIcons; }
       ];
 
       key-mapping.preset = "qwerty";
@@ -73,12 +73,13 @@
         "alt-4" = "workspace 4";
         "alt-5" = "workspace 5";
 
-        # Move focused window to workspace.
-        "alt-shift-1" = "move-node-to-workspace 1";
-        "alt-shift-2" = "move-node-to-workspace 2";
-        "alt-shift-3" = "move-node-to-workspace 3";
-        "alt-shift-4" = "move-node-to-workspace 4";
-        "alt-shift-5" = "move-node-to-workspace 5";
+        # Move focused window to workspace (and refresh the app icons, since
+        # AeroSpace emits no event for moving a node between workspaces).
+        "alt-shift-1" = [ "move-node-to-workspace 1" refreshIcons ];
+        "alt-shift-2" = [ "move-node-to-workspace 2" refreshIcons ];
+        "alt-shift-3" = [ "move-node-to-workspace 3" refreshIcons ];
+        "alt-shift-4" = [ "move-node-to-workspace 4" refreshIcons ];
+        "alt-shift-5" = [ "move-node-to-workspace 5" refreshIcons ];
 
         # Workspace navigation and service mode.
         "alt-tab" = "workspace-back-and-forth";
