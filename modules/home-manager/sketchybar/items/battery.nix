@@ -28,7 +28,7 @@ let
     fi
 
     if echo "$info" | grep -q "AC Power"; then
-      color=${theme.colors.green}
+      color=${theme.colors.white}
       case "$level" in
         100) icon="${theme.icons.batteryCharging."100"}" ;;
         90) icon="${theme.icons.batteryCharging."90"}" ;;
@@ -47,7 +47,7 @@ let
       elif [ "$percent" -le 50 ]; then
         color=${theme.colors.yellow}
       else
-        color=${theme.colors.white}
+        color=${theme.colors.green}
       fi
 
       case "$level" in
@@ -64,7 +64,7 @@ let
       esac
     fi
 
-    ${sbar} --set battery icon="$icon" icon.color="$color" label="$percent%"
+    ${sbar} --set battery icon="$icon" icon.color="$color""
   '';
 
   batteryDetail = pkgs.writeShellScript "sketchybar-battery-detail.sh" ''
