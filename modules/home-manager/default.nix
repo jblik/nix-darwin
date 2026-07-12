@@ -13,6 +13,7 @@
       ./aerospace.nix
       ./ghostty.nix
       ./git.nix
+      ./jankyborders.nix
       ./karabiner.nix
       ./p10k.nix
       ./rectangle.nix
