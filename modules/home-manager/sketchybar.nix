@@ -1,22 +1,21 @@
 { pkgs, lib, ... }:
 let
-  # Colors (sketchybar/colors.sh)
   BLACK = "0xff181926";
   WHITE = "0xffcad3f5";
   RED = "0xffed8796";
   GREEN = "0xffa6da95";
   BAR_COLOR = "0xcc24273a";
 
-  # Icons (sketchybar/icons.sh)
-  ICON_APPLE = "􀣺";
-  ICON_PREFERENCES = "􀺽";
-  ICON_ACTIVITY = "􀒓";
-  ICON_LOCK = "􀒳";
+  ICON_APPLE = "";
+  ICON_PREFERENCES = "";
+  ICON_ACTIVITY = "";
+  ICON_LOCK = "";
 
   FONT = "SF Pro";
+  NERD_FONT = "JetBrainsMono Nerd Font";
 
-  POPUP_OFF = "sketchybar --set apple.logo popup.drawing=off";
-  POPUP_CLICK_SCRIPT = "sketchybar --set \\$NAME popup.drawing=toggle";
+  POPUP_OFF = "${lib.getExe pkgs.sketchybar} --set apple.logo popup.drawing=off";
+  POPUP_CLICK_SCRIPT = "${lib.getExe pkgs.sketchybar} --set \\$NAME popup.drawing=toggle";
 
   # Runs on aerospace_workspace_change for a single workspace item, toggling
   # its highlight background depending on whether it's the focused space.
@@ -78,7 +77,7 @@ in
       ${lib.getExe pkgs.sketchybar} --add item apple.logo left \
         --set apple.logo \
           icon="${ICON_APPLE}" \
-          icon.font="${FONT}:Black:16.0" \
+          icon.font="${NERD_FONT}:Black:16.0" \
           icon.color=${GREEN} \
           background.padding_right=15 \
           label.drawing=off \
