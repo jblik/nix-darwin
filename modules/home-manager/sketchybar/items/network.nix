@@ -52,10 +52,12 @@ in
       --set wifi \
         icon="${theme.icons.wifi}" \
         icon.font="${theme.fonts.nerd}:Bold:20.0" \
+        icon.padding_top=15 \
+        icon.padding_bottom=15 \
         icon.padding_left=15 \
         icon.padding_right=15 \
         label.drawing=off \
-        update_freq=10 \
+        update_freq=30 \
         script="${updateNetwork}" \
         click_script="${networkDetail};
 
