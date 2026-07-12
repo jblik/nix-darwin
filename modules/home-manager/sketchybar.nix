@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   maxIcons = 10;
 
@@ -13,11 +13,11 @@ let
 
     focused="$FOCUSED_WORKSPACE"
     if [ -z "$focused" ]; then
-      focused="$(${pkgs.aerospace}/bin/aerospace list-workspaces --focused)"
+      focused="$(${lib.getExe pkgs.aerospace} list-workspaces --focused)"
     fi
 
     args=()
-    for sid in $(${pkgs.aerospace}/bin/aerospace list-workspaces --all); do
+    for sid in $(${lib.getExe pkgs.aerospace} list-workspaces --all); do
       if [ "$focused" = "$sid" ]; then
         hl=on
       else
@@ -25,7 +25,7 @@ let
       fi
       args+=(--set "space.$sid" "background.drawing=$hl")
 
-      apps="$(${pkgs.aerospace}/bin/aerospace list-windows --workspace "$sid" --format '%{app-name}' | sort -u)"
+      apps="$(${lib.getExe pkgs.aerospace} list-windows --workspace "$sid" --format '%{app-name}' | sort -u)"
       i=1
       while IFS= read -r app; do
         [ -z "$app" ] && continue
@@ -41,7 +41,7 @@ let
       done
     done
 
-    sketchybar "''${args[@]}"
+    ${lib.getExe pkgs.sketchybar} "''${args[@]}"
   '';
 in
 {
@@ -55,7 +55,7 @@ in
 
     config = ''
       # --- Vertical bar on the right edge of the screen ---
-      sketchybar --bar \
+      ${lib.getExe pkgs.sketchybar} --bar \
         position=right \
         height=40 \
         color=0xff1e1e2e \
@@ -66,7 +66,7 @@ in
       # --- Item defaults ---
       # Fixed width on every item so a workspace number and its app icons
       # highlight as identically-sized pills (no step between title/icon).
-      sketchybar --default \
+      ${lib.getExe pkgs.sketchybar} --default \
         icon.color=0xffffffff \
         label.color=0xffffffff \
         icon.align=center \
@@ -77,13 +77,13 @@ in
 
       # --- AeroSpace workspace indicators ---
       # Custom event AeroSpace triggers on workspace change (see aerospace.nix).
-      sketchybar --add event aerospace_workspace_change
+      ${lib.getExe pkgs.sketchybar} --add event aerospace_workspace_change
 
       # Single invisible item that owns the updater script. Only one item
       # subscribes to the event so one script run updates every workspace's
       # highlight/icons together in one --set call, instead of each
       # workspace's item independently animating on its own.
-      sketchybar --add item space_updater left \
+      ${lib.getExe pkgs.sketchybar} --add item space_updater left \
         --subscribe space_updater aerospace_workspace_change front_app_switched \
         --set space_updater drawing=off width=0 padding_left=0 padding_right=0 \
         script="${updateSpaces}"
@@ -94,7 +94,7 @@ in
         # downward in the order they're added: number first, then its
         # app-icon slots below. The focused workspace's items all share the
         # same background highlight.
-        sketchybar --add item space.$sid left \
+        ${lib.getExe pkgs.sketchybar} --add item space.$sid left \
           --set space.$sid \
             icon="$sid" \
             icon.font="JetBrainsMono Nerd Font:Bold:14.0" \
@@ -112,7 +112,7 @@ in
         # padding, so a focused workspace's highlight reads as one
         # continuous bar rather than separate pills.
         for i in $(seq 1 ${toString maxIcons}); do
-          sketchybar --add item space.$sid.icon.$i left \
+          ${lib.getExe pkgs.sketchybar} --add item space.$sid.icon.$i left \
             --set space.$sid.icon.$i \
               icon.drawing=off \
               label.font="sketchybar-app-font:Regular:16.0" \
@@ -128,10 +128,10 @@ in
       done
 
       # Populate icons + highlight the currently focused workspace (initial state).
-      sketchybar --trigger aerospace_workspace_change \
+      ${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change \
         FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
 
-      sketchybar --update
+      ${lib.getExe pkgs.sketchybar} --update
     '';
   };
 }
