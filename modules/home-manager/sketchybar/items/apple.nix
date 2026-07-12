@@ -1,4 +1,4 @@
-{ pkgs, lib, theme, sbar, ... }:
+{ theme, sbar, ... }:
 let
   closePopup = "${sbar} --set apple.logo popup.drawing=off";
   togglePopup = "${sbar} --set \\$NAME popup.drawing=toggle";
