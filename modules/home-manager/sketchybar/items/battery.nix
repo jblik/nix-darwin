@@ -1,4 +1,4 @@
-{ pkgs, theme, sbar, ... }:
+{ position, pkgs, sbar, theme, ... }:
 let
   updateBattery = pkgs.writeShellScript "sketchybar-battery.sh" ''
     info=$(pmset -g batt)
@@ -35,8 +35,6 @@ let
     remaining=$(echo "$info" | grep -Eo '[0-9]+:[0-9]+' | head -1)
     [ -z "$remaining" ] && remaining="—"
 
-    cycles=$(ioreg -rn AppleSmartBattery 2>/dev/null \
-      | awk -F'= ' '/"CycleCount"/ { print $2; exit }')
     # Apple's "Maximum Capacity" = NominalChargeCapacity / DesignCapacity.
     # (On Apple Silicon "MaxCapacity" is already a normalized 100, not mAh.)
     health=$(ioreg -rn AppleSmartBattery 2>/dev/null \
@@ -45,7 +43,6 @@ let
     ${sbar} --set battery.charge label="''${percent:-?}" \
             --set battery.status label="$status" \
             --set battery.time   label="$remaining" \
-            --set battery.cycles label="''${cycles:-?}" \
             --set battery.health label="''${health:-?}"
   '';
 
@@ -65,7 +62,7 @@ let
 in
 {
   config = ''
-    ${sbar} --add item battery right \
+    ${sbar} --add item battery ${position} \
       --set battery \
         icon="${theme.icons.battery}" \
         icon.font="${theme.fonts.nerd}:Bold:14.0" \
@@ -85,7 +82,7 @@ in
         icon.font="${theme.fonts.text}:Bold:13.0" \
         icon.color=${theme.colors.green} \
         icon.padding_left=10 \
-        icon.padding_right=100 \
+        icon.padding_right=10 \
         label.drawing=off
 
     ${row "battery.charge"}
@@ -94,8 +91,6 @@ in
     ${sbar} --set battery.status icon="Status"
     ${row "battery.time"}
     ${sbar} --set battery.time icon="Time"
-    ${row "battery.cycles"}
-    ${sbar} --set battery.cycles icon="Cycles"
     ${row "battery.health"}
     ${sbar} --set battery.health icon="Health"
   '';
