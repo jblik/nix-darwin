@@ -5,6 +5,7 @@ let
   RED = "0xffed8796";
   GREEN = "0xffa6da95";
   BAR_COLOR = "0xcc24273a";
+  SELECTED_GRAY = "0x44ffffff";
 
   ICON_APPLE = "";
   ICON_PREFERENCES = "";
@@ -21,9 +22,9 @@ let
 
   aerospacer = pkgs.writeShellScript "sketchybar-aerospacer.sh" ''
     if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-      ${lib.getExe pkgs.sketchybar} --set "$NAME" background.drawing=on
+      ${lib.getExe pkgs.sketchybar} --set "$NAME" background.color=${SELECTED_GRAY}
     else
-      ${lib.getExe pkgs.sketchybar} --set "$NAME" background.drawing=off
+      ${lib.getExe pkgs.sketchybar} --set "$NAME" background.color=${BLACK}
     fi
   '';
 
@@ -142,10 +143,10 @@ in
             icon.padding_right=22 \
             label.padding_right=33 \
             icon.highlight_color=${RED} \
-            background.color=0x44ffffff \
+            background.color=${BLACK} \
             background.corner_radius=5 \
             background.height=30 \
-            background.drawing=off \
+            background.drawing=on \
             label.font="sketchybar-app-font:Regular:16.0" \
             label.background.height=30 \
             label.background.drawing=on \
