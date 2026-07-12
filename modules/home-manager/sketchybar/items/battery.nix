@@ -5,17 +5,66 @@ let
     percent=$(echo "$info" | grep -Eo '[0-9]+%' | head -1 | tr -d '%')
     [ -z "$percent" ] && exit 0
 
-    if echo "$info" | grep -q "AC Power"; then
-      color=${theme.colors.green}
-    elif [ "$percent" -le 20 ]; then
-      color=${theme.colors.red}
-    elif [ "$percent" -le 50 ]; then
-      color=${theme.colors.yellow}
+    if [ "$percent" -ge 95 ]; then
+      level=100
+    elif [ "$percent" -ge 85 ]; then
+      level=90
+    elif [ "$percent" -ge 75 ]; then
+      level=80
+    elif [ "$percent" -ge 65 ]; then
+      level=70
+    elif [ "$percent" -ge 55 ]; then
+      level=60
+    elif [ "$percent" -ge 45 ]; then
+      level=50
+    elif [ "$percent" -ge 35 ]; then
+      level=40
+    elif [ "$percent" -ge 25 ]; then
+      level=30
+    elif [ "$percent" -ge 15 ]; then
+      level=20
     else
-      color=${theme.colors.white}
+      level=10
     fi
 
-    ${sbar} --set battery icon.color="$color"
+    if echo "$info" | grep -q "AC Power"; then
+      color=${theme.colors.green}
+      case "$level" in
+        100) icon="${theme.icons.batteryCharging."100"}" ;;
+        90) icon="${theme.icons.batteryCharging."90"}" ;;
+        80) icon="${theme.icons.batteryCharging."80"}" ;;
+        70) icon="${theme.icons.batteryCharging."70"}" ;;
+        60) icon="${theme.icons.batteryCharging."60"}" ;;
+        50) icon="${theme.icons.batteryCharging."50"}" ;;
+        40) icon="${theme.icons.batteryCharging."40"}" ;;
+        30) icon="${theme.icons.batteryCharging."30"}" ;;
+        20) icon="${theme.icons.batteryCharging."20"}" ;;
+        *) icon="${theme.icons.batteryCharging."10"}" ;;
+      esac
+    else
+      if [ "$percent" -le 20 ]; then
+        color=${theme.colors.red}
+      elif [ "$percent" -le 50 ]; then
+        color=${theme.colors.yellow}
+      else
+        color=${theme.colors.white}
+      fi
+
+      case "$level" in
+        100) icon="${theme.icons.battery."100"}" ;;
+        90) icon="${theme.icons.battery."90"}" ;;
+        80) icon="${theme.icons.battery."80"}" ;;
+        70) icon="${theme.icons.battery."70"}" ;;
+        60) icon="${theme.icons.battery."60"}" ;;
+        50) icon="${theme.icons.battery."50"}" ;;
+        40) icon="${theme.icons.battery."40"}" ;;
+        30) icon="${theme.icons.battery."30"}" ;;
+        20) icon="${theme.icons.battery."20"}" ;;
+        *) icon="${theme.icons.battery."10"}" ;;
+      esac
+    fi
+
+    ${sbar} --set battery icon="$icon" icon.color="$color" label="$percent%"
   '';
 
   batteryDetail = pkgs.writeShellScript "sketchybar-battery-detail.sh" ''
@@ -65,7 +114,7 @@ in
   config = ''
     ${sbar} --add item battery right \
       --set battery \
-        icon=" ${theme.icons.battery}" \
+        icon=" ${theme.icons.battery."100"}" \
         icon.font="${theme.fonts.nerd}:Bold:14.0" \
         icon.padding_left=6 \
         icon.padding_right=3 \
@@ -79,7 +128,7 @@ in
 
     ${sbar} --add item battery.header popup.battery \
       --set battery.header \
-        icon="${theme.icons.battery}  Battery" \
+        icon="${theme.icons.battery."100"}  Battery" \
         icon.font="${theme.fonts.nerd}:Bold:13.0" \
         icon.color=${theme.colors.green} \
         icon.padding_left=10 \
