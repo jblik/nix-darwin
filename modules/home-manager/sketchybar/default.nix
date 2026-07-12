@@ -12,17 +12,15 @@ let
 
   centerAnchoredItems = [ ./items/spaces.nix ];
 
-  bottomAnchoredItemsTopToBottom = [
-    ./items/ram.nix
-    ./items/gpu.nix
-    ./items/cpu.nix
-    ./items/network.nix
+  bottomAnchoredItemsBottomToTop = [
     ./items/battery.nix
+    ./items/network.nix
+#    ./items/cpu.nix
+#    ./items/ram.nix
+#    ./items/gpu.nix
   ];
 
-  bottomAnchoredItemsInAddOrder = lib.reverseList bottomAnchoredItemsTopToBottom;
-
-  itemFiles = topAnchoredItems ++ centerAnchoredItems ++ bottomAnchoredItemsInAddOrder;
+  itemFiles = topAnchoredItems ++ centerAnchoredItems ++ bottomAnchoredItemsBottomToTop;
 
   items = map (
     file:
