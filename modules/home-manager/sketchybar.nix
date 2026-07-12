@@ -174,16 +174,6 @@ in
         done
       done
 
-      ${lib.getExe pkgs.sketchybar} --add item separator left \
-        --set separator \
-          icon="" \
-          icon.font="${NERD_FONT}:Regular:16.0" \
-          background.padding_left=15 \
-          background.padding_right=15 \
-          label.drawing=off \
-          associated_display=active \
-          icon.color=${WHITE}
-
       # --- Calendar badge (sketchybar/items/calendar.sh) ---
       # Upstream ships this with icon.drawing=off and no label script, so it
       # renders as an empty pill; kept as-is for fidelity to the source repo.
