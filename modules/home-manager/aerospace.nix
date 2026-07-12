@@ -26,12 +26,12 @@
       key-mapping.preset = "qwerty";
 
       gaps = {
-        inner.horizontal = 8;
-        inner.vertical = 8;
-        outer.left = 8;
-        outer.right = 44;
-        outer.top = 8;
-        outer.bottom = 8;
+        inner.horizontal = 10;
+        inner.vertical = 10;
+        outer.left = 10;
+        outer.right = 70;
+        outer.top = 10;
+        outer.bottom = 10;
       };
 
       mode.main.binding = {
