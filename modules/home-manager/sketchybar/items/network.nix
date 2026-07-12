@@ -57,13 +57,13 @@ in
         label.drawing=off \
         update_freq=10 \
         script="${updateNetwork}" \
-        click_script="${networkDetail}; ${sbar} --set wifi popup.drawing=toggle" \
+        click_script="${networkDetail}; ${sbar} --set wifi popup.drawing=toggle popup.y_offset=-240" \
       --subscribe wifi wifi_change system_woke
 
     ${sbar} --add item wifi.header popup.wifi \
       --set wifi.header \
         icon="${theme.icons.wifi}  Network" \
-        icon.font="${theme.fonts.text}:Bold:13.0" \
+        icon.font="${theme.fonts.nerd}:Bold:13.0" \
         icon.color=${theme.colors.blue} \
         icon.padding_left=10 \
         icon.padding_right=10 \

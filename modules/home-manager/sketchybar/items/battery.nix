@@ -74,13 +74,13 @@ in
         label.padding_right=6 \
         update_freq=30 \
         script="${updateBattery}" \
-        click_script="${batteryDetail}; ${sbar} --set battery popup.drawing=toggle" \
+        click_script="${batteryDetail}; ${sbar} --set battery popup.drawing=toggle popup.y_offset=-240" \
       --subscribe battery power_source_change system_woke
 
     ${sbar} --add item battery.header popup.battery \
       --set battery.header \
-        icon="${theme.icons.battery}  Battery" \
-        icon.font="${theme.fonts.text}:Bold:13.0" \
+        icon="${theme.icons.battery} Battery" \
+        icon.font="${theme.fonts.nerd}:Bold:13.0" \
         icon.color=${theme.colors.green} \
         icon.padding_left=10 \
         icon.padding_right=10 \
