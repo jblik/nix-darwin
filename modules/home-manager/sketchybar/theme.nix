@@ -20,10 +20,10 @@
   };
 
   icons = {
-    apple = "";
-    preferences = "";
-    activity = "";
-    lock = "";
+    apple = "";
+    preferences = "";
+    activity = "";
+    lock = "";
     ram = "";
     cpu = "";
     gpu = "󰢮";
