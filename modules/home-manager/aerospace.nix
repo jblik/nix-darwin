@@ -39,7 +39,7 @@ in
         inner.vertical = 10;
         outer.left = 10;
         outer.right = 70;
-        outer.top = 5;
+        outer.top = 10;
         outer.bottom = 10;
       };
 
@@ -75,11 +75,26 @@ in
 
         # Move focused window to workspace (and refresh the app icons, since
         # AeroSpace emits no event for moving a node between workspaces).
-        "alt-shift-1" = [ "move-node-to-workspace 1" refreshIcons ];
-        "alt-shift-2" = [ "move-node-to-workspace 2" refreshIcons ];
-        "alt-shift-3" = [ "move-node-to-workspace 3" refreshIcons ];
-        "alt-shift-4" = [ "move-node-to-workspace 4" refreshIcons ];
-        "alt-shift-5" = [ "move-node-to-workspace 5" refreshIcons ];
+        "alt-shift-1" = [
+          "move-node-to-workspace 1"
+          refreshIcons
+        ];
+        "alt-shift-2" = [
+          "move-node-to-workspace 2"
+          refreshIcons
+        ];
+        "alt-shift-3" = [
+          "move-node-to-workspace 3"
+          refreshIcons
+        ];
+        "alt-shift-4" = [
+          "move-node-to-workspace 4"
+          refreshIcons
+        ];
+        "alt-shift-5" = [
+          "move-node-to-workspace 5"
+          refreshIcons
+        ];
 
         # Workspace navigation and service mode.
         "alt-tab" = "workspace-back-and-forth";
