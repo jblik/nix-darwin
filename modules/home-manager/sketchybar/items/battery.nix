@@ -65,7 +65,7 @@ in
   config = ''
     ${sbar} --add item battery right \
       --set battery \
-        icon="${theme.icons.battery}" \
+        icon=" ${theme.icons.battery}" \
         icon.font="${theme.fonts.nerd}:Bold:14.0" \
         icon.padding_left=6 \
         icon.padding_right=3 \
@@ -79,7 +79,7 @@ in
 
     ${sbar} --add item battery.header popup.battery \
       --set battery.header \
-        icon="${theme.icons.battery} Battery" \
+        icon="${theme.icons.battery}  Battery" \
         icon.font="${theme.fonts.nerd}:Bold:13.0" \
         icon.color=${theme.colors.green} \
         icon.padding_left=10 \
