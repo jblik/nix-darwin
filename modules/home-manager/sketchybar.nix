@@ -130,7 +130,7 @@ in
       ${lib.getExe pkgs.sketchybar} --add event aerospace_workspace_change
 
       ${lib.getExe pkgs.sketchybar} --add item apps_updater left \
-        --set apps_updater drawing=off script="${updateAppIcons}" \
+        --set apps_updater drawing=off updates=on script="${updateAppIcons}" \
         --subscribe apps_updater aerospace_workspace_change front_app_switched
 
       for sid in $(${lib.getExe pkgs.aerospace} list-workspaces --all); do
