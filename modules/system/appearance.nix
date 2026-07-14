@@ -6,7 +6,7 @@
 {
   system.defaults = {
     dock = {
-      autohide = false;
+      autohide = true;
       orientation = "right";
       persistent-apps = import ./${user.profile}/persistentApps.nix pkgs;
       persistent-others = [

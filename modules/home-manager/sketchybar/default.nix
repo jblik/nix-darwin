@@ -5,6 +5,7 @@ let
 
   topAnchoredItems = [
     ./items/bar.nix
+    ./items/bar-position.nix
     ./items/apple.nix
     ./items/clock.nix
     ./items/front-app-menus.nix
