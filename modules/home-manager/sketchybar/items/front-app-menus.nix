@@ -1,7 +1,8 @@
-{ pkgs, theme, sbar, ... }:
+{ pkgs, lib, theme, sbar, ... }:
 let
   menusHelper = import ../helpers/menus.nix { inherit pkgs; };
   menus = "${menusHelper}/bin/menus";
+  barMode = import ../helpers/bar-mode.nix { inherit pkgs lib; };
   maxMenus = theme.bar.maxAppMenus;
 
   updateFrontAppMenus = pkgs.writeShellScript "sketchybar-front-app-menus.sh" ''
@@ -9,15 +10,25 @@ let
 
     mapfile -t titles < <(${menus} -l)
 
+    # In the top/menu-bar layout keep the first `menusLeftOfNotch` items to the
+    # left of the notch and overflow the rest to the right of it ("e"); in the
+    # docked layout every menu stays on the left.
+    if [ "$(${barMode})" = top ]; then
+      leftcount=${toString theme.bar.menusLeftOfNotch}
+    else
+      leftcount=${toString maxMenus}
+    fi
+
     args=()
     index=1
     for title in "''${titles[@]}"; do
       [ "$index" -gt ${toString maxMenus} ] && break
+      if [ "$index" -le "$leftcount" ]; then pos=left; else pos=e; fi
       if [ "$index" -eq 1 ]; then
         __icon_map "$title"
-        args+=(--set "menu.$index" label="$icon_result" drawing=on)
+        args+=(--set "menu.$index" label="$icon_result" drawing=on position="$pos")
       else
-        args+=(--set "menu.$index" label="$title" drawing=on)
+        args+=(--set "menu.$index" label="$title" drawing=on position="$pos")
       fi
       index=$((index + 1))
     done
@@ -36,7 +47,7 @@ in
   config = ''
     ${sbar} --add item menu_watcher left \
       --set menu_watcher drawing=off updates=on script="${updateFrontAppMenus}" \
-      --subscribe menu_watcher front_app_switched
+      --subscribe menu_watcher front_app_switched display_change system_woke
 
     for i in $(seq 1 ${toString maxMenus}); do
       if [ "$i" -eq 1 ]; then

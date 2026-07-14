@@ -58,6 +58,18 @@
 
   bar = {
     width = 50;
+    # Thickness used when the bar sits on top of the built-in laptop screen,
+    # sized to match the native menu bar / notch. Tweak to taste.
+    menuBarWidth = 32;
+    # Background height of the workspace number indicators in the top/menu-bar
+    # layout (the docked left layout keeps the larger `spaceBackgroundWidth`).
+    menuBarSpaceBackgroundHeight = 20;
+    spaceBackgroundHeight = 30;
+    # Notch width (points) reserved on the built-in display, and how many of
+    # the left-hand app-menu items stay left of the notch before the rest
+    # overflow to the right of it. Tune `menusLeftOfNotch` on the laptop.
+    notchWidth = 200;
+    menusLeftOfNotch = 13;
     maxWorkspaceIcons = 10;
     maxAppMenus = 12;
   };
