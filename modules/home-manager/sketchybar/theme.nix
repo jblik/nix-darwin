@@ -70,6 +70,13 @@
     # overflow to the right of it. Tune `menusLeftOfNotch` on the laptop.
     notchWidth = 200;
     menusLeftOfNotch = 13;
+    # Vertical offset of the detail popups per layout. The docked (left) values
+    # likely need tuning on the device. The CPU/RAM/GPU meters sit at the very
+    # bottom of the vertical bar, so their popups are pushed up (negative) to
+    # keep them from overflowing off the bottom of the screen.
+    popupYOffsetTop = 0;
+    popupYOffsetLeft = 0;
+    popupYOffsetMetricsLeft = -180;
     maxWorkspaceIcons = 10;
     maxAppMenus = 12;
   };

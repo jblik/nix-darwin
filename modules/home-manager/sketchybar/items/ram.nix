@@ -1,10 +1,8 @@
 { pkgs, theme, sbar, ... }:
 let
-  donut = import ../helpers/donut.nix { inherit pkgs; };
+  sparkline = import ../helpers/sparkline.nix { inherit pkgs; };
+  mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
   cache = "$HOME/.cache/sketchybar";
-
-  # Convert a sketchybar "0xaarrggbb" color to an ImageMagick "#rrggbb".
-  toHex = c: "#" + builtins.substring 4 6 c;
 
   updateRam = pkgs.writeShellScript "sketchybar-ram.sh" ''
     mkdir -p ${cache}
@@ -12,16 +10,15 @@ let
     used=$((100 - free))
 
     if [ "$used" -ge 85 ]; then
-      color="${toHex theme.colors.red}"
+      color=${theme.colors.red}
     elif [ "$used" -ge 65 ]; then
-      color="${toHex theme.colors.yellow}"
+      color=${theme.colors.yellow}
     else
-      color="${toHex theme.colors.blue}"
+      color=${theme.colors.blue}
     fi
 
-    img="${cache}/ram-donut.png"
-    ${donut} "$img" "$used" "$color" "${toHex theme.colors.itemBackground}"
-    ${sbar} --set ram background.image="$img" label="''${used}%"
+    graph=$(${sparkline} "${cache}/ram.hist" "$used" 7)
+    ${sbar} --set ram icon="''${used}%" label="$graph" label.color="$color"
   '';
 
   ramDetail = pkgs.writeShellScript "sketchybar-ram-detail.sh" ''
@@ -50,35 +47,22 @@ let
 
     ${sbar} "''${args[@]}"
   '';
-
-  row = name: ''
-    ${sbar} --add item ${name} popup.ram \
-      --set ${name} \
-        width=196 \
-        icon.font="${theme.fonts.text}:Semibold:12.0" \
-        icon.color=${theme.colors.white} \
-        icon.padding_left=10 \
-        icon.align=left \
-        label.font="${theme.fonts.text}:Semibold:12.0" \
-        label.color=${theme.colors.lavender} \
-        label.padding_right=10 \
-        label.align=right
-  '';
 in
 {
   config = ''
     ${sbar} --add item ram right \
       --set ram \
-        icon.drawing=off \
-        label="0%" \
-        label.font="${theme.fonts.text}:Bold:11.0" \
-        label.color=${theme.colors.white} \
-        label.align=center \
-        label.padding_left=0 \
-        label.padding_right=0 \
-        background.image.scale=0.5 \
-        background.padding_left=3 \
-        background.padding_right=3 \
+        icon.drawing=on \
+        icon="0%" \
+        icon.font="${theme.fonts.text}:Bold:11.0" \
+        icon.color=${theme.colors.white} \
+        icon.padding_left=3 \
+        icon.padding_right=4 \
+        label="▁▁▁▁▁▁▁" \
+        label.font="${theme.fonts.nerd}:Bold:13.0" \
+        label.color=${theme.colors.blue} \
+        label.padding_left=3 \
+        label.padding_right=6 \
         update_freq=5 \
         script="${updateRam}" \
         click_script="${ramDetail}; ${sbar} --set ram popup.drawing=toggle"
@@ -92,19 +76,19 @@ in
         icon.padding_right=10 \
         label.drawing=off
 
-    ${row "ram.used"}
+    ${mkRow { name = "ram.used"; parent = "ram"; width = 196; }}
     ${sbar} --set ram.used icon="Used"
-    ${row "ram.usedp"}
+    ${mkRow { name = "ram.usedp"; parent = "ram"; width = 196; }}
     ${sbar} --set ram.usedp icon="Pressure"
-    ${row "ram.swap"}
+    ${mkRow { name = "ram.swap"; parent = "ram"; width = 196; }}
     ${sbar} --set ram.swap icon="Swap"
 
-    ${row "ram.p1"}
-    ${row "ram.p2"}
-    ${row "ram.p3"}
-    ${sbar} --set ram.p1 label.color=${theme.colors.white} drawing=off \
-            --set ram.p2 label.color=${theme.colors.white} drawing=off \
-            --set ram.p3 label.color=${theme.colors.white} drawing=off
+    ${mkRow { name = "ram.p1"; parent = "ram"; width = 196; labelColor = theme.colors.white; }}
+    ${mkRow { name = "ram.p2"; parent = "ram"; width = 196; labelColor = theme.colors.white; }}
+    ${mkRow { name = "ram.p3"; parent = "ram"; width = 196; labelColor = theme.colors.white; }}
+    ${sbar} --set ram.p1 drawing=off \
+            --set ram.p2 drawing=off \
+            --set ram.p3 drawing=off
   '';
 
   init = "${updateRam}";

@@ -1,24 +1,24 @@
 { pkgs, theme, sbar, ... }:
 let
   sparkline = import ../helpers/sparkline.nix { inherit pkgs; };
+  mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
   cache = "$HOME/.cache/sketchybar";
+
+  readGpu = ''ioreg -r -d 1 -w 0 -c IOAccelerator \
+      | grep -o '"Device Utilization %"=[0-9]*' \
+      | head -1 \
+      | grep -o '[0-9]*$' '';
 
   updateGpu = pkgs.writeShellScript "sketchybar-gpu.sh" ''
     mkdir -p ${cache}
-    used=$(ioreg -r -d 1 -w 0 -c IOAccelerator \
-      | grep -o '"Device Utilization %"=[0-9]*' \
-      | head -1 \
-      | grep -o '[0-9]*$')
+    used=$(${readGpu})
     used=''${used:-0}
     graph=$(${sparkline} "${cache}/gpu.hist" "$used" 7)
-    ${sbar} --set gpu label="$graph"
+    ${sbar} --set gpu icon="''${used}%" label="$graph"
   '';
 
   gpuDetail = pkgs.writeShellScript "sketchybar-gpu-detail.sh" ''
-    used=$(ioreg -r -d 1 -w 0 -c IOAccelerator \
-      | grep -o '"Device Utilization %"=[0-9]*' \
-      | head -1 \
-      | grep -o '[0-9]*$')
+    used=$(${readGpu})
     name=$(ioreg -r -d 1 -w 0 -c IOAccelerator \
       | grep -o '"model"=<"[^"]*"' \
       | head -1 \
@@ -26,30 +26,21 @@ let
     ${sbar} --set gpu.util label="''${used:-0}%" \
             --set gpu.model label="''${name:-Apple GPU}"
   '';
-
-  row = name: ''
-    ${sbar} --add item ${name} popup.gpu \
-      --set ${name} \
-        width=200 \
-        icon.font="${theme.fonts.text}:Semibold:12.0" \
-        icon.color=${theme.colors.white} \
-        icon.padding_left=10 \
-        icon.align=left \
-        label.font="${theme.fonts.text}:Semibold:12.0" \
-        label.color=${theme.colors.lavender} \
-        label.padding_right=10 \
-        label.align=right
-  '';
 in
 {
   config = ''
     ${sbar} --add item gpu right \
       --set gpu \
-        icon.drawing=off \
+        icon.drawing=on \
+        icon="0%" \
+        icon.font="${theme.fonts.text}:Bold:11.0" \
+        icon.color=${theme.colors.white} \
+        icon.padding_left=3 \
+        icon.padding_right=4 \
         label="▁▁▁▁▁▁▁" \
         label.font="${theme.fonts.nerd}:Bold:13.0" \
         label.color=${theme.colors.peach} \
-        label.padding_left=6 \
+        label.padding_left=3 \
         label.padding_right=6 \
         update_freq=5 \
         script="${updateGpu}" \
@@ -64,10 +55,10 @@ in
         icon.padding_right=10 \
         label.drawing=off
 
-    ${row "gpu.util"}
+    ${mkRow { name = "gpu.util"; parent = "gpu"; width = 200; }}
     ${sbar} --set gpu.util icon="Utilization"
-    ${row "gpu.model"}
-    ${sbar} --set gpu.model icon="Chip" label.color=${theme.colors.white}
+    ${mkRow { name = "gpu.model"; parent = "gpu"; width = 200; labelColor = theme.colors.white; }}
+    ${sbar} --set gpu.model icon="Chip"
   '';
 
   init = "${gpuDetail}; ${updateGpu}";
