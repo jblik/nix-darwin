@@ -37,7 +37,10 @@ in
       gaps = {
         inner.horizontal = 10;
         inner.vertical = 10;
-        outer.left = 70;
+        outer.left = [
+          { monitor."built-in" = 10; }
+          70
+        ];
         outer.right = 10;
         outer.top = 10;
         outer.bottom = 10;
