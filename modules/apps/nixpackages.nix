@@ -33,6 +33,7 @@ in
       dotnet.sdk # dotnet sdk
       duti # tool to set default apps
       fastfetch
+      fluxcd
       forgejo-cli
       forgejo-runner
       fzf # fuzzy finder
