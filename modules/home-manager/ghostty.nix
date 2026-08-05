@@ -1,7 +1,7 @@
 {
   home.file."Library/Application Support/com.mitchellh.ghostty/config.ghostty".text = ''
     font-family = "JetBrainsMono Nerd Font"
-    shell-integration-features = ssh-env #,ssh-terminfo
+    shell-integration-features = ssh-env,ssh-terminfo
 
     background-opacity = 0.8
     unfocused-split-opacity = 0.5
