@@ -24,7 +24,6 @@ in
     with pkgs;
     [
       _1password-cli
-      alt-tab-macos
       azure-cli
       ansible # configuration management tool
       bruno # os postman
