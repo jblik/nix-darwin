@@ -27,6 +27,7 @@ in
       azure-cli
       ansible # configuration management tool
       bruno # os postman
+      container
       coreutils # gnu core utils
       google-chrome
       gnupg # gpg todo: configure this and pinentry also with home-manager
