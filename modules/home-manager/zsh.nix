@@ -67,6 +67,12 @@ in
       # this loads in the .p10k.zsh configuration from this repo, 
       # maybe think about just configuring it when you set up a new machine
       [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
+
+      _corellia_zsh_complete(){
+          local completions=("$(corellia :complete "$words")")
+          reply=( "''${(ps:\n:)completions}" )
+      }
+      compctl -K _corellia_zsh_complete corellia
     '';
   };
 }
