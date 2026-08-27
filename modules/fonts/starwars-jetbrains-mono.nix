@@ -7,6 +7,9 @@
   fontforge,
   python3,
   writeText,
+  # Enlarge the Star Wars glyphs within their cell. 1.3 keeps them inside the
+  # line height (no vertical clipping against adjacent lines); 1.0 = untouched.
+  glyphScale ? 1.3,
 }:
 let
   base = nerd-fonts.jetbrains-mono;
@@ -42,6 +45,30 @@ let
     f.fontname = "StarWarsGlyphIconsSymbols"
     f.fullname = "StarWars GlyphIcons Symbols"
     f.generate(out)
+  '';
+
+  # font-patcher scales custom glyphs to fit the cell; scale just the Star Wars
+  # glyphs up about their own centre afterwards, preserving advance width.
+  scaleScript = writeText "scale.py" ''
+    import fontforge, psMat, sys
+    f = fontforge.open(sys.argv[1])
+    S = float(sys.argv[3])
+    for cp in range(0xF1B00, 0xF1B9E):
+        try:
+            g = f[cp]
+        except TypeError:
+            continue
+        if g.isWorthOutputting():
+            bb = g.boundingBox()
+            cx, cy = (bb[0] + bb[2]) / 2, (bb[1] + bb[3]) / 2
+            m = psMat.compose(
+                psMat.translate(-cx, -cy),
+                psMat.compose(psMat.scale(S), psMat.translate(cx, cy)),
+            )
+            w = g.width
+            g.transform(m)
+            g.width = w
+    f.generate(sys.argv[2])
   '';
 
   # font-patcher rewrites the name table; copy the originals back so the patched
@@ -80,7 +107,8 @@ stdenvNoCC.mkDerivation {
     for ttf in ${base}/share/fonts/truetype/NerdFonts/JetBrainsMono/*.ttf; do
       nerd-font-patcher --custom "$PWD/sw-remapped.ttf" --careful -out patched "$ttf"
       patchedttf=$(ls patched/*.ttf)
-      python3 ${renameScript} "$patchedttf" "$ttf" "final/$(basename "$ttf")"
+      fontforge -lang=py -script ${scaleScript} "$patchedttf" patched/scaled.ttf ${toString glyphScale}
+      python3 ${renameScript} patched/scaled.ttf "$ttf" "final/$(basename "$ttf")"
       rm -f patched/*.ttf
     done
 
