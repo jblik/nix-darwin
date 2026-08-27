@@ -336,11 +336,21 @@
   # back to POWERLEVEL9K_DIR_FOREGROUND.
   #
      typeset -g POWERLEVEL9K_DIR_CLASSES=(
+       '~/nix-darwin(|/*)'  NIX      ''
+       '~(|/*)corellia'     CORELLIA ''
+       '~(|/*)c3po'         C3PO     ''
+       '~(|/*)r-series-nix' RNIX     ''
+       '~(|/*)kamino'       KAMINO   ''
        '~/work(|/*)'        WORK     ''
-       '~/nix-darwin(|/*)'  NIX     ''
        '~(|/*)'             HOME     ''
        '*'                  DEFAULT  '')
-  
+
+    typeset -g POWERLEVEL9K_DIR_CORELLIA_VISUAL_IDENTIFIER_EXPANSION='󱭐 '
+    typeset -g POWERLEVEL9K_DIR_C3PO_VISUAL_IDENTIFIER_EXPANSION='󱬣'
+    typeset -g POWERLEVEL9K_DIR_RNIX_VISUAL_IDENTIFIER_EXPANSION='󱬞'
+    typeset -g POWERLEVEL9K_DIR_KAMINO_VISUAL_IDENTIFIER_EXPANSION='󱭲'
+
+
      # Styling for WORK.
      typeset -g POWERLEVEL9K_DIR_WORK_VISUAL_IDENTIFIER_EXPANSION='󰳐'
 #     typeset -g POWERLEVEL9K_DIR_WORK_FOREGROUND=202
@@ -516,7 +526,7 @@
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
   function forgejo_icon() {
     if [[ $VCS_STATUS_REMOTE_URL == (*forgejo*|*yoda.cloud*) ]]; then
-      print -n '\uf335'
+      print -n '\U000F1B24'
     elif [[ $VCS_STATUS_REMOTE_URL == *gitlab* ]]; then
       print -n '\ue7eb'
     elif [[ $VCS_STATUS_REMOTE_URL == *codeberg* ]]; then
