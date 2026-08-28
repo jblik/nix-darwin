@@ -10,6 +10,7 @@
     home.username = user.username;
     home.homeDirectory = lib.mkForce user.homeDirectory;
     imports = [
+      ./applications
       ./ghostty.nix
       ./git.nix
       ./karabiner.nix
