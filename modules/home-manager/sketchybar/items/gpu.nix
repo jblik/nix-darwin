@@ -1,13 +1,19 @@
-{ pkgs, theme, sbar, ... }:
+{
+  pkgs,
+  theme,
+  sbar,
+  ...
+}:
 let
   sparkline = import ../helpers/sparkline.nix { inherit pkgs; };
   mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
   cache = "$HOME/.cache/sketchybar";
 
-  readGpu = ''ioreg -r -d 1 -w 0 -c IOAccelerator \
-      | grep -o '"Device Utilization %"=[0-9]*' \
-      | head -1 \
-      | grep -o '[0-9]*$' '';
+  readGpu = ''
+    ioreg -r -d 1 -w 0 -c IOAccelerator \
+          | grep -o '"Device Utilization %"=[0-9]*' \
+          | head -1 \
+          | grep -o '[0-9]*$' '';
 
   updateGpu = pkgs.writeShellScript "sketchybar-gpu.sh" ''
     mkdir -p ${cache}
@@ -55,9 +61,18 @@ in
         icon.padding_right=10 \
         label.drawing=off
 
-    ${mkRow { name = "gpu.util"; parent = "gpu"; width = 200; }}
+    ${mkRow {
+      name = "gpu.util";
+      parent = "gpu";
+      width = 200;
+    }}
     ${sbar} --set gpu.util icon="Utilization"
-    ${mkRow { name = "gpu.model"; parent = "gpu"; width = 200; labelColor = theme.colors.white; }}
+    ${mkRow {
+      name = "gpu.model";
+      parent = "gpu";
+      width = 200;
+      labelColor = theme.colors.white;
+    }}
     ${sbar} --set gpu.model icon="Chip"
   '';
 

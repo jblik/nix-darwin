@@ -1,4 +1,10 @@
-{ pkgs, lib, theme, sbar, ... }:
+{
+  pkgs,
+  lib,
+  theme,
+  sbar,
+  ...
+}:
 let
   menusHelper = import ../helpers/menus.nix { inherit pkgs; };
   menus = "${menusHelper}/bin/menus";
@@ -42,7 +48,10 @@ let
   '';
 in
 {
-  packages = [ menusHelper pkgs.sketchybar-app-font ];
+  packages = [
+    menusHelper
+    pkgs.sketchybar-app-font
+  ];
 
   config = ''
     ${sbar} --add item menu_watcher left \

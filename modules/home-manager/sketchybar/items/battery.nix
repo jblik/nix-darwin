@@ -1,4 +1,9 @@
-{ pkgs, sbar, theme, ... }:
+{
+  pkgs,
+  sbar,
+  theme,
+  ...
+}:
 let
   mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
 
@@ -117,13 +122,29 @@ in
         icon.color=${theme.colors.green} \
         label.drawing=off
 
-    ${mkRow { name = "battery.charge"; parent = "battery"; width = 190; }}
+    ${mkRow {
+      name = "battery.charge";
+      parent = "battery";
+      width = 190;
+    }}
     ${sbar} --set battery.charge icon="Charge"
-    ${mkRow { name = "battery.status"; parent = "battery"; width = 190; }}
+    ${mkRow {
+      name = "battery.status";
+      parent = "battery";
+      width = 190;
+    }}
     ${sbar} --set battery.status icon="Status"
-    ${mkRow { name = "battery.time"; parent = "battery"; width = 190; }}
+    ${mkRow {
+      name = "battery.time";
+      parent = "battery";
+      width = 190;
+    }}
     ${sbar} --set battery.time icon="Time"
-    ${mkRow { name = "battery.health"; parent = "battery"; width = 190; }}
+    ${mkRow {
+      name = "battery.health";
+      parent = "battery";
+      width = 190;
+    }}
     ${sbar} --set battery.health icon="Health"
   '';
 

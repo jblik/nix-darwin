@@ -1,4 +1,9 @@
-{ pkgs, theme, sbar, ... }:
+{
+  pkgs,
+  theme,
+  sbar,
+  ...
+}:
 let
   updateClock = pkgs.writeShellScript "sketchybar-clock.sh" ''
     ${sbar} --set clock.time label="$(date '+%H:%M')" \
