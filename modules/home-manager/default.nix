@@ -13,6 +13,7 @@
       ./applications
       ./ghostty.nix
       ./git.nix
+      ./jj.nix
       ./karabiner.nix
       ./p10k.nix
       ./rectangle.nix
