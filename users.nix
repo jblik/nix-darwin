@@ -35,8 +35,12 @@
         User = "git";
         IdentityFile = "/Users/wookie/.ssh/id_ed25519";
       };
-      "vs-ssh.visualstudio.com:v3" = {
-        User = "jacob.steenblik@yarowa.com";
+      "ssh.dev.azure.com" = {
+        User = "git";
+        IdentityFile = "/Users/wookie/.ssh/azure_devops";
+      };
+      "vs-ssh.visualstudio.com" = {
+        User = "jarowa";
         IdentityFile = "/Users/wookie/.ssh/azure_devops";
       };
       "git.internal.master.yoda.cloud" = {
