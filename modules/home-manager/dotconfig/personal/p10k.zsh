@@ -30,9 +30,12 @@
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    # =========================[ Line #1 ]=========================
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
+    # =========================[ Line #2 ]=========================
+    newline                 # \n
     prompt_char             # prompt symbol
   )
 
@@ -55,8 +58,8 @@
     nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
     # go_version            # go version (https://golang.org)
-    # rust_version          # rustc version (https://www.rust-lang.org)
-    # dotnet_version        # .NET version (https://dotnet.microsoft.com)
+    rust_version            # rustc version (https://www.rust-lang.org)
+    dotnet_version          # .NET version (https://dotnet.microsoft.com)
     # php_version           # php version (https://www.php.net/)
     # laravel_version       # laravel php framework version (https://laravel.com/)
     # java_version          # java version (https://www.java.com/)
@@ -102,6 +105,8 @@
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
     # cpu_arch              # CPU architecture
     # time                  # current time
+    # =========================[ Line #2 ]=========================
+    newline
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -137,7 +142,7 @@
   typeset -g POWERLEVEL9K_ICON_BEFORE_CONTENT=true
 
   # Add an empty line before each prompt.
-  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
+  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
   # Connect left prompt lines with these symbols.
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=
@@ -340,13 +345,13 @@
        '~/nix-darwin(|/*)'  NIX     ''
        '~(|/*)'             HOME     ''
        '*'                  DEFAULT  '')
-  
+
      # Styling for WORK.
      typeset -g POWERLEVEL9K_DIR_SCHOOL_VISUAL_IDENTIFIER_EXPANSION='󰑴'
 #     typeset -g POWERLEVEL9K_DIR_WORK_FOREGROUND=202
 #     typeset -g POWERLEVEL9K_DIR_WORK_SHORTENED_FOREGROUND=214
 #     typeset -g POWERLEVEL9K_DIR_WORK_ANCHOR_FOREGROUND=208
-  
+
      typeset -g POWERLEVEL9K_DIR_NIX_VISUAL_IDENTIFIER_EXPANSION='󱄅'
 #     typeset -g POWERLEVEL9K_DIR_NIX_FOREGROUND=202
 #     typeset -g POWERLEVEL9K_DIR_NIX_SHORTENED_FOREGROUND=214
@@ -403,7 +408,7 @@
       local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
       local branch_icon
 
-      if [[ "$branch" == */* ]]; then
+      if [[ "$VCS_STATUS_LOCAL_BRANCH" == */* ]]; then
         branch_icon=" "
       else
         branch_icon="${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}"
@@ -411,6 +416,9 @@
       # If local branch name is at most 32 characters long, show it in full.
       # Otherwise show the first 12 … the last 12.
       # Tip: To always show local branch name in full without truncation, delete the next line.
+      branch=${branch/#feature\// }
+      branch=${branch/#hotfix\// }
+      branch=${branch/#release\//󰜢 }
       (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
       res+="${clean}${(g::)branch_icon}%F{cyan}${branch//\%/%%}"
     fi
@@ -1288,8 +1296,8 @@
 #     typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_FOREGROUND=208
 #     typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_VISUAL_IDENTIFIER_EXPANSION='⭐'
   #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
-  
-  
+
+
 #     typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=9
      # typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_VISUAL_IDENTIFIER_EXPANSION='🚨'
 #     typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_CONTENT_EXPANSION='🚨${P9K_CONTENT} 🚨'
