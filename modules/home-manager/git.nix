@@ -40,6 +40,8 @@
 
     ignores = [
       ".DS_Store"
+      ".direnv/"
+      ".envrc"
       ".idea/"
     ];
   };
