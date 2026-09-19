@@ -28,6 +28,7 @@ in
       azure-cli
       ansible # configuration management tool
       bruno # foss postman
+      buf # protobuf
       codex
       container
       coreutils # gnu core utils
