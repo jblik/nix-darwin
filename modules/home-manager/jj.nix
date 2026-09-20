@@ -7,7 +7,11 @@
     enable = true;
     settings = {
       user = user.git;
+      signing = {
+        behavior = "own";
+        backend = "ssh";
+      };
     }
-    // import ./${user.profile}/jjSettings.nix user;
+    // import ./${user.profile}/jj-settings.nix user;
   };
 }
