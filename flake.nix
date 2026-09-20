@@ -78,7 +78,6 @@
     {
       # todo make a devshell with all the packages the flake has
       #    devShell = inputs.nixpkgs.legacyPackages.${system} {
-      #                mkShell import ./modules/apps/nixpackages.nix
       #              };
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
