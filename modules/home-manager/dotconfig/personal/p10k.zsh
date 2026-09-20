@@ -405,28 +405,112 @@
 
     local res
 
-    local jj_bookmarks jj_change
+    local jj_bookmarks jj_change jj_relation jj_working_copy
     if (( $+commands[jj] )) && [[ -d $VCS_STATUS_WORKDIR/.jj ]]; then
-      # --ignore-working-copy keeps the prompt from snapshotting the working copy. shortest() is
-      # the unique change id prefix; a bookmark out of sync with its remote gets jj's '*' suffix.
-      local -a jj_status=("${(@f)$(jj --ignore-working-copy --color=never log --no-graph -r @ \
-        -T 'local_bookmarks.join(",") ++ "\n" ++ change_id.shortest()' 2>/dev/null)}")
-      jj_bookmarks=$jj_status[1]
-      jj_change=$jj_status[2]
-    fi
+      # Fetch @ and every local bookmark in one pass. The working-copy field is either ∅ or
+      # compact per-file-state counts such as "M2 A1". --ignore-working-copy prevents the prompt
+      # from creating a new jj operation merely by being rendered.
+      local jj_template='commit_id ++ "\t" ++
+        if(self.contained_in("@"), change_id.shortest(), "") ++ "\t" ++
+        local_bookmarks.map(|b| b.name()).join(",") ++ "\t" ++
+        if(self.contained_in("@"),
+          if(conflict, "× ") ++ if(empty, "∅", separate(" ",
+            if(self.diff().files().filter(|f| f.status() == "modified"),
+              "M" ++ self.diff().files().filter(|f| f.status() == "modified").len()),
+            if(self.diff().files().filter(|f| f.status() == "added"),
+              "A" ++ self.diff().files().filter(|f| f.status() == "added").len()),
+            if(self.diff().files().filter(|f| f.status() == "removed"),
+              "D" ++ self.diff().files().filter(|f| f.status() == "removed").len()),
+            if(self.diff().files().filter(|f| f.status() == "renamed"),
+              "R" ++ self.diff().files().filter(|f| f.status() == "renamed").len()),
+            if(self.diff().files().filter(|f| f.status() == "copied"),
+              "C" ++ self.diff().files().filter(|f| f.status() == "copied").len())
+          )), "") ++ "\n"'
+      local -a jj_lines=("${(@f)$(jj --ignore-working-copy --color=never log --no-graph \
+        -r '@ | bookmarks()' -T "$jj_template" 2>/dev/null)}")
+      local -a jj_bookmark_ids jj_bookmark_names
+      local line rest id change bookmarks working
+      local tab=$'\t'
+      for line in $jj_lines; do
+        id=${line%%${tab}*}
+        rest=${line#*${tab}}
+        change=${rest%%${tab}*}
+        rest=${rest#*${tab}}
+        bookmarks=${rest%%${tab}*}
+        working=${rest#*${tab}}
 
-    local head_ref=$VCS_STATUS_LOCAL_BRANCH
-    [[ -z $jj_change ]] || head_ref=$jj_bookmarks
+        if [[ -n $change ]]; then
+          jj_change=$change
+          jj_working_copy=$working
+        fi
+        if [[ -n $bookmarks ]]; then
+          jj_bookmark_ids+=($id)
+          jj_bookmark_names+=($bookmarks)
+        fi
+      done
+
+      # Choose the bookmark with the smallest graph distance from @. For a divergent bookmark,
+      # A counts commits on the working-copy side and B counts commits on the bookmark side.
+      local best_distance=-1 best_ahead=0 best_behind=0
+      local i sides side_template ahead behind distance
+      for (( i = 1; i <= ${#jj_bookmark_ids}; ++i )); do
+        id=$jj_bookmark_ids[i]
+        side_template="if(self.contained_in(\"$id..@\"), \"A\", \"B\")"
+        sides=$(jj --ignore-working-copy --color=never log --no-graph \
+          -r "($id..@) | (@..$id)" -T "$side_template" 2>/dev/null)
+        ahead=${#${sides//B/}}
+        behind=${#${sides//A/}}
+        distance=$(( ahead + behind ))
+        if (( best_distance < 0 || distance < best_distance )); then
+          best_distance=$distance
+          best_ahead=$ahead
+          best_behind=$behind
+          jj_bookmarks=$jj_bookmark_names[i]
+        fi
+      done
+
+      if (( best_ahead && best_behind )); then
+        jj_relation="↔${best_ahead}/${best_behind}"
+      elif (( best_ahead )); then
+        jj_relation="↑${best_ahead}"
+      elif (( best_behind )); then
+        jj_relation="↓${best_behind}"
+      elif (( best_distance == 0 )); then
+        jj_relation='='
+      fi
+    fi
 
     if [[ -n $jj_change ]]; then
-      res+="${clean}${jj_change//\%/%%}${head_ref:+ }"
-    fi
-
-    if [[ -n $head_ref ]]; then
-      local branch=${(V)head_ref}
+      res+="${clean}${jj_change//\%/%%}"
+      if [[ -n $jj_bookmarks ]]; then
+        local bookmark=${(V)jj_bookmarks}
+        (( $#bookmark > 32 )) && bookmark[13,-13]="…"
+        res+=" ${clean}%F{cyan} ${bookmark//\%/%%}${jj_relation:+ ${clean}${jj_relation}}"
+      fi
+      if [[ -n $jj_working_copy ]]; then
+        if [[ $jj_working_copy == '∅' ]]; then
+          res+=" ${meta}@ ${clean}∅"
+        else
+          res+=" ${meta}@"
+          local jj_change_state jj_change_color
+          for jj_change_state in ${=jj_working_copy}; do
+            case $jj_change_state in
+              A*) jj_change_color=$clean;;       # added: green
+              M*) jj_change_color=$modified;;    # modified: yellow
+              D*|×) jj_change_color=$conflicted;; # deleted/conflicted: red
+              R*) jj_change_color='%39F';;       # renamed: blue
+              C*) jj_change_color='%135F';;      # copied: purple
+              *) jj_change_color=$meta;;
+            esac
+            res+=" ${jj_change_color}${jj_change_state//\%/%%}"
+          done
+        fi
+      fi
+    elif [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
+      local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
       local branch_icon
 
-      if [[ "$head_ref" == */* ]]; then
+      if [[ "$VCS_STATUS_LOCAL_BRANCH" == */* ]]; then
         branch_icon=" "
       else
         branch_icon="${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}"
@@ -466,47 +550,43 @@
       fi
     fi
 
-    # Display "wip" if the latest commit's summary contains "wip" or "WIP".
-    if [[ $VCS_STATUS_COMMIT_SUMMARY == (|*[^[:alnum:]])(wip|WIP)(|[^[:alnum:]]*) ]]; then
-      res+=" ${modified}wip"
-    fi
+    # Git's status belongs to the command-sensitive git_branch segment in a colocated jj repo.
+    if [[ -z $jj_change ]]; then
+      # Display "wip" if the latest commit's summary contains "wip" or "WIP".
+      if [[ $VCS_STATUS_COMMIT_SUMMARY == (|*[^[:alnum:]])(wip|WIP)(|[^[:alnum:]]*) ]]; then
+        res+=" ${modified}wip"
+      fi
 
-    if (( VCS_STATUS_COMMITS_AHEAD || VCS_STATUS_COMMITS_BEHIND )); then
-      # ⇣42 if behind the remote.
-      (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
-      # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
-      (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
-      (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
-    elif [[ -n $VCS_STATUS_REMOTE_BRANCH ]]; then
-      # Tip: Uncomment the next line to display '=' if up to date with the remote.
-      # res+=" ${clean}="
-    fi
+      if (( VCS_STATUS_COMMITS_AHEAD || VCS_STATUS_COMMITS_BEHIND )); then
+        # ⇣42 if behind the remote.
+        (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
+        # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
+        (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
+        (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
+      elif [[ -n $VCS_STATUS_REMOTE_BRANCH ]]; then
+        # Tip: Uncomment the next line to display '=' if up to date with the remote.
+        # res+=" ${clean}="
+      fi
 
-    # ⇠42 if behind the push remote.
-    (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
-    (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" "
-    # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
-    (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
-    # *42 if have stashes.
-    (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
-    # 'merge' if the repo is in an unusual state.
-    [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
-    # ~42 if have merge conflicts.
-    (( VCS_STATUS_NUM_CONFLICTED )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
-    # +42 if have staged changes.
-    (( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
-    # !42 if have unstaged changes.
-    (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
-    # ?42 if have untracked files. It's really a question mark, your font isn't broken.
-    # See POWERLEVEL9K_VCS_UNTRACKED_ICON above if you want to use a different icon.
-    # Remove the next line if you don't want to see untracked files at all.
-    (( VCS_STATUS_NUM_UNTRACKED  )) && res+=" ${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED}"
-    # "─" if the number of unstaged files is unknown. This can happen due to
-    # POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY (see below) being set to a non-negative number lower
-    # than the number of files in the Git index, or due to bash.showDirtyState being set to false
-    # in the repository config. The number of staged and untracked files may also be unknown
-    # in this case.
-    (( VCS_STATUS_HAS_UNSTAGED == -1 )) && res+=" ${modified}─"
+      # ⇠42 if behind the push remote.
+      (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
+      (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" "
+      # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
+      (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+      # *42 if have stashes.
+      (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
+      # 'merge' if the repo is in an unusual state.
+      [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
+      # ~42 if have merge conflicts.
+      (( VCS_STATUS_NUM_CONFLICTED )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
+      # +42 if have staged changes.
+      (( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
+      # !42 if have unstaged changes.
+      (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+      # ?42 if have untracked files. It's really a question mark, your font isn't broken.
+      (( VCS_STATUS_NUM_UNTRACKED  )) && res+=" ${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED}"
+      (( VCS_STATUS_HAS_UNSTAGED == -1 )) && res+=" ${modified}─"
+    fi
 
     typeset -g my_git_format=$res
   }
@@ -571,10 +651,16 @@
   function my_git_branch_formatter() {
     local res
     if [[ $VCS_STATUS_RESULT == ok-* && -n $VCS_STATUS_WORKDIR ]]; then
+      # Git file state appears to the left of the branch while typing a git command.
+      (( VCS_STATUS_NUM_CONFLICTED )) && res+="%196F~${VCS_STATUS_NUM_CONFLICTED} "
+      (( VCS_STATUS_NUM_STAGED     )) && res+="%76F+${VCS_STATUS_NUM_STAGED} "
+      (( VCS_STATUS_NUM_UNSTAGED   )) && res+="%178F!${VCS_STATUS_NUM_UNSTAGED} "
+      (( VCS_STATUS_NUM_UNTRACKED  )) && res+="%39F${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED} "
+      (( VCS_STATUS_HAS_UNSTAGED == -1 )) && res+="%178F─ "
       if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
-        res="%76F${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}%F{cyan}${${(V)VCS_STATUS_LOCAL_BRANCH}//\%/%%}"
+        res+="%76F${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}%F{cyan}${${(V)VCS_STATUS_LOCAL_BRANCH}//\%/%%}"
       else
-        res="%f@%76F${VCS_STATUS_COMMIT[1,8]}"
+        res+="%f@%76F${VCS_STATUS_COMMIT[1,8]}"
       fi
     fi
     typeset -g my_git_branch_format=$res
