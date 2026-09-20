@@ -20,7 +20,6 @@
       ./jj.nix
       ./karabiner.nix
       ./p10k.nix
-      ./rectangle.nix
       ./sketchybar
       ./ssh.nix
       ./sublime.nix
