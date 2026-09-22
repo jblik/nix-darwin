@@ -5,7 +5,7 @@
 {
   programs.jujutsu = {
     enable = true;
-    package = null;
+    # todo:::
     settings = {
       user = user.git;
       signing = {
@@ -22,7 +22,7 @@
 
   programs.jjui = {
     enable = true;
-    package = null; # don't install user scoped package as it is installed system wide
+    # todo:
     settings = {
       revisions = {
         log_batching = true;
