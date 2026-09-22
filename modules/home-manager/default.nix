@@ -14,7 +14,7 @@
       "${user.homeDirectory}/.dotnet/tools" # todo: could build my global tools in nix as well
     ];
     imports = [
-      ./applications
+      ./applications.nix
       ./ghostty.nix
       ./git.nix
       ./jj.nix
