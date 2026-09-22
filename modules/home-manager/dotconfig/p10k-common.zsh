@@ -644,7 +644,7 @@
   # the prompt is being expanded, hence the content expansion instead of a plain `p10k segment -t`.
   function my_git_branch_formatter() {
     local res
-    if [[ $VCS_STATUS_RESULT == ok-* && -n $VCS_STATUS_WORKDIR ]]; then
+    if [[ $VCS_STATUS_RESULT == ok-* && -d $VCS_STATUS_WORKDIR/.jj ]]; then
       # Git file state appears to the left of the branch while typing a git command.
       (( VCS_STATUS_NUM_CONFLICTED )) && res+="%196F~${VCS_STATUS_NUM_CONFLICTED} "
       (( VCS_STATUS_NUM_STAGED     )) && res+="%76F+${VCS_STATUS_NUM_STAGED} "
