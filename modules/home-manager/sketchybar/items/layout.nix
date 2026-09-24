@@ -34,9 +34,9 @@ let
         y_offset=0 margin=0 corner_radius=0 notch_width=${toString theme.bar.notchWidth}
       align=right
       clockpos=right
-      spacebg=${toString theme.bar.menuBarSpaceBackgroundHeight}
       metricdraw=off
       statuspad_l=0                            # asymmetric: gap only on the right
+      batterypad_r=0                           # the clock right of it brings its own
       popupoff=${toString theme.bar.popupYOffsetTop}
       metricpopupoff=${toString theme.bar.popupYOffsetTop}
     else
@@ -44,9 +44,9 @@ let
         y_offset=10 margin=10 corner_radius=9
       align=center
       clockpos=left
-      spacebg=${toString theme.bar.spaceBackgroundHeight}
       metricdraw=on
       statuspad_l=15                           # balanced with the 15pt right pad
+      batterypad_r=15
       popupoff=${toString theme.bar.popupYOffsetLeft}
       metricpopupoff=${toString theme.bar.popupYOffsetMetricsLeft}
     fi
@@ -55,7 +55,7 @@ let
     setargs=()
     spaces=()
     for sid in $sids; do
-      setargs+=(--set "space.$sid" position="$align" background.height="$spacebg")
+      setargs+=(--set "space.$sid" position="$align")
       spaces+=("space.$sid")
       for i in $(seq 1 ${toString maxIcons}); do
         setargs+=(--set "space.$sid.icon.$i" position="$align")
@@ -71,6 +71,17 @@ let
       setargs+=(--set "$it" position=right icon.align=center \
         background.padding_left="$statuspad_l")
     done
+    setargs+=(--set battery background.padding_right="$batterypad_r")
+
+    # The docked layout sizes an item along the bar by its glyph height, which
+    # clips the 26pt apple logo; an invisible taller background makes room, and
+    # balanced padding centers it across the bar.
+    if [ "$mode" = top ]; then
+      setargs+=(--set apple.logo background.drawing=off background.padding_left=3)
+    else
+      setargs+=(--set apple.logo background.drawing=on background.color=0x00000000 \
+        background.height=34 background.padding_left=15)
+    fi
 
     # CPU/RAM/GPU meters: docked layout only, centered across the bar width.
     for it in cpu ram gpu; do

@@ -108,7 +108,7 @@ in
       --set battery \
         icon=" ${theme.icons.battery."100"}" \
         icon.font="${theme.fonts.nerd}:Bold:26.0" \
-        label.font="${theme.fonts.text}:Semibold:11.0" \
+        label.drawing=off \
         update_freq=30 \
         background.padding_right=15 \
         script="${updateBattery}" \
