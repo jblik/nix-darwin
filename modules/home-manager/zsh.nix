@@ -38,9 +38,8 @@ in
         sudo -v
         nix flake update --flake ${flakePath} || return 1
 
-        if ! git -C ${flakePath} diff --quiet -- ${flakePath}/flake.lock; then
-          git -C ${flakePath} add ${flakePath}/flake.lock || return 1
-          git -C ${flakePath} commit -m "update flake.lock" || return 1
+        if [[ -n "$(jj -R ${flakePath} diff --name-only 'root:"flake.lock"')" ]]; then
+          jj -R ${flakePath} ci -m "chore: update flake.lock" 'root:"flake.lock"' || return 1
         fi
 
         sudo darwin-rebuild switch --flake ${flakePath}#brew-update
