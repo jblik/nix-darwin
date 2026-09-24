@@ -5,6 +5,7 @@
 }:
 {
   ${user.username} = {
+    _module.args.user = user;
     programs.home-manager.enable = true;
     home.stateVersion = "25.11";
     home.username = user.username;
@@ -14,7 +15,7 @@
       "${user.homeDirectory}/.dotnet/tools" # todo: could build my global tools in nix as well
     ];
     imports = [
-      ./applications.nix
+      ./${user.profile}/applications.nix
       ./ghostty.nix
       ./git.nix
       ./jj.nix

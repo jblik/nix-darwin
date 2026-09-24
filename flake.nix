@@ -64,7 +64,6 @@
                 backupFileExtension = "backup";
                 extraSpecialArgs = {
                   inherit pkgs-unstable;
-                  user = users.${profile};
                 };
                 users = import ./modules/home-manager {
                   user = users.${profile};
