@@ -20,7 +20,10 @@ cd /etc && git clone ssh://git@codeberg.org/jblik/nix-darwin.git
 git -C /etc/nix-darwin config core.sharedRepository group
 ```
 
-- `cd /etc/nix-darwin && sudo darwin-rebuild switch --flake .#default`
+- `sudo scutil --set LocalHostName Jacobs-MacBook-Pro` if the hostname differs, as `darwin-rebuild` builds the
+  configuration named after it
+- `sudo nix run nix-darwin/nix-darwin-26.05#darwin-rebuild -- switch` (installs `darwin-rebuild`, afterwards
+  `sudo darwin-rebuild switch` is enough)
 - `jj git init` in `/etc/nix-darwin` to colocate jj with the git repo (jj is installed by the rebuild)
 
 ### once it's installed
