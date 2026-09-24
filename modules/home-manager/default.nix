@@ -19,6 +19,7 @@
       ./aerospace.nix
       ./ghostty.nix
       ./git.nix
+      ./jankyborders.nix
       ./jj.nix
       ./karabiner.nix
       ./p10k.nix

@@ -2,7 +2,6 @@
   imports = [
     ./appearance.nix
     ./finder.nix
-    ./jankyborders.nix
     ./keyboard.nix
     ./shell.nix
     ./system.nix
