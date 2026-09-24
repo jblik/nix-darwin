@@ -1,11 +1,10 @@
 {
   pkgs,
   lib,
-  user,
   ...
 }:
 let
-  flakePath = "${user.homeDirectory}/nix-darwin";
+  flakePath = "/etc/nix-darwin";
   flakeRef = "${flakePath}#default";
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in

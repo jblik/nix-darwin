@@ -2,6 +2,9 @@
   user,
   ...
 }:
+let
+  profileSettings = import ./${user.profile}/jj-settings.nix user;
+in
 {
   programs.jujutsu = {
     enable = true;
@@ -17,7 +20,20 @@
           ''builtin_immutable_heads() | remote_bookmarks(glob:"release/*", remote=exact:"origin")'';
       };
     }
-    // import ./${user.profile}/jj-settings.nix user;
+    // profileSettings
+    // {
+      "--scope" = profileSettings."--scope" ++ [
+        {
+          # jj matches the resolved path and /etc is a symlink to /private/etc
+          "--when".repositories = [ "/private/etc/nix-darwin" ];
+          user = {
+            name = "jblik";
+            email = "jblik@noreply.codeberg.org";
+          };
+          signing.key = "${user.ssh."codeberg.org".IdentityFile}.pub";
+        }
+      ];
+    };
   };
 
   programs.jjui = {
