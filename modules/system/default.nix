@@ -1,6 +1,5 @@
 {
   imports = [
-    ./aerospace.nix
     ./appearance.nix
     ./finder.nix
     ./jankyborders.nix

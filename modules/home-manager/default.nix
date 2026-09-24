@@ -16,6 +16,7 @@
     ];
     imports = [
       ./${user.profile}/applications.nix
+      ./aerospace.nix
       ./ghostty.nix
       ./git.nix
       ./jj.nix

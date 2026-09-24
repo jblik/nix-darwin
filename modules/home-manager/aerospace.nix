@@ -1,10 +1,16 @@
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   refreshIcons = "exec-and-forget ${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(${lib.getExe pkgs.aerospace} list-workspaces --focused)";
 in
 {
-  services.aerospace = {
+  programs.aerospace = {
     enable = true;
+    launchd.enable = true;
 
     settings = {
       default-root-container-layout = "tiles";
@@ -139,5 +145,11 @@ in
         ];
       };
     };
+  };
+
+  # home-manager logs to /tmp by default, which is not writable once the other user created the file
+  launchd.agents.aerospace.config = {
+    StandardOutPath = lib.mkForce "${config.home.homeDirectory}/Library/Logs/aerospace.log";
+    StandardErrorPath = lib.mkForce "${config.home.homeDirectory}/Library/Logs/aerospace.err.log";
   };
 }
