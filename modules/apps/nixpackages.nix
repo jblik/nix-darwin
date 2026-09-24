@@ -29,7 +29,6 @@ in
       ansible # configuration management tool
       buf # protobuf
       container
-      coreutils # gnu core utils
       dotnet.fallout # for packaging dotnet projects
       dotnet.sdk # dotnet sdk
       duti # tool to set default apps
