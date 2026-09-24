@@ -65,10 +65,15 @@
                 extraSpecialArgs = {
                   inherit pkgs-unstable;
                 };
-                users = import ./modules/home-manager {
-                  user = users.${profile};
-                  lib = nixpkgs.lib;
-                };
+                users = nixpkgs.lib.mergeAttrsList (
+                  map (
+                    user:
+                    import ./modules/home-manager {
+                      inherit user;
+                      lib = nixpkgs.lib;
+                    }
+                  ) (builtins.attrValues users)
+                );
               };
             }
           ];
