@@ -1,13 +1,13 @@
 # Work directory classes.
 typeset -g POWERLEVEL9K_DIR_CLASSES=(
-  '~/nix-darwin(|/*)'  NIX      ''
-  '~(|/*)corellia'     CORELLIA ''
-  '~(|/*)c3po'         C3PO     ''
-  '~(|/*)r-series-nix' RNIX     ''
-  '~(|/*)kamino'       KAMINO   ''
-  '~/work(|/*)'        WORK     ''
-  '~(|/*)'             HOME     ''
-  '*'                  DEFAULT  '')
+  '/etc/nix-darwin(|/*)' NIX     ''
+  '~(|/*)corellia'       CORELLIA ''
+  '~(|/*)c3po'           C3PO     ''
+  '~(|/*)r-series-nix'   RNIX     ''
+  '~(|/*)kamino'         KAMINO   ''
+  '~/work(|/*)'          WORK     ''
+  '~(|/*)'               HOME     ''
+  '*'                    DEFAULT  '')
 
 typeset -g POWERLEVEL9K_DIR_CORELLIA_VISUAL_IDENTIFIER_EXPANSION='󱭐 '
 typeset -g POWERLEVEL9K_DIR_C3PO_VISUAL_IDENTIFIER_EXPANSION='󱬣'
