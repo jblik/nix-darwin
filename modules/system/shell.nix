@@ -5,7 +5,7 @@
   environment = {
     systemPath = [
       "/opt/homebrew/bin"
-      # todo: careful with spaces!
+      # careful with spaces!
     ];
 
     variables = {
