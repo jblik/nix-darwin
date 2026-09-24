@@ -3,6 +3,7 @@
   imports = [
     ./appearance.nix
     ./finder.nix
+    ./keyboard.nix
   ];
 
   # the dock only picks up changed defaults after a restart
