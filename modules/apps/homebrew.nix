@@ -1,8 +1,8 @@
 {
+  config,
   lib,
   pkgs,
   updateHomebrew,
-  user,
   ...
 }:
 {
@@ -43,7 +43,7 @@
 
     system.activationScripts.postActivation.text = lib.mkIf updateHomebrew ''
       echo "Upgrading Mac App Store apps (mas upgrade)..."
-      sudo -u ${user.username} ${lib.getExe pkgs.mas} upgrade
+      sudo -u ${config.system.primaryUser} ${lib.getExe pkgs.mas} upgrade
     '';
   };
 }
