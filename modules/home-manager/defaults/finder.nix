@@ -1,8 +1,8 @@
 {
-  system.defaults = {
-    finder = {
+  targets.darwin.defaults = {
+    "com.apple.finder" = {
       FXPreferredViewStyle = "Nlsv"; # list view default
-      NewWindowTarget = "Home";
+      NewWindowTarget = "PfHm"; # home folder
       ShowPathbar = true; # shows the path bar on the bottom of finder
       QuitMenuItem = true; # allows quitting finder
       AppleShowAllFiles = true;
@@ -14,7 +14,7 @@
       AppleShowAllExtensions = true;
       AppleShowAllFiles = true;
     };
-    CustomUserPreferences."com.apple.desktopservices" = {
+    "com.apple.desktopservices" = {
       DSDontWriteNetworkStores = true;
       DSDontWriteUSBStores = true;
     };
