@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-
+{
+  config,
+  lib,
+  ...
+}:
 {
   options = {
     updateHomebrew = lib.mkEnableOption "enable Homebrew auto-update and upgrade during activation";

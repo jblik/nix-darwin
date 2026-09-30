@@ -4,7 +4,6 @@
   user,
   ...
 }:
-
 let
   flakePath = "${user.homeDirectory}/nix-darwin";
   flakeRef = "${flakePath}#${user.profile}";

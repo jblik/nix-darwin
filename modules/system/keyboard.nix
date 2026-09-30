@@ -1,4 +1,7 @@
-{ user, ... }:
+{
+  user,
+  ...
+}:
 {
   system = {
     keyboard = {

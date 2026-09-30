@@ -1,5 +1,8 @@
-{ lib, user, ... }:
-
+{
+  lib,
+  user,
+  ...
+}:
 {
   programs.git = {
     enable = true;
