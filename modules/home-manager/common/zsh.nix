@@ -30,6 +30,7 @@
       # this loads in the .p10k.zsh configuration from this repo, 
       # maybe think about just configuring it when you set up a new machine
       [[ ! -f ~/.config/p10k/.p10k.zsh ]] || source ~/.config/p10k/.p10k.zsh
+      export PATH=$PATH:/opt/homebrew/bin
     '';
   };
 }

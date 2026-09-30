@@ -15,4 +15,5 @@
     };
   };
   security.pam.services.sudo_local.touchIdAuth = true;
+  # todo: disable airplay receiver
 }
