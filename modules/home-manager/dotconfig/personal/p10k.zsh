@@ -407,18 +407,20 @@
 
     local jj_bookmarks jj_change
     if (( $+commands[jj] )) && [[ -d $VCS_STATUS_WORKDIR/.jj ]]; then
-      # --ignore-working-copy keeps the prompt from snapshotting the working copy. The revset
-      # yields @ first, followed by the closest bookmarked ancestor if @ isn't bookmarked itself.
-      local -a jj_status=("${(@f)$(jj --ignore-working-copy --color=never log --no-graph \
-        -r '@ | heads(::@ & bookmarks())' \
-        -T 'change_id.shortest(8) ++ "\t" ++ local_bookmarks.join(",") ++ "\n"' 2>/dev/null)}")
-      local tab=$'\t'
-      jj_change=${jj_status[1]%%${tab}*}
-      jj_bookmarks=${${jj_status[(r)*${tab}?*]}#*${tab}}
+      # --ignore-working-copy keeps the prompt from snapshotting the working copy. shortest() is
+      # the unique change id prefix; a bookmark out of sync with its remote gets jj's '*' suffix.
+      local -a jj_status=("${(@f)$(jj --ignore-working-copy --color=never log --no-graph -r @ \
+        -T 'local_bookmarks.join(",") ++ "\n" ++ change_id.shortest()' 2>/dev/null)}")
+      jj_bookmarks=$jj_status[1]
+      jj_change=$jj_status[2]
     fi
 
     local head_ref=$VCS_STATUS_LOCAL_BRANCH
     [[ -z $jj_change ]] || head_ref=$jj_bookmarks
+
+    if [[ -n $jj_change ]]; then
+      res+="${clean}${jj_change//\%/%%}${head_ref:+ }"
+    fi
 
     if [[ -n $head_ref ]]; then
       local branch=${(V)head_ref}
@@ -439,9 +441,7 @@
       res+="${clean}${(g::)branch_icon}%F{cyan}${branch//\%/%%}"
     fi
 
-    if [[ -n $jj_change ]]; then
-      res+="${head_ref:+ }${meta}@${clean}${jj_change//\%/%%}"
-    else
+    if [[ -z $jj_change ]]; then
       if [[ -n $VCS_STATUS_TAG
             # Show tag only if not on a branch.
             # Tip: To always show tag, delete the next line.
