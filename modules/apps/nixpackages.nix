@@ -24,6 +24,7 @@ in
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
     pkgs.google-chrome
+    pkgs.gnupg # gpg
     pkgs-unstable.docker # docker
     dotnet.nuke # for packaging dotnet projects
     dotnet.sdk # dotnet sdk
