@@ -61,14 +61,12 @@
         {
           nix.settings.experimental-features = "nix-command flakes";
 
-          # Set Git commit hash for darwin-version.
-          system.configurationRevision = self.rev or self.dirtyRev or null;
-
-          # Used for backwards compatibility, please read the changelog before changing.
-          # $ darwin-rebuild changelog
-          system.stateVersion = 6;
-
-          system.primaryUser = username;
+          system = {
+            configurationRevision = self.rev or self.dirtyRev or null;
+            # $ darwin-rebuild changelog
+            stateVersion = 6;
+            primaryUser = username;
+          };
 
           # The platform the configuration will be used on.
           nixpkgs.hostPlatform = system;
