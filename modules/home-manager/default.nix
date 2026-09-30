@@ -10,11 +10,13 @@
     home.username = user.username;
     home.homeDirectory = lib.mkForce user.homeDirectory;
     imports = [
+      ./aerospace.nix
       ./ghostty.nix
       ./git.nix
       ./karabiner.nix
       ./p10k.nix
       ./rectangle.nix
+      ./sketchybar.nix
       ./ssh.nix
       ./sublime.nix
       ./zsh.nix

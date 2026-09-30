@@ -32,5 +32,6 @@
     keybind = super+ctrl+shift+k=resize_split:up,25
 
     keybind = global:cmd+ctrl+t=toggle_quick_terminal
+    quick-terminal-position = center
   '';
 }
