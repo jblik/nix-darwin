@@ -29,9 +29,10 @@
         };
         condition = "hasconfig:remote.*.url:git@github.com:*/**";
       }
-    ]
+    ];
     # todo: this isn't very generic
-    ++ lib.optionals (user.profile == "personal") import ./personal/git.nix;
+    # broken for other profile
+#    ++ lib.optionals (user.profile == "personal") import ./personal/git.nix;
 
     ignores = [
       ".DS_Store"
