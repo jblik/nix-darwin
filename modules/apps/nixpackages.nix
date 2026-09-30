@@ -1,11 +1,20 @@
-{ pkgs, pkgs-unstable, ... }:
-
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
+let
+  dotnet = import ./dotnet.nix {
+    follows = pkgs;
+  };
+in
 {
   nixpkgs.config.allowUnfree = true;
 
   # https://search.nixos.org/packages
   environment.systemPackages = [
-    (import ./dotnet.nix { follows = pkgs; })
+    dotnet.nuke
+    dotnet.sdk
     pkgs.azure-cli
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
