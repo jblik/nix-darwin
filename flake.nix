@@ -15,7 +15,7 @@
   };
 
 # todo: an iteration broke profiles, figure that out:
-
+# the error below is due to the symlink not being stored correct seemingly: see /nix/var/nix/profiles/default
 #error: nix profile requires a sub-command. Available sub-commands:
 #
 #         · add
