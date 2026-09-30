@@ -1,14 +1,9 @@
-{ pkgs, ... }:
 {
-  # Home-manager has no native sketchybar module, so wire it up by hand:
-  # install the package, drop in the rc config, and run it via a launchd agent.
-  home.packages = [ pkgs.sketchybar ];
+  programs.sketchybar = {
+    enable = true;
+    configType = "bash";
 
-  home.file.".config/sketchybar/sketchybarrc" = {
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
-
+    config = ''
       # --- Bar appearance ---
       sketchybar --bar \
         height=32 \
@@ -39,19 +34,5 @@
       # --- Finalize ---
       sketchybar --update
     '';
-  };
-
-  launchd.agents.sketchybar = {
-    enable = true;
-    config = {
-      ProgramArguments = [ "${pkgs.sketchybar}/bin/sketchybar" ];
-      KeepAlive = true;
-      RunAtLoad = true;
-      StandardOutPath = "/tmp/sketchybar.out.log";
-      StandardErrorPath = "/tmp/sketchybar.err.log";
-      EnvironmentVariables = {
-        PATH = "${pkgs.sketchybar}/bin:/usr/bin:/bin:/usr/sbin:/sbin";
-      };
-    };
   };
 }
