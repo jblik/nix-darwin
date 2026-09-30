@@ -28,15 +28,6 @@
         contents = {
           user = {
             name = "jblik";
-            email = "88430125+jblik@users.noreply.github.com";
-          };
-        };
-        condition = "hasconfig:remote.*.url:git@github.com:*/**";
-      }
-      {
-        contents = {
-          user = {
-            name = "jblik";
             email = "jblik@noreply.codeberg.org";
           };
           commit.gpgsign = true; # todo: can setup everywhere and then put global
