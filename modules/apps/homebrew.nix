@@ -10,7 +10,7 @@
       enable = true;
       taps = builtins.attrNames config.nix-homebrew.taps;
       onActivation = {
-        cleanup = "uninstall";
+        cleanup = "zap";
       }
       // lib.optionalAttrs config.updateHomebrew.enable {
         autoUpdate = true;
@@ -24,6 +24,7 @@
         "mongodb/brew/mongodb-community@7.0" # MongoDB Community Server version 7.0.
       ];
       casks = [
+        "karabiner-elements"
         "ghostty"
         "monitorcontrol"
         "stats"

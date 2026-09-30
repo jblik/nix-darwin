@@ -13,7 +13,6 @@
       pkgs.duti # tool to set default apps
       pkgs.inetutils # gnu network utils
       pkgs.k9s # kubernetes cluster manager
-      pkgs.karabiner-elements # key remapping software
       pkgs.kubernetes-helm # package manager for kubernetes
       pkgs.meslo-lgs-nf # font for powerlevel10k
       pkgs.nmap # network discovery tool
