@@ -6,6 +6,7 @@
       color=${theme.colors.barBackground} \
       shadow=on \
       position=left \
+      display=main \
       sticky=on \
       padding_right=18 \
       padding_left=18 \
