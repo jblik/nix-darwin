@@ -21,7 +21,7 @@ user: {
       signing = {
         behavior = "own";
         backend = "ssh";
-        key = "${user.ssh."vs-ssh.visualstudio.com:v3".IdentityFile}.pub";
+        key = "${user.ssh."vs-ssh.visualstudio.com".IdentityFile}.pub";
       };
     }
     {
