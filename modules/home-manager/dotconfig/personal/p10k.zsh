@@ -412,7 +412,7 @@
       # Otherwise show the first 12 … the last 12.
       # Tip: To always show local branch name in full without truncation, delete the next line.
       (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
-      res+="${clean}${(g::)branch_icon}${branch//\%/%%}"
+      res+="${clean}${(g::)branch_icon}%F{cyan}${branch//\%/%%}"
     fi
 
     if [[ -n $VCS_STATUS_TAG
