@@ -19,6 +19,20 @@ in
         "immutable_heads()" =
           ''builtin_immutable_heads() | remote_bookmarks(glob:"release/*", remote=exact:"origin")'';
       };
+      aliases = {
+        "cm" = [
+          "new"
+          "master"
+        ];
+        "cd" = [
+          "new"
+          "develop"
+        ];
+        "gf" = [
+          "git"
+          "fetch"
+        ];
+      };
     }
     // profileSettings
     // {
