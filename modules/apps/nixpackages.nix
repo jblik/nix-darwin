@@ -35,10 +35,5 @@
       pkgs-unstable.k9s # kubernetes cluster manager
       pkgs-unstable.terraform # tool for building, changing, and versioning infrastructure
       pkgs-unstable.vault # hcp tool for managing secrets
-
-      pkgs-unstable.jetbrains.idea # intellij
-      pkgs-unstable.jetbrains.rider # c# ide
-      pkgs-unstable.jetbrains.pycharm # python ide
-      pkgs-unstable.jetbrains.datagrip # database viewer
     ];
 }
