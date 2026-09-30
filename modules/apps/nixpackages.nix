@@ -56,7 +56,7 @@ in
       helmfile
       k9s # kubernetes cluster manager
       opencode # local agent
-      # ollama # local llms todo: xcode install MLX Metal
+      ollama # local llms todo: xcode install MLX Metal
       terraform # tool for building, changing, and versioning infrastructure
       vault # hcp tool for managing secrets
       velero # kubernetes cluster restore tool
