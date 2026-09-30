@@ -5,6 +5,7 @@
 
   environment.systemPackages = with pkgs; [
     pkgs.alt-tab-macos      # windows like alt-tab
+    pkgs.ansible            # configuration management tool
     pkgs.docker             # docker
     pkgs.k9s                # kubernetes cluster manager   
     pkgs.karabiner-elements # key remapping software
