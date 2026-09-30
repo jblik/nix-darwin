@@ -79,7 +79,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.verbose = true;
-          backupFileExtension = ".backup";
+          backupFileExtension = "backup";
           
           home-manager.users.${username} = { pkgs, lib, ... }:
           {
