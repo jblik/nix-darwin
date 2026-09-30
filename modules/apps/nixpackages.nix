@@ -14,7 +14,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = with pkgs; [
-    # meslo-lgs-nf # font for powerlevel10k
     nerd-fonts.jetbrains-mono
     pkgs.sketchybar-app-font
   ];
@@ -26,16 +25,15 @@ in
       _1password-cli
       azure-cli
       ansible # configuration management tool
-      bruno # os postman
+      bruno # foss postman
       container
       coreutils # gnu core utils
-      google-chrome
       gnupg # gpg todo: configure this and pinentry also with home-manager
-      dotnet.nuke # for packaging dotnet projects
+      dotnet.fallout # for packaging dotnet projects
       dotnet.sdk # dotnet sdk
       duti # tool to set default apps
-      fastfetch
-      fluxcd
+      fastfetch # neofetch like
+      fluxcd # gitops tool
       forgejo-cli
       forgejo-runner
       fzf # fuzzy finder
@@ -46,21 +44,20 @@ in
       kubernetes-helm # package manager for kubernetes
       mas # Mac App Store command-line interface
       nmap # network discovery tool
-      nodejs_24
+      nodejs_26 # latest version
       opentofu # open source fork of terraform
-      postgresql
-      playball
+      postgresql # just use postgres
+      playball # baseball scoreboard tui
       ripgrep # faster grep
-      spotify
-      stats
-      tailwindcss
-      tmux
+      spotify # music
+      tailwindcss # css framework
+      tmux # terminal multiplexer
       uv # python package manager
       zsh-powerlevel10k # zsh theme
     ]
     ++ (with pkgs-unstable; [
       docker # docker
-      helmfile
+      helmfile # additional helm utils
       k9s # kubernetes cluster manager
       opencode # local agent
       ollama # local llms

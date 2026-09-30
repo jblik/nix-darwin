@@ -5,7 +5,7 @@
 }:
 with dotnetCorePackages;
 {
-  nuke = buildDotnetGlobalTool {
+  fallout = buildDotnetGlobalTool {
     pname = "fallout";
     version = "10.4.0";
     nugetName = "Fallout.GlobalTool";
