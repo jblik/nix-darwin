@@ -18,8 +18,8 @@ in
   # programs.zsh.enableAutosuggestions = true;
 
   environment.shellAliases = {
-    nix-update = "nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeRef}";
-    nix-update-gc = "nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeRef} && nix-gc";
+    nix-update = ''nix flake update --flake ${flakePath} && git add ${flakePath}/flake.lock && git commit -m "update flake.lock" && sudo darwin-rebuild switch --flake ${flakeRef}'';
+    nix-update-gc = ''nix flake update --flake ${flakePath} && git add ${flakePath}/flake.lock && git commit -m "update flake.lock" && sudo darwin-rebuild switch --flake ${flakeRef} && nix-gc'';
     nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
   };
   
