@@ -12,6 +12,9 @@
         "--apple-load-keychain"
       ];
       RunAtLoad = true;
+      # this is to check if working or conflicting with unlock
+      StandardOutPath = "/tmp/ssh-add.log";
+      StandardErrorPath = "/tmp/ssh-add.err";
     };
   };
 
