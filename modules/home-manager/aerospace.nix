@@ -29,7 +29,7 @@
         inner.horizontal = 8;
         inner.vertical = 8;
         outer.left = 8;
-        outer.right = 48;
+        outer.right = 44;
         outer.top = 8;
         outer.bottom = 8;
       };
