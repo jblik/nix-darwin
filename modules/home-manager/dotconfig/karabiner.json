@@ -1,4 +1,5 @@
 {
+    "global": { "show_in_menu_bar": false },
     "profiles": [
         {
             "complex_modifications": {
@@ -7,6 +8,17 @@
                         "description": "Change right_control+yuio to home, pgup, pgdown, end on keychron",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1552,
+                                                "vendor_id": 13364
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "y",
                                     "modifiers": {
@@ -15,20 +27,20 @@
                                     }
                                 },
                                 "to": [{ "key_code": "home" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "device_if",
-                                        "identifiers": [
-                                            {
-                                              "product_id": 1552,
-                                              "vendor_id": 13364
-                                            }
-                                        ]
-                                    }
-                                ]
+                                "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1552,
+                                                "vendor_id": 13364
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": {
@@ -37,20 +49,20 @@
                                     }
                                 },
                                 "to": [{ "key_code": "page_down" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "device_if",
-                                        "identifiers": [
-                                            {
-                                              "product_id": 1552,
-                                              "vendor_id": 13364
-                                            }
-                                        ]
-                                    }
-                                ]
+                                "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1552,
+                                                "vendor_id": 13364
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "i",
                                     "modifiers": {
@@ -59,20 +71,20 @@
                                     }
                                 },
                                 "to": [{ "key_code": "page_up" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "device_if",
-                                        "identifiers": [
-                                            {
-                                              "product_id": 1552,
-                                              "vendor_id": 13364
-                                            }
-                                        ]
-                                    }
-                                ]
+                                "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1552,
+                                                "vendor_id": 13364
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": {
@@ -81,18 +93,7 @@
                                     }
                                 },
                                 "to": [{ "key_code": "end" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "device_if",
-                                        "identifiers": [
-                                            {
-                                              "product_id": 1552,
-                                              "vendor_id": 13364
-                                            }
-                                        ]
-                                    }
-                                ]
+                                "type": "basic"
                             }
                         ]
                     },
@@ -100,6 +101,17 @@
                         "description": "Change right_control+hjkl to arrow keys on keychron",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1552,
+                                                "vendor_id": 13364
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
@@ -108,20 +120,20 @@
                                     }
                                 },
                                 "to": [{ "key_code": "left_arrow" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "device_if",
-                                        "identifiers": [
-                                            {
-                                              "product_id": 1552,
-                                              "vendor_id": 13364
-                                            }
-                                        ]
-                                    }
-                                ]
+                                "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1552,
+                                                "vendor_id": 13364
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
@@ -130,20 +142,20 @@
                                     }
                                 },
                                 "to": [{ "key_code": "down_arrow" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "device_if",
-                                        "identifiers": [
-                                            {
-                                              "product_id": 1552,
-                                              "vendor_id": 13364
-                                            }
-                                        ]
-                                    }
-                                ]
+                                "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1552,
+                                                "vendor_id": 13364
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
@@ -152,20 +164,20 @@
                                     }
                                 },
                                 "to": [{ "key_code": "up_arrow" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "device_if",
-                                         "identifiers": [
-                                             {
-                                               "product_id": 1552,
-                                               "vendor_id": 13364
-                                             }
-                                      ]
-                                    }
-                                ]
+                                "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1552,
+                                                "vendor_id": 13364
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {
@@ -174,18 +186,7 @@
                                     }
                                 },
                                 "to": [{ "key_code": "right_arrow" }],
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "device_if",
-                                        "identifiers": [
-                                            {
-                                              "product_id": 1552,
-                                              "vendor_id": 13364
-                                            }
-                                        ]
-                                    }
-                                ]
+                                "type": "basic"
                             }
                         ]
                     },
@@ -357,11 +358,11 @@
                 },
                 {
                     "identifiers": {
+                        "description": "Keychron 81",
                         "is_keyboard": true,
                         "is_pointing_device": true,
                         "product_id": 1552,
-                        "vendor_id": 13364,
-                        "description": "Keychron 81"
+                        "vendor_id": 13364
                     },
                     "ignore": false,
                     "simple_modifications": [
