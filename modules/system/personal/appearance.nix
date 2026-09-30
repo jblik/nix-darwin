@@ -61,6 +61,7 @@
       AppleTemperatureUnit = "Celsius";
       AppleICUForce24HourTime = true;
       NSStatusItemSelectionPadding = 1;
+      NSStatusItemSpacing = 1;
     };
 
     loginwindow = {
