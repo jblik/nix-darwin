@@ -24,7 +24,6 @@
         "docker-desktop"
         "karabiner-elements"
         "ghostty"
-        "jagex"
         "monitorcontrol"
         "stats"
         "sublime-text"

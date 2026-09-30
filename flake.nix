@@ -54,6 +54,7 @@
             inherit pkgs-unstable users;
             homeDirectory = users.personal.homeDirectory;
             username = users.personal.username;
+            profile = users.personal.profile;
           };
           modules = [
             { system.primaryUser = users.personal.username; }
@@ -89,6 +90,7 @@
             inherit pkgs-unstable users;
             homeDirectory = users.work.homeDirectory;
             username = users.work.username;
+            profile = users.work.profile;
           };
           modules = [
             { system.primaryUser = users.work.username; }
