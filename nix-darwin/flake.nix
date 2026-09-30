@@ -36,7 +36,6 @@
    
     let 
     username = "jsteenblik";
-    homeDirectory = "Users/${username}";
     system = "aarch64-darwin";
   
     pkgs-unstable = import nixpkgs-unstable {

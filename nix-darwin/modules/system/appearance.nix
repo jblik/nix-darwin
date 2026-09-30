@@ -1,7 +1,5 @@
 { config, pkgs, pkgs-unstable, lib, username, ... }:
-let
-  homeDirectory = "/Users/${username}";
-in
+
 {  
     system.defaults.dock = {
         autohide = true;
@@ -10,11 +8,11 @@ in
             "/Applications/Ghostty.app"
             "${pkgs-unstable.jetbrains.rider}/Applications/Rider.app"
             "${pkgs-unstable.jetbrains.datagrip}/Applications/DataGrip.app"
-            "${homeDirectory}/Applications/IntelliJ IDEA.app"
-            "${homeDirectory}/Applications/WebStorm.app"
+            "~/Applications/IntelliJ IDEA.app"
+            "~/Applications/WebStorm.app"
             "${pkgs-unstable.jetbrains.pycharm}/Applications/PyCharm.app"
-            "${homeDirectory}/Applications/RustRover.app"
-            "${homeDirectory}/Applications/CLion.app"
+            "~/Applications/RustRover.app"
+            "~/Applications/CLion.app"
             "/Applications/Sublime Text.app"
             { spacer = { small = true; }; }
             "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
@@ -25,8 +23,8 @@ in
             { spacer = { small = true; }; }
         ];
         persistent-others = [
-            { folder = { path = "${homeDirectory}/Documents/Screenshots"; arrangement = "date-added"; showas = "fan"; }; }
-            { folder = { path = "${homeDirectory}/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
+            { folder = { path = "~/Documents/Screenshots"; arrangement = "date-added"; showas = "fan"; }; }
+            { folder = { path = "~/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
         ];
         autohide-delay = 0.0;
         show-recents = false;
