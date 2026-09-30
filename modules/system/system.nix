@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, homeDirectory, ... }:
 
 {
   system = {
-    defaults.screencapture.location = "~/Documents/Screenshots";
+    defaults.screencapture.location = "${homeDirectory}/Documents/Screenshots";
     activationScripts.setDefaultApps = {
       enable = true;
       text = ''

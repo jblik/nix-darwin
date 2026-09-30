@@ -46,7 +46,7 @@
           };
         };
 
-      mkDarwinSystem =
+      darwinSystemPersonal =
         {
           updateHomebrew ? false,
         }:
@@ -59,6 +59,8 @@
 
             ./modules
             { updateHomebrew.enable = updateHomebrew; }
+            
+            ./modules/personal
 
             home-manager.darwinModules.home-manager
             {
@@ -73,13 +75,44 @@
             }
           ];
         };
+        
+              darwinSystemWork =
+                {
+                  updateHomebrew ? false,
+                }:
+                nix-darwin.lib.darwinSystem {
+                  specialArgs = {
+                    inherit pkgs-unstable users;
+                  };
+                  modules = [
+                    baseConfiguration
+        
+                    ./modules
+                    { updateHomebrew.enable = updateHomebrew; }
+                    
+                    ./modules/work
+        
+                    home-manager.darwinModules.home-manager
+                    {
+                      home-manager = {
+                        useGlobalPkgs = true;
+                        useUserPackages = true;
+                        verbose = true;
+                        backupFileExtension = "backup";
+                        extraSpecialArgs = { inherit pkgs-unstable; };
+                        users = import ./modules/home-manager { inherit users; };
+                      };
+                    }
+                  ];
+                };
+
 
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-      # personal todo
-#      darwinConfigurations.jsteenblik = mkDarwinSystem { updateHomebrew = false; };
-#      darwinConfigurations."jsteenblik-updatehomebrew" = mkDarwinSystem { updateHomebrew = true; };
+      # personal
+      darwinConfigurations."work" = mkDarwinSystem { updateHomebrew = false; };
+      darwinConfigurations."work" = mkDarwinSystem { updateHomebrew = true; };
       # work
       darwinConfigurations."work" = mkDarwinSystem { updateHomebrew = false; };
       darwinConfigurations."work-updatehomebrew" = mkDarwinSystem { updateHomebrew = true; };

@@ -1,9 +1,7 @@
 {
   pkgs-unstable,
-  users,
   ...
 }:
-# todo: need to make this multi-user
 {
   system.defaults = {
     dock = {
@@ -24,7 +22,6 @@
         "/Applications/Microsoft Teams.app"
         "/System/Applications/System Settings.app"
         "/System/Applications/Utilities/Activity Monitor.app"
-        "/System/Applications/iPhone Mirroring.app"
         {
           spacer = {
             small = true;

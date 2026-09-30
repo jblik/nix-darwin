@@ -23,6 +23,7 @@
       };
     };
 
+    # todo: only in the personal
     # todo make gitconfigs with home manager
     # can use the ~/.config/git/domain.gitconfig or something
     includes = [
