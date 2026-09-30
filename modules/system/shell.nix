@@ -19,6 +19,7 @@ in
     nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
     k = "kubectl";
     ktx = "kubectx";
+    kns = "kubens";
   };
 
   programs.zsh.interactiveShellInit = ''
