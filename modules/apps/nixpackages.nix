@@ -1,10 +1,10 @@
-{ dotnet, pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
-#  dotnet = import ./dotnet.nix;
-#  todo make dotnet properly
-#  environment.variables.DOTNET_ROOT = "$(dirname $(realpath $(which dotnet)))";
+  #  dotnet = import ./dotnet.nix;
+  #  todo make dotnet properly
+  #  dotnet = import ./dotnet.nix {pkgs-unstable = pkgs-unstable;};
 
   # https://search.nixos.org/packages
   environment.systemPackages = [
@@ -12,7 +12,7 @@
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
     pkgs-unstable.docker # docker
-    dotnet.sdk
+    (import ./dotnet.nix { follows = pkgs-unstable; }).sdk
     pkgs.duti # tool to set default apps
     pkgs.fzf # fuzzy finder
     pkgs-unstable.helmfile

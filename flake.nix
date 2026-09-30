@@ -32,7 +32,6 @@
       };
 
       users = import ./users.nix;
-      dotnet = import ./modules/apps/dotnet.nix {pkgs-unstable = pkgs-unstable;};
 
       darwinSystem =
         {
@@ -41,7 +40,7 @@
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit pkgs-unstable users dotnet;
+            inherit pkgs-unstable users;
             homeDirectory = users.${profile}.homeDirectory;
             username = users.${profile}.username;
             profile = users.${profile}.profile;
