@@ -50,14 +50,4 @@
     "com.apple.swipescrolldirection" = false;
     "com.apple.keyboard.fnState" = true; # use f keys as f keys
   };
-  
-  # post scripts (candidate for moving when refactor is due)
-    system.activationScripts.postActivation.text = ''
-      echo "Running Nix garbage collection..."
-      nix-collect-garbage --delete-older-than 30d
-  
-      echo "Optimizing Nix store..."
-      nix-store --optimise
-    '';
-
 }
