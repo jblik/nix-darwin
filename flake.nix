@@ -33,13 +33,11 @@
 
       darwinSystem =
         {
-          profile,
           updateHomebrew,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit pkgs-unstable updateHomebrew users;
-            user = users.${profile};
+            inherit pkgs-unstable updateHomebrew;
           };
           modules = [
             {
@@ -49,7 +47,8 @@
               system = {
                 configurationRevision = self.rev or self.dirtyRev or null;
                 stateVersion = 6;
-                primaryUser = users.${profile}.username;
+                # homebrew runs as the primary user, and /opt/homebrew is owned by jblik
+                primaryUser = users.personal.username;
               };
             }
 
@@ -86,20 +85,10 @@
       #              };
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-      darwinConfigurations."personal" = darwinSystem {
-        profile = "personal";
+      darwinConfigurations."default" = darwinSystem {
         updateHomebrew = false;
       };
-      darwinConfigurations."personal-updatehomebrew" = darwinSystem {
-        profile = "personal";
-        updateHomebrew = true;
-      };
-      darwinConfigurations."work" = darwinSystem {
-        profile = "work";
-        updateHomebrew = false;
-      };
-      darwinConfigurations."work-updatehomebrew" = darwinSystem {
-        profile = "work";
+      darwinConfigurations."default-updatehomebrew" = darwinSystem {
         updateHomebrew = true;
       };
     };

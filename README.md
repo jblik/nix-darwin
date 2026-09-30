@@ -4,7 +4,7 @@
 
 - [install nix](https://lix.systems/install/#on-any-other-linuxmacos-system) (this is the lix installer but it's
   recommended by nix as it has an uninstaller)
-- `cd ~/nix-darwin && sudo darwin-rebuild switch --flake .#personal`
+- `cd ~/nix-darwin && sudo darwin-rebuild switch --flake .#default`
 
 ### once it's installed
 

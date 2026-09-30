@@ -6,7 +6,7 @@
 }:
 let
   flakePath = "${user.homeDirectory}/nix-darwin";
-  flakeRef = "${flakePath}#${user.profile}";
+  flakeRef = "${flakePath}#default";
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
@@ -27,7 +27,7 @@ in
     ];
 
     shellAliases = {
-      nix-rebuild = ''echo "rebuilding profile: ${user.profile}" && sudo darwin-rebuild switch --flake ${flakeRef}'';
+      nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
     };
 
     siteFunctions = {
