@@ -2,6 +2,9 @@
 
 {
   nixpkgs.config.allowUnfree = true;
+  
+#  todo make dotnet properly
+#  environment.variables.DOTNET_ROOT = "${combinedSdk}/share/dotnet/";
 
   # https://search.nixos.org/packages
   environment.systemPackages = with pkgs; [
@@ -9,11 +12,14 @@
     ansible # configuration management tool
     coreutils # gnu core utils
     pkgs-unstable.docker # docker
-    (with pkgs-unstable.dotnetCorePackages; combinePackages [
-              sdk_8_0
-              sdk_9_0
-              sdk_10_0
-            ])
+    (
+      with pkgs-unstable.dotnetCorePackages;
+      combinePackages [
+        sdk_8_0
+        sdk_9_0
+        sdk_10_0
+      ]
+    )
     duti # tool to set default apps
     fzf # fuzzy finder
     pkgs-unstable.helmfile
