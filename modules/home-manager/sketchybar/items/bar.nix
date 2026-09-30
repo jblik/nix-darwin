@@ -5,7 +5,7 @@
       height=${toString theme.bar.width} \
       color=${theme.colors.barBackground} \
       shadow=on \
-      position=right \
+      position=left \
       sticky=on \
       padding_right=18 \
       padding_left=18 \
