@@ -6,8 +6,8 @@
 }:
 {
   home.packages = [
+    pkgs-unstable.antigravity-cli # google code tool
     pkgs-unstable.codex # openai code tool
-    pkgs-unstable.gemini-cli-bin # google code tool
     pkgs.prismlauncher # minecraft launcher
   ];
 
