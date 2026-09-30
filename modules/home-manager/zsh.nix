@@ -19,10 +19,6 @@ in
     #      plugins = [ "git" ];
     #    };
 
-    shellAliases = {
-      nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
-    };
-
     plugins = [
       {
         name = "powerlevel10k";
@@ -31,8 +27,12 @@ in
       }
     ];
 
-    interactiveShellInit = ''
-      nix-update() {
+    shellAliases = {
+      nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
+    };
+
+    siteFunctions = {
+      nix-update = ''
         sudo -v
         nix flake update --flake ${flakePath} || return 1
 
@@ -42,20 +42,20 @@ in
         fi
 
         sudo darwin-rebuild switch --flake ${flakeUpdateRef}
-      }
-      nix-update-gc() {
+      '';
+      nix-update-gc = ''
         local days="''${1:-10}"
         nix-update
         nix-gc "''${days}"
-      }
-      nix-gc() {
+      '';
+      nix-gc = ''
         local days="''${1:-10}"
         echo "Removing generations older than ''${days}d..."
         nix-collect-garbage --delete-older-than "''${days}d"
         echo "Optimizing Nix store..."
         nix-store --optimise
-      }
-    '';
+      '';
+    };
 
     initContent = lib.mkBefore ''
       # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
