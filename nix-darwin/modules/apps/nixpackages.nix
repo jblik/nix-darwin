@@ -11,6 +11,7 @@
     pkgs.k9s                # kubernetes cluster manager   
     pkgs.karabiner-elements # key remapping software
     pkgs.kubernetes-helm    # package manager for kubernetes
+    pkgs.meslo-lgs-nf       # font for powerlevel10k
     pkgs.monitorcontrol     # for adjusting brightness of external monitors
     pkgs.openssh            # ssh tool
     pkgs.opentofu           # open source fork of terraform
