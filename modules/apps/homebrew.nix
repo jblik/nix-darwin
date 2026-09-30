@@ -34,6 +34,7 @@
         "monitorcontrol"
         "stats"
         "sublime-text"
+	"homerow"
       ];
       #      todo broken
       # mas search "<app name>"
