@@ -53,6 +53,7 @@
   };
   
   # deletes all CUSTOM keyboard shortcuts for all apps (settings/keyboard shortcuts/all applications)
+  # todo: candidate to get moved, can only have one post activation script.
   system.activationScripts.postActivation.text = ''
       echo "Resetting NSUserKeyEquivalents to declarative-only..."
       # Remove global (all apps) custom shortcuts
