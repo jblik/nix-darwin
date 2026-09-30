@@ -44,6 +44,7 @@
   # automatically hidden when the input line reaches it. Right prompt above the
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    git_branch              # git branch, shown while typing a git command
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
@@ -404,11 +405,26 @@
 
     local res
 
-    if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
-      local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
+    local jj_bookmarks jj_change
+    if (( $+commands[jj] )) && [[ -d $VCS_STATUS_WORKDIR/.jj ]]; then
+      # --ignore-working-copy keeps the prompt from snapshotting the working copy. The revset
+      # yields @ first, followed by the closest bookmarked ancestor if @ isn't bookmarked itself.
+      local -a jj_status=("${(@f)$(jj --ignore-working-copy --color=never log --no-graph \
+        -r '@ | heads(::@ & bookmarks())' \
+        -T 'change_id.shortest(8) ++ "\t" ++ local_bookmarks.join(",") ++ "\n"' 2>/dev/null)}")
+      local tab=$'\t'
+      jj_change=${jj_status[1]%%${tab}*}
+      jj_bookmarks=${${jj_status[(r)*${tab}?*]}#*${tab}}
+    fi
+
+    local head_ref=$VCS_STATUS_LOCAL_BRANCH
+    [[ -z $jj_change ]] || head_ref=$jj_bookmarks
+
+    if [[ -n $head_ref ]]; then
+      local branch=${(V)head_ref}
       local branch_icon
 
-      if [[ "$VCS_STATUS_LOCAL_BRANCH" == */* ]]; then
+      if [[ "$head_ref" == */* ]]; then
         branch_icon=" "
       else
         branch_icon="${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}"
@@ -423,27 +439,31 @@
       res+="${clean}${(g::)branch_icon}%F{cyan}${branch//\%/%%}"
     fi
 
-    if [[ -n $VCS_STATUS_TAG
-          # Show tag only if not on a branch.
-          # Tip: To always show tag, delete the next line.
-          && -z $VCS_STATUS_LOCAL_BRANCH  # <-- this line
-        ]]; then
-      local tag=${(V)VCS_STATUS_TAG}
-      # If tag name is at most 32 characters long, show it in full.
-      # Otherwise show the first 12 … the last 12.
-      # Tip: To always show tag name in full without truncation, delete the next line.
-      (( $#tag > 32 )) && tag[13,-13]="…"  # <-- this line
-      res+="${meta}#${clean}${tag//\%/%%}"
-    fi
+    if [[ -n $jj_change ]]; then
+      res+="${head_ref:+ }${meta}@${clean}${jj_change//\%/%%}"
+    else
+      if [[ -n $VCS_STATUS_TAG
+            # Show tag only if not on a branch.
+            # Tip: To always show tag, delete the next line.
+            && -z $VCS_STATUS_LOCAL_BRANCH  # <-- this line
+          ]]; then
+        local tag=${(V)VCS_STATUS_TAG}
+        # If tag name is at most 32 characters long, show it in full.
+        # Otherwise show the first 12 … the last 12.
+        # Tip: To always show tag name in full without truncation, delete the next line.
+        (( $#tag > 32 )) && tag[13,-13]="…"  # <-- this line
+        res+="${meta}#${clean}${tag//\%/%%}"
+      fi
 
-    # Display the current Git commit if there is no branch and no tag.
-    # Tip: To always display the current Git commit, delete the next line.
-    [[ -z $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_TAG ]] &&  # <-- this line
-      res+="${meta}@${clean}${VCS_STATUS_COMMIT[1,8]}"
+      # Display the current Git commit if there is no branch and no tag.
+      # Tip: To always display the current Git commit, delete the next line.
+      [[ -z $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_TAG ]] &&  # <-- this line
+        res+="${meta}@${clean}${VCS_STATUS_COMMIT[1,8]}"
 
-    # Show tracking branch name if it differs from local branch.
-    if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
-      res+="${meta}:${clean}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"
+      # Show tracking branch name if it differs from local branch.
+      if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
+        res+="${meta}:${clean}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"
+      fi
     fi
 
     # Display "wip" if the latest commit's summary contains "wip" or "WIP".
@@ -544,6 +564,29 @@
   typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=76
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=76
   typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=178
+
+  ####################[ git_branch: git branch while typing a git command ]#####################
+  # Reuses the gitstatus data fetched for the vcs segment. VCS_STATUS_* is only populated while
+  # the prompt is being expanded, hence the content expansion instead of a plain `p10k segment -t`.
+  function my_git_branch_formatter() {
+    local res
+    if [[ $VCS_STATUS_RESULT == ok-* && -n $VCS_STATUS_WORKDIR ]]; then
+      if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
+        res="%76F${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}%F{cyan}${${(V)VCS_STATUS_LOCAL_BRANCH}//\%/%%}"
+      else
+        res="%f@%76F${VCS_STATUS_COMMIT[1,8]}"
+      fi
+    fi
+    typeset -g my_git_branch_format=$res
+  }
+  functions -M my_git_branch_formatter 2>/dev/null
+
+  function prompt_git_branch() {
+    p10k segment -e -t '${$((my_git_branch_formatter()))+${my_git_branch_format}}'
+  }
+
+  # Only show it while a git command is on the command line.
+  typeset -g POWERLEVEL9K_GIT_BRANCH_SHOW_ON_COMMAND='git'
 
   ##########################[ status: exit code of the last command ]###########################
   # Enable OK_PIPE, ERROR_PIPE and ERROR_SIGNAL status states to allow us to enable, disable and
