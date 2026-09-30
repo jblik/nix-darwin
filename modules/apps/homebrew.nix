@@ -33,8 +33,6 @@
         "sublime-text"
         "homerow"
       ];
-      #      todo broken
-      # mas search "<app name>"
       masApps = {
         "Tailscale" = 1475387142;
         "uBlock Origin Lite" = 6745342698;
