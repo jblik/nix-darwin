@@ -20,7 +20,7 @@
     # Force macOS to re-read trackpad preferences
     # todo: I don't think these settings work at all! or this part doesn't work 
     # need to try with a restart    
-#  system.activationScripts.postActivation.text = lib.mkAfter ''
-#    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-#  '';
+  system.activationScripts.postActivation.text = lib.mkAfter ''
+    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  '';
 }
