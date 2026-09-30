@@ -1,2 +1,4 @@
 .DS_Store
 .idea/*
+nix-darwin/result
+Folder.DotSettings.user
