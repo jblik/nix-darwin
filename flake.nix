@@ -58,8 +58,11 @@
             baseConfiguration
 
             ./modules
-            { updateHomebrew.enable = updateHomebrew;profile = "personal"; }
-            
+            {
+              updateHomebrew.enable = updateHomebrew;
+              profile = "personal";
+            }
+
             ./modules/personal
 
             home-manager.darwinModules.home-manager
@@ -75,46 +78,53 @@
             }
           ];
         };
-        
-              darwinSystemWork =
-                {
-                  updateHomebrew ? false,
-                }:
-                nix-darwin.lib.darwinSystem {
-                  specialArgs = {
-                    inherit pkgs-unstable users;
-                  };
-                  modules = [
-                    baseConfiguration
-        
-                    ./modules
-                    { updateHomebrew.enable = updateHomebrew; profile = "work"; }
-                    
-                    ./modules/work
-        
-                    home-manager.darwinModules.home-manager
-                    {
-                      home-manager = {
-                        useGlobalPkgs = true;
-                        useUserPackages = true;
-                        verbose = true;
-                        backupFileExtension = "backup";
-                        extraSpecialArgs = { inherit pkgs-unstable; };
-                        users = import ./modules/home-manager { inherit users; };
-                      };
-                    }
-                  ];
-                };
 
+      darwinSystemWork =
+        {
+          updateHomebrew ? false,
+        }:
+        nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit pkgs-unstable users;
+          };
+          modules = [
+            baseConfiguration
+
+            ./modules
+            {
+              updateHomebrew.enable = updateHomebrew;
+              profile = "work";
+            }
+
+            ./modules/work
+
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                verbose = true;
+                backupFileExtension = "backup";
+                extraSpecialArgs = { inherit pkgs-unstable; };
+                users = import ./modules/home-manager { inherit users; };
+              };
+            }
+          ];
+        };
 
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-      # personal
       darwinConfigurations."personal" = darwinSystemPersonal { updateHomebrew = false; };
-      darwinConfigurations."personal-updatehomebrew" = darwinSystemPersonal { updateHomebrew = true; profile = "personal"; };
-      # work
+      darwinConfigurations."personal-updatehomebrew" = darwinSystemPersonal {
+        updateHomebrew = true;
+        # todo: need to pass this?
+        profile = "personal";
+      };
       darwinConfigurations."work" = darwinSystemWork { updateHomebrew = false; };
-      darwinConfigurations."work-updatehomebrew" = darwinSystemWork { updateHomebrew = true; profile = "work"; };
+      darwinConfigurations."work-updatehomebrew" = darwinSystemWork {
+        updateHomebrew = true;
+        profile = "work";
+      };
     };
 }

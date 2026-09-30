@@ -1,5 +1,5 @@
 {
-imports = [
+  imports = [
     ../system/personal
-];
+  ];
 }
