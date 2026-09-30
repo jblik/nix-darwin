@@ -253,16 +253,16 @@
   },
   "shortcuts" : {
     "bottomCenterLeftEighth" : {
-      "keyCode" : 38,
-      "modifierFlags" : 1966080
+      "keyCode" : 46,
+      "modifierFlags" : 1835008
     },
     "bottomCenterRightEighth" : {
-      "keyCode" : 40,
-      "modifierFlags" : 1966080
+      "keyCode" : 43,
+      "modifierFlags" : 1835008
     },
     "bottomCenterSixth" : {
-      "keyCode" : 38,
-      "modifierFlags" : 917504
+      "keyCode" : 89,
+      "modifierFlags" : 786432
     },
     "bottomHalf" : {
       "keyCode" : 38,
@@ -273,32 +273,32 @@
       "modifierFlags" : 786432
     },
     "bottomLeftEighth" : {
-      "keyCode" : 4,
-      "modifierFlags" : 1966080
+      "keyCode" : 45,
+      "modifierFlags" : 1835008
     },
     "bottomLeftSixth" : {
-      "keyCode" : 4,
-      "modifierFlags" : 917504
+      "keyCode" : 91,
+      "modifierFlags" : 786432
     },
     "bottomRight" : {
       "keyCode" : 43,
       "modifierFlags" : 786432
     },
     "bottomRightEighth" : {
-      "keyCode" : 37,
-      "modifierFlags" : 1966080
+      "keyCode" : 47,
+      "modifierFlags" : 1835008
     },
     "bottomRightSixth" : {
-      "keyCode" : 37,
-      "modifierFlags" : 917504
+      "keyCode" : 87,
+      "modifierFlags" : 786432
     },
     "center" : {
       "keyCode" : 8,
       "modifierFlags" : 786432
     },
     "centerHalf" : {
-      "keyCode" : 125,
-      "modifierFlags" : 1835008
+      "keyCode" : 38,
+      "modifierFlags" : 1966080
     },
     "centerThird" : {
       "keyCode" : 125,
@@ -313,7 +313,7 @@
       "modifierFlags" : 786432
     },
     "firstThreeFourths" : {
-      "keyCode" : 123,
+      "keyCode" : 4,
       "modifierFlags" : 1966080
     },
     "firstTwoThirds" : {
@@ -333,7 +333,7 @@
       "modifierFlags" : 786432
     },
     "lastThreeFourths" : {
-      "keyCode" : 124,
+      "keyCode" : 37,
       "modifierFlags" : 1966080
     },
     "lastTwoThirds" : {
@@ -382,15 +382,15 @@
     },
     "topCenterLeftEighth" : {
       "keyCode" : 32,
-      "modifierFlags" : 1966080
+      "modifierFlags" : 1835008
     },
     "topCenterRightEighth" : {
       "keyCode" : 34,
-      "modifierFlags" : 1966080
+      "modifierFlags" : 1835008
     },
     "topCenterSixth" : {
-      "keyCode" : 32,
-      "modifierFlags" : 917504
+      "keyCode" : 116,
+      "modifierFlags" : 786432
     },
     "topHalf" : {
       "keyCode" : 40,
@@ -402,11 +402,11 @@
     },
     "topLeftEighth" : {
       "keyCode" : 16,
-      "modifierFlags" : 1966080
+      "modifierFlags" : 1835008
     },
     "topLeftSixth" : {
-      "keyCode" : 16,
-      "modifierFlags" : 917504
+      "keyCode" : 115,
+      "modifierFlags" : 786432
     },
     "topRight" : {
       "keyCode" : 34,
@@ -414,11 +414,11 @@
     },
     "topRightEighth" : {
       "keyCode" : 31,
-      "modifierFlags" : 1966080
+      "modifierFlags" : 1835008
     },
     "topRightSixth" : {
-      "keyCode" : 31,
-      "modifierFlags" : 917504
+      "keyCode" : 119,
+      "modifierFlags" : 786432
     }
   },
   "version" : "100"
