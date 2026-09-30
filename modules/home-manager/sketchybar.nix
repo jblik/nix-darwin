@@ -8,15 +8,11 @@ let
     sid="''${NAME#space.}"
     max=${toString maxIcons}
 
-    # $FOCUSED_WORKSPACE is only set for aerospace_workspace_change; fall back to
-    # querying it (e.g. when this runs on front_app_switched).
     focused="$FOCUSED_WORKSPACE"
     if [ -z "$focused" ]; then
       focused="$(${pkgs.aerospace}/bin/aerospace list-workspaces --focused)"
     fi
 
-    # Highlight the whole group by giving every visible item in the focused
-    # workspace the same background (brackets don't span on a vertical bar).
     if [ "$focused" = "$sid" ]; then
       hl=on
     else
@@ -24,8 +20,6 @@ let
     fi
     sketchybar --set "$NAME" background.drawing="$hl"
 
-    # One glyph per distinct app that has a window in this workspace, each in its
-    # own slot item so they stack vertically under the number.
     apps="$(${pkgs.aerospace}/bin/aerospace list-windows --workspace "$sid" --format '%{app-name}' | sort -u)"
     i=1
     while IFS= read -r app; do
@@ -38,7 +32,6 @@ let
     $apps
     EOF
 
-    # Hide unused slots.
     while [ "$i" -le "$max" ]; do
       sketchybar --set "space.$sid.icon.$i" drawing=off
       i=$((i + 1))
@@ -55,7 +48,6 @@ in
     extraPackages = [ pkgs.aerospace ];
 
     config = ''
-      # --- Vertical bar on the right edge of the screen ---
       sketchybar --bar \
         position=right \
         height=40 \
@@ -64,7 +56,6 @@ in
         padding_left=6 \
         padding_right=6
 
-      # --- Item defaults ---
       sketchybar --default \
         icon.color=0xffffffff \
         label.color=0xffffffff \
@@ -73,11 +64,6 @@ in
         padding_left=4 \
         padding_right=4
 
-      # --- AeroSpace workspace indicators ---
-      # Custom event AeroSpace triggers on workspace change (see aerospace.nix).
-      # On a right-positioned bar, "left" means the top, and items stack downward
-      # in the order they're added: number first, then its app-icon slots below.
-      # The focused workspace's items all share the same background highlight.
       sketchybar --add event aerospace_workspace_change
 
       for sid in $(aerospace list-workspaces --all); do
@@ -88,7 +74,7 @@ in
             icon="$sid" \
             icon.font="JetBrainsMono Nerd Font:Bold:14.0" \
             label.drawing=off \
-            padding_left=0 \
+            padding_left=14 \
             padding_right=0 \
             background.color=0xff45475a \
             background.corner_radius=0 \
@@ -97,22 +83,22 @@ in
             click_script="aerospace workspace $sid" \
             script="${aerospaceItem}"
 
-        # App-icon slots stacked under the number (filled by the updater).
         for i in $(seq 1 ${toString maxIcons}); do
           sketchybar --add item space.$sid.icon.$i left \
             --set space.$sid.icon.$i \
               icon.drawing=off \
               label.font="sketchybar-app-font:Regular:16.0" \
-              background.color=0x44ffffff \
-              background.corner_radius=6 \
-              background.height=26 \
+              padding_left=0 \
+              padding_right=0 \
+              background.color=0xff45475a \
+              background.corner_radius=0 \
+              background.height=30 \
               background.drawing=off \
               drawing=off \
               click_script="aerospace workspace $sid"
         done
       done
 
-      # Populate icons + highlight the currently focused workspace (initial state).
       sketchybar --trigger aerospace_workspace_change \
         FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
 
