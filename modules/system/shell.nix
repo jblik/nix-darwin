@@ -24,7 +24,7 @@ in
           nix flake update --flake ${flakePath} || return 1
 
           if ! git -C ${flakePath} diff --quiet -- ${flakePath}/flake.lock; then
-            git -C ${flakePath} add ${flakePath}/flake.lock || return 1
+            git -C ${flakePath} add ${flakePath}/flake.lock || return 1\
             git -C ${flakePath} commit -m "update flake.lock" || return 1
           fi
 

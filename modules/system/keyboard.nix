@@ -51,6 +51,8 @@
       # this works though somehow :)
       "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = ''\\Uf70f''; # f12
       "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = ''\\Uf70f''; # f12
+      "Fill" = "@^f"; # Cmd+Ctrl+F
+      "Full Screen" = "@^$f"; # Cmd+Ctrl+Shift+F
     };
   };
 }
