@@ -38,5 +38,6 @@
       pkgs-unstable.opencode # local agent
       pkgs-unstable.terraform # tool for building, changing, and versioning infrastructure
       pkgs-unstable.vault # hcp tool for managing secrets
+      pkgs-unstable.velero # kubernetes cluster restore tool
     ];
 }
