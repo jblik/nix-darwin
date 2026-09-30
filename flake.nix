@@ -81,10 +81,6 @@
 
     in
     {
-      # todo make a devshell with all the packages the flake has
-      #    devShell = inputs.nixpkgs.legacyPackages.${system} {
-      #              };
-
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
       darwinConfigurations.${hostname} = darwinSystem {
         updateHomebrew = false;
