@@ -27,6 +27,8 @@
           "Full Screen" = "@^$f"; # Cmd+Ctrl+Shift+F
           "Enter Full Screen" = "@^$f"; # Cmd+Ctrl+Shift+F
           "Toggle Full Screen" = "@^$f";
+          "Move to LS32A600N" = "@^l";
+          "Move to Built-in Retina Display" = "@^h";
         };
         pbs.NSServicesStatus = {
           # this maps to Services>Files and Folders
@@ -45,9 +47,7 @@
 
       # see the above issues as to why these aren't declared in the CustomUserPreferences block:
       sudo -u ${username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to SAMSUNG" '@~^\U2192'
-      sudo -u ${username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to Built-in Retina Display" '@~^\U2192'
       sudo -u ${username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to E241N" '@~^\U2190'
-      sudo -u ${username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to S34C65xV" '@~^\U2190'
 
       # Safari is sandboxed and ignores NSGlobalDomain
       sudo -u ${username} defaults write /${homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Fill" '@^f'
