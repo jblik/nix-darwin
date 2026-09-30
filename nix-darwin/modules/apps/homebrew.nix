@@ -9,37 +9,18 @@
 
     brews = [
       # these need to be removed, this is to keep my current mac working
-      "openssl@3"
       "node"
       "angular-cli"
       "antigen"
       "docker-compose"
-      "dotnet@8"
-      "duti"
-      "libusb"
+#      "duti"
       "git-lfs"
-      "harfbuzz"
-      "handbrake"
-      "helm"
-      "mas"
-      "mkvtoolnix"
       "nmap"
       "nvm"
-      "openjdk@17"
-      "pandoc"
-      "pipx"
-      "protobuf-c"
-      "postgis"
-      "postgresql@16"
       "ripgrep"
       "sbt"
-      "tag"
       "telnet"
-      "tmux"
-      "bufbuild/buf/buf"
-      "cxreiff/tap/ttysvr"
-      "hashicorp/tap/consul"
-      "hashicorp/tap/nomad"
+#      "hashicorp/tap/nomad"
       "mongodb/brew/mongodb-community@7.0"
       "timescale/tap/timescaledb"
     ];
@@ -51,8 +32,8 @@
     masApps = {
        "Vimlike" = 1584519802;
        "uBlock Origin Lite" = 6745342698;
-#       "Tailscale" = 1475387142;
-#      "Windows App" = 1295203466;
+       "Tailscale" = 1475387142;
+#       "Windows App" = 1295203466;
     };
   };
 }
