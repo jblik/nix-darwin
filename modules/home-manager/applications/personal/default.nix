@@ -1,10 +1,12 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
   home.packages = [
+    pkgs-unstable.codex # openai code tool
     pkgs.prismlauncher
   ];
 
