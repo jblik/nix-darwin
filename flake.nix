@@ -24,13 +24,11 @@
     }:
 
     let
-      system = "aarch64-darwin";
-
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
-
+      system = "aarch64-darwin";
       users = import ./users.nix;
 
       darwinSystem =
@@ -40,7 +38,7 @@
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit pkgs-unstable users updateHomebrew;
+            inherit pkgs-unstable updateHomebrew;
             user = users.${profile};
           };
           modules = [

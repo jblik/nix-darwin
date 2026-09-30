@@ -17,7 +17,7 @@ in
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
     pkgs-unstable.docker # docker
-    dotnet.nuke # for packaging
+    dotnet.nuke # for packaging dotnet projects
     dotnet.sdk # dotnet sdk
     pkgs.duti # tool to set default apps
     pkgs.fzf # fuzzy finder
