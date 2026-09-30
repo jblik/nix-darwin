@@ -516,7 +516,7 @@
       branch=${branch/#hotfix\// }
       branch=${branch/#release\//󰜢 }
       (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
-      res+="${clean}${(g::)branch_icon}%F{cyan}${branch//\%/%%}"
+      res+="${clean}%F{cyan}${(g::)branch_icon}${branch//\%/%%}"
     fi
 
     if [[ -z $jj_change ]]; then
