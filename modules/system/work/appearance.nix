@@ -67,7 +67,7 @@
 
     loginwindow = {
       GuestEnabled = false;
-      LoginwindowText = "Welcome!";
+      LoginwindowText = "This is not the account you are looking for...";
     };
 
     menuExtraClock.IsAnalog = true;
