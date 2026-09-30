@@ -4,6 +4,7 @@
     ./appearance.nix
     ./finder.nix
     ./keyboard.nix
+    ./trackpad.nix
   ];
 
   # the dock only picks up changed defaults after a restart
