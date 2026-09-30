@@ -2,6 +2,7 @@
   description = "My nix-darwin system flake";
 
   inputs = {
+    username = "jsteenblik";
     # nix
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
@@ -33,11 +34,9 @@
 #    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj }:
+  outputs = inputs@{ self, username, nix-darwin, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj }:
   # todo can delete this whole block as it'll come from the modules
   let 
-  username = "jsteenblik";
-
   configuration = { pkgs, ... }: {
     # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";
@@ -51,6 +50,8 @@
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
     system.stateVersion = 6;
+    
+    system.primaryUser = username;
 
     # The platform the configuration will be used on.
     nixpkgs.hostPlatform = "aarch64-darwin";
