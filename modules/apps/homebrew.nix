@@ -26,6 +26,7 @@
         "alt-tab"
         "docker-desktop"
         "karabiner-elements"
+	"gonzo"
         "ghostty"
         "jagex"
         "monitorcontrol"
