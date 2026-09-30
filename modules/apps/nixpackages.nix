@@ -45,6 +45,7 @@ in
       nmap # network discovery tool
       nodejs_24
       opentofu # open source fork of terraform
+      postgresql
       playball
       ripgrep # faster grep
       spotify
