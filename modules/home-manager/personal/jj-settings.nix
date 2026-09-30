@@ -3,7 +3,7 @@ user: {
     {
       "--when".repositories = [ "~/projects" ];
       user = {
-        name = "jblik";
+        name = "Jacob Steenblik";
         email = "jacob@steenblik.ch";
       };
       signing.key = "${user.ssh."git.steenblik.ch".IdentityFile}.pub";
@@ -11,8 +11,8 @@ user: {
     {
       "--when".repositories = [ "~/projects/github" ];
       user = {
-        name = "jblik";
-        email = "88430125+jblik@users.noreply.github.com";
+        name = "Jacob Steenblik";
+        email = "jacob@steenblik.ch";
       };
       signing.key = "${user.ssh."github.com".IdentityFile}.pub";
     }
