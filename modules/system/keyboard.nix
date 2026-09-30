@@ -26,7 +26,7 @@
         NSGlobalDomain = {
             NSUserKeyEquivalents = {
                "Move to SAMSUNG" = ''@~^\\U2192''; # Cmd+Alt+Ctrl+Right Arrow
-               "Move to Built-in Retina Display" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow (left arrow seems to be '\') todo not working
+               "Move to Built-in Retina Display" = ''@~^\\U2192''; # Cmd+Alt+Ctrl+Right Arrow (left arrow seems to be '\') todo not working
                "Move to E241N" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
                "Move to S34C65xV" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
                "Fill" = ''@^f''; #Cmd+Ctrl+F
