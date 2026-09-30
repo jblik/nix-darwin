@@ -34,7 +34,7 @@
             email = "88430125+jblik@users.noreply.github.com";
           };
         };
-        condition = "hasconfig:remote.*.url:git@github.com";
+        condition = "hasconfig:remote.*.url:git@github.com:*";
       }
     ];
 
