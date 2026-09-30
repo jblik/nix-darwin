@@ -4,6 +4,6 @@
 }:
 {
   imports = [
-    ./${user.profile}
+    ./${user.profile}/applications.nix
   ];
 }
