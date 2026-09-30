@@ -28,6 +28,7 @@ in
     dotnet.sdk # dotnet sdk
     pkgs.duti # tool to set default apps
     pkgs.fzf # fuzzy finder
+    pkgs-unstable.gonzo # k8s log tui
     pkgs-unstable.helmfile
     pkgs.inetutils # gnu network utils
     pkgs.jetbrains-toolbox
