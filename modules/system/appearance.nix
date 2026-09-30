@@ -8,7 +8,7 @@
   system.defaults = {
     dock = {
       autohide = true;
-      orientation = "bottom";
+      orientation = "left";
       persistent-apps = import ./${user.profile}/persistentApps.nix pkgs;
       persistent-others = [
         {
@@ -30,6 +30,7 @@
       show-recents = false;
       tilesize = 62;
     };
+    spaces.spans-displays = false;
 
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
