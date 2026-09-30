@@ -38,8 +38,8 @@
       AppleMeasurementUnits = "Centimeters";
       AppleTemperatureUnit = "Celsius";
       AppleICUForce24HourTime = true;
-      NSStatusItemSelectionPadding = 1;
-      NSStatusItemSpacing = 1;
+      NSStatusItemSelectionPadding = 5;
+      NSStatusItemSpacing = 5;
     };
 
     loginwindow = {
