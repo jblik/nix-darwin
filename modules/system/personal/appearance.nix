@@ -1,5 +1,6 @@
 {
   pkgs-unstable,
+  users,
   ...
 }:
 # todo: need to make this multi-user
