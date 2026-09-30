@@ -13,8 +13,8 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
-  fonts.packages = [
-    pkgs.meslo-lgs-nf # font for powerlevel10k
+  fonts.packages = with pkgs; [
+    # meslo-lgs-nf # font for powerlevel10k
     pkgs.nerd-fonts.jetbrains-mono
   ];
 
@@ -27,7 +27,7 @@ in
       ansible # configuration management tool
       coreutils # gnu core utils
       google-chrome
-      gnupg # gpg
+      gnupg # gpg todo: configure this and pinentry also with home-manager
       dotnet.nuke # for packaging dotnet projects
       dotnet.sdk # dotnet sdk
       duti # tool to set default apps
