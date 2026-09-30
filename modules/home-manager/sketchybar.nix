@@ -162,17 +162,11 @@ in
             --subscribe "space.$sid" aerospace_workspace_change \
             --set space.$sid.icon.$i \
               icon.drawing=off \
-              background.color=0x44ffffff \
-              background.corner_radius=5 \
-              background.height=30 \
-              background.drawing=off \
               label.font="sketchybar-app-font:Regular:16.0" \
-              label.background.drawing=on \
-              label.background.color=0xff494d64 \
-              label.background.corner_radius=9 \
               label.color=${WHITE} \
               label.padding_left=5 \
               label.padding_right=5 \
+              background.drawing=off \
               drawing=off \
               click_script="${lib.getExe pkgs.aerospace} workspace $sid"
               script="${aerospacer} $sid"
