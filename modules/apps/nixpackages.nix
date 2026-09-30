@@ -3,6 +3,7 @@
 {
   nixpkgs.config.allowUnfree = true;
 
+  # find more at https://search.nixos.org/packages
   environment.systemPackages =
     with pkgs;
     [
@@ -28,6 +29,7 @@
       pkgs.zsh-powerlevel10k # zsh theme
     ]
     ++ [
+      pkgs-unstable.jetbrains.idea # intellij
       pkgs-unstable.jetbrains.rider # c# ide
       pkgs-unstable.jetbrains.pycharm # python ide
       pkgs-unstable.jetbrains.datagrip # database viewer
