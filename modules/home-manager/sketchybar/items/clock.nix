@@ -25,7 +25,7 @@ in
         label.align=center \
         label.padding_left=4 \
         label.padding_right=4 \
-        background.padding_right=10
+        background.padding_right=15
   '';
 
   init = "${updateClock}";

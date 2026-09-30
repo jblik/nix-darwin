@@ -101,11 +101,9 @@ let
         width=190 \
         icon.font="${theme.fonts.text}:Semibold:12.0" \
         icon.color=${theme.colors.white} \
-        icon.padding_left=10 \
         icon.align=left \
         label.font="${theme.fonts.text}:Semibold:12.0" \
         label.color=${theme.colors.lavender} \
-        label.padding_right=10 \
         label.align=right
 
   '';
@@ -116,14 +114,9 @@ in
       --set battery \
         icon=" ${theme.icons.battery."100"}" \
         icon.font="${theme.fonts.nerd}:Bold:26.0" \
-        icon.padding_top=15 \
-        icon.padding_bottom=15 \
-        icon.padding_left=0 \
-        icon.padding_right=0 \
         label.font="${theme.fonts.text}:Semibold:11.0" \
-        label.padding_left=0 \
-        label.padding_right=0 \
         update_freq=30 \
+        background.padding_right=15 \
         script="${updateBattery}" \
         click_script="${batteryDetail}; ${sbar} --set battery popup.drawing=toggle popup.y_offset=-240" \
       --subscribe battery power_source_change system_woke
@@ -133,8 +126,6 @@ in
         icon="${theme.icons.battery."100"}  Battery" \
         icon.font="${theme.fonts.nerd}:Bold:13.0" \
         icon.color=${theme.colors.green} \
-        icon.padding_left=10 \
-        icon.padding_right=10 \
         label.drawing=off
 
     ${row "battery.charge"}

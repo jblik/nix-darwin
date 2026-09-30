@@ -38,11 +38,9 @@ let
         width=220 \
         icon.font="${theme.fonts.text}:Semibold:12.0" \
         icon.color=${theme.colors.white} \
-        icon.padding_left=10 \
         icon.align=left \
         label.font="${theme.fonts.text}:Semibold:12.0" \
         label.color=${theme.colors.lavender} \
-        label.padding_right=10 \
         label.align=right
   '';
 in
@@ -52,13 +50,10 @@ in
       --set wifi \
         icon="${theme.icons.wifi}" \
         icon.font="${theme.fonts.nerd}:Bold:20.0" \
-        icon.padding_top=15 \
-        icon.padding_bottom=15 \
-        icon.padding_left=15 \
-        icon.padding_right=15 \
         label.drawing=off \
         update_freq=30 \
         script="${updateNetwork}" \
+        background.padding_right=15 \
         click_script="${networkDetail};
 
     ${sbar} --set wifi popup.drawing=toggle popup.y_offset=-240" \
@@ -69,8 +64,6 @@ in
         icon="${theme.icons.wifi}  Network" \
         icon.font="${theme.fonts.nerd}:Bold:13.0" \
         icon.color=${theme.colors.blue} \
-        icon.padding_left=10 \
-        icon.padding_right=10 \
         label.drawing=off
 
     ${row "wifi.state"}
