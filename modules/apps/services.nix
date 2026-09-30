@@ -29,5 +29,15 @@
         ];
       };
     };
+    alttab = {
+      serviceConfig = {
+        RunAtLoad = true;
+        KeepAlive = false;
+        ProgramArguments = [
+          "/usr/bin/open"
+          "${pkgs.alt-tab-macos}/Applications/AltTab.app"
+        ];
+      };
+    };
   };
 }
