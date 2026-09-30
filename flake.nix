@@ -35,7 +35,7 @@
 
       darwinSystem =
         {
-          updateHomebrew ? false,
+          updateHomebrew,
           profile,
         }:
         nix-darwin.lib.darwinSystem {
