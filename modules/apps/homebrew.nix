@@ -3,6 +3,7 @@
   lib,
   pkgs,
   updateHomebrew,
+  user,
   ...
 }:
 {
@@ -42,8 +43,8 @@
     };
 
     system.activationScripts.postActivation.text = lib.mkIf updateHomebrew ''
-      echo >&2 "Upgrading Mac App Store apps (mas upgrade)..."
-      ${lib.getExe pkgs.mas} upgrade || echo >&2 "warning: mas upgrade failed (continuing)"
+      echo "Upgrading Mac App Store apps (mas upgrade)..."
+      sudo -u ${user.username} ${lib.getExe pkgs.mas} upgrade
     '';
   };
 }

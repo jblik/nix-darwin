@@ -14,8 +14,8 @@
       ${lib.getExe pkgs.duti} -s com.sublimetext.4 .md all
       ${lib.getExe pkgs.duti} -s com.sublimetext.4 .json all
 
-      echo "disabling airplay receiver..."
-      sudo -u ${user.username} /usr/bin/defaults -currentHost write com.apple.controlcenter.plist AirplayRecieverEnabled -bool false
+      # echo "disabling airplay receiver..."
+      # sudo -u ${user.username} /usr/bin/defaults -currentHost write com.apple.controlcenter.plist AirplayRecieverEnabled -bool false
     '';
   };
   security.pam.services.sudo_local.touchIdAuth = true;
