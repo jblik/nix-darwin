@@ -20,6 +20,7 @@
       # todo: iterate
       "${users.personal.homeDirectory}/.dotnet/tools" # todo: could build my global tools in nix as well
       "${users.work.homeDirectory}/.dotnet/tools"
+      # todo: careful with spaces!
     ];
 
     variables = {
