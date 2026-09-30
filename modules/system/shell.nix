@@ -1,6 +1,8 @@
 {
   environment = {
     shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ...";
       k = "kubectl";
       ktx = "kubectx";
       kns = "kubens";
