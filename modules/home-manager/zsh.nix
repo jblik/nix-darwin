@@ -27,6 +27,12 @@ in
     ];
 
     shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      k = "kubectl";
+      ktx = "kubectx";
+      kns = "kubens";
+      tf = "terraform";
       nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
     };
 
