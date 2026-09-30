@@ -2,7 +2,7 @@
     imports = [
         ./git.nix
         ./karabiner.nix
-        ./p10k.zsh
+        ./p10k.nix
         ./sublime.nix
         ./zsh.nix
     ];
