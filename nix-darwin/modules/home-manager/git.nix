@@ -13,7 +13,7 @@
           core.autocrlf = "input";
           push.autoSetupRemote = true;
 
-          aliases = {
+          alias = {
             lg  = "log --oneline --graph --decorate";
             wip = "!git add . && git commit -m \"wip\" && git push";
             ac  = "!git add . && git commit -m";
