@@ -5,14 +5,22 @@ let
   maxMenus = theme.bar.maxAppMenus;
 
   updateFrontAppMenus = pkgs.writeShellScript "sketchybar-front-app-menus.sh" ''
-    ${sbar} --set '/menu\.[0-9]+/' drawing=off
+    mapfile -t titles < <(${menus} -l)
 
+    args=()
     index=1
-    ${menus} -l | while IFS= read -r title; do
+    for title in "''${titles[@]}"; do
       [ "$index" -gt ${toString maxMenus} ] && break
-      ${sbar} --set "menu.$index" label="$title" drawing=on
+      args+=(--set "menu.$index" label="$title" drawing=on)
       index=$((index + 1))
     done
+
+    while [ "$index" -le ${toString maxMenus} ]; do
+      args+=(--set "menu.$index" drawing=off)
+      index=$((index + 1))
+    done
+
+    ${sbar} "''${args[@]}"
   '';
 in
 {
