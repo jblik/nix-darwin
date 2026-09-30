@@ -30,7 +30,7 @@
         condition = "hasconfig:remote.*.url:git@github.com:*/**";
       }
     ]
-    # todo: handle this differently
+    # todo: this isn't very generic
     ++ lib.optionals (user.profile == "personal") import ./personal/git.nix;
 
     ignores = [
