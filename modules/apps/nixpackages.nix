@@ -42,7 +42,7 @@ in
       mas # Mac App Store command-line interface
       nmap # network discovery tool
       nodejs_24
-      openssh # ssh tool
+      # openssh # ssh tool
       opentofu # open source fork of terraform
       ripgrep # faster grep
       spotify
