@@ -9,8 +9,8 @@
     };
   };
   work = {
-    username = "jblik_yarowa";
-    homeDirectory = "/Users/jblik_yarowa";
+    username = "wookie";
+    homeDirectory = "/Users/wookie";
     profile = "work";
     git = {
       name = "Jacob Steenblik";
