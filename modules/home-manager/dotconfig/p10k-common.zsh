@@ -342,17 +342,11 @@
   # back to POWERLEVEL9K_DIR_FOREGROUND.
   #
      typeset -g POWERLEVEL9K_DIR_CLASSES=(
-       '~/school(|/*)'      SCHOOL     ''
        '~/nix-darwin(|/*)'  NIX     ''
        '~(|/*)'             HOME     ''
        '*'                  DEFAULT  '')
 
-     # Styling for WORK.
-     typeset -g POWERLEVEL9K_DIR_SCHOOL_VISUAL_IDENTIFIER_EXPANSION='󰑴'
-#     typeset -g POWERLEVEL9K_DIR_WORK_FOREGROUND=202
-#     typeset -g POWERLEVEL9K_DIR_WORK_SHORTENED_FOREGROUND=214
-#     typeset -g POWERLEVEL9K_DIR_WORK_ANCHOR_FOREGROUND=208
-
+     # Shared NIX styling. Profile-specific directory classes and icons are appended by Home Manager.
      typeset -g POWERLEVEL9K_DIR_NIX_VISUAL_IDENTIFIER_EXPANSION='󱄅'
 #     typeset -g POWERLEVEL9K_DIR_NIX_FOREGROUND=202
 #     typeset -g POWERLEVEL9K_DIR_NIX_SHORTENED_FOREGROUND=214
@@ -937,7 +931,7 @@
   # typeset -g POWERLEVEL9K_NIX_SHELL_INFER_FROM_PATH=false
 
   # Tip: If you want to see just the icon without "pure" and "impure", uncomment the next line.
-  # typeset -g POWERLEVEL9K_NIX_SHELL_CONTENT_EXPANSION=
+   typeset -g POWERLEVEL9K_NIX_SHELL_CONTENT_EXPANSION=
 
   # Custom icon.
   # typeset -g POWERLEVEL9K_NIX_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
