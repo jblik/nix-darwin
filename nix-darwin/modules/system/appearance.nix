@@ -22,6 +22,7 @@ in
             "/System/Applications/System Settings.app"
             "/System/Applications/Utilities/Activity Monitor.app"
             "/System/Applications/iPhone Mirroring.app"
+            { spacer = {}; }
         ];
         persistent-others = [
             { folder = { path = "${homeDirectory}/Documents/Screenshots"; arrangement = "date-added"; showas = "fan"; }; }
