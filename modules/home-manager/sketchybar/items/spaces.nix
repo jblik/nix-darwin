@@ -43,12 +43,12 @@ in
   config = ''
     ${sbar} --add event aerospace_workspace_change
 
-    ${sbar} --add item apps_updater left \
+    ${sbar} --add item apps_updater center \
       --set apps_updater drawing=off updates=on script="${updateWorkspaceAppIcons}" \
       --subscribe apps_updater aerospace_workspace_change front_app_switched
 
     for sid in $(${aerospace} list-workspaces --all); do
-      ${sbar} --add item "space.$sid" left \
+      ${sbar} --add item "space.$sid" center \
         --subscribe "space.$sid" aerospace_workspace_change \
         --set "space.$sid" \
           icon="$sid" \
@@ -70,7 +70,7 @@ in
           script="${highlightFocusedWorkspace} $sid"
 
       for i in $(seq 1 ${toString maxIcons}); do
-        ${sbar} --add item space.$sid.icon.$i left \
+        ${sbar} --add item space.$sid.icon.$i center \
           --subscribe "space.$sid" aerospace_workspace_change \
           --set space.$sid.icon.$i \
             icon.drawing=off \
