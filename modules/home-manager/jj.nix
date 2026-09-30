@@ -5,7 +5,7 @@
 {
   programs.jujutsu = {
     enable = true;
-    # todo:::
+    # todo: can we set the package to null to keep the settings but not install per user?
     settings = {
       user = user.git;
       signing = {
@@ -22,7 +22,7 @@
 
   programs.jjui = {
     enable = true;
-    # todo:
+    # todo: can we set the package to null to keep the settings but not install per user?
     settings = {
       revisions = {
         log_batching = true;
