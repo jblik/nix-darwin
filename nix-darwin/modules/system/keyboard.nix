@@ -32,5 +32,5 @@
     system.activationScripts.postActivation.text = lib.mkAfter ''
         echo "Resetting 'All Application' declared keyboard shortcuts to declarative-only..."
         defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
-#    '';
+    '';
 }
