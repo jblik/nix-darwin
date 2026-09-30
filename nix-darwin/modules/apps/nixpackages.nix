@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+  
     pkgs.docker             # docker!
     pkgs.iterm2             # terminal emulator (consider ghostty)
     pkgs.jetbrains-toolbox  # install jetbrains tooling
