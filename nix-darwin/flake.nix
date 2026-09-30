@@ -73,7 +73,7 @@
       };
       modules = [ 
         configuration # todo pass the primaryUser to the configuration instead of defining it in there
-        ./modules/default.nix
+        ./modules
         home-manager.darwinModules.home-manager 
         {
           home-manager = {
@@ -91,7 +91,7 @@
             home.homeDirectory = lib.mkForce "/Users/${username}";
             programs.zsh.enable  = true;
             imports = [
-              ./modules/home-manager/default.nix
+              ./modules/home-manager
             ];
           };
         }
