@@ -26,14 +26,23 @@
     # Set up your keyboard preferences here
   };
 
+  # KEYBOARD SHORTCUTS 
+    system.defaults.CustomUserPreferences = {
+      NSGlobalDomain = {
+        NSUserKeyEquivalents = {
+            "Move to SAMSUNG" = "@^~\\Uf703"; # Cmd+Ctrl+Alt+Right Arrow
+            "Move to E241N" = "@^~\\Uf702";
+      };
+    };
+  };
+  
   # check this:
   # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.defaults.CustomSystemPreferences
   # can also think about system.defaults.CustomUserPreferences instead
   system.defaults.CustomSystemPreferences = {
     "com.apple.Safari" = {
-      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\Uf70f";
-      # "com.apple.Safari.NSUserKeyEquivalents.Fill = "@^f";
-      "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\Uf70f";
+      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\Uf70f"; # f12
+      "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\Uf70f"; # f12
     };
   };
 
@@ -41,4 +50,14 @@
     "com.apple.swipescrolldirection" = false;
     "com.apple.keyboard.fnState" = true; # use f keys as f keys
   };
+  
+  # post scripts (candidate for moving when refactor is due)
+    system.activationScripts.postActivation.text = ''
+      echo "Running Nix garbage collection..."
+      nix-collect-garbage --delete-older-than 30d
+  
+      echo "Optimizing Nix store..."
+      nix-store --optimise
+    '';
+
 }

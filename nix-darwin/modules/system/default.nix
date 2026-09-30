@@ -1,4 +1,3 @@
-# reference other modules
 {
   imports = [
     ./appearance.nix
