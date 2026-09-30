@@ -46,7 +46,6 @@ in
       playball
       ripgrep # faster grep
       spotify
-      shortcat
       stats
       tailwindcss
       tmux
