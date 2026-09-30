@@ -116,11 +116,13 @@ in
       --set battery \
         icon=" ${theme.icons.battery."100"}" \
         icon.font="${theme.fonts.nerd}:Bold:26.0" \
-        icon.padding_left=6 \
-        icon.padding_right=3 \
+        icon.padding_top=15 \
+        icon.padding_bottom=15 \
+        icon.padding_left=0 \
+        icon.padding_right=0 \
         label.font="${theme.fonts.text}:Semibold:11.0" \
         label.padding_left=0 \
-        label.padding_right=15 \
+        label.padding_right=0 \
         update_freq=30 \
         script="${updateBattery}" \
         click_script="${batteryDetail}; ${sbar} --set battery popup.drawing=toggle popup.y_offset=-240" \
