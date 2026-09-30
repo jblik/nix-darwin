@@ -88,7 +88,7 @@ in
         --set space_updater drawing=off width=0 padding_left=0 padding_right=0 \
         script="${updateSpaces}"
 
-      for sid in $(aerospace list-workspaces --all); do
+      for sid in $(${lib.getExe pkgs.aerospace} list-workspaces --all); do
         # Workspace number (header).
         # On a right-positioned bar, "left" means the top, and items stack
         # downward in the order they're added: number first, then its
@@ -105,7 +105,7 @@ in
             background.corner_radius=0 \
             background.height=30 \
             background.drawing=off \
-            click_script="aerospace workspace $sid"
+            click_script="${lib.getExe pkgs.aerospace} workspace $sid"
 
         # App-icon slots stacked under the number (filled by the updater).
         # Same color/height/radius/width as the number above, with zero
@@ -123,13 +123,11 @@ in
               background.height=30 \
               background.drawing=off \
               drawing=off \
-              click_script="aerospace workspace $sid"
+              click_script="${lib.getExe pkgs.aerospace} workspace $sid"
         done
       done
 
-      # Populate icons + highlight the currently focused workspace (initial state).
-      ${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change \
-        FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
+      FOCUSED_WORKSPACE=$(${lib.getExe pkgs.aerospace} list-workspaces --focused) ${updateSpaces}
 
       ${lib.getExe pkgs.sketchybar} --update
     '';
