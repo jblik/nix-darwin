@@ -1,4 +1,4 @@
-{ position, pkgs, sbar, theme, ... }:
+{ pkgs, sbar, theme, ... }:
 let
   updateBattery = pkgs.writeShellScript "sketchybar-battery.sh" ''
     info=$(pmset -g batt)
@@ -15,7 +15,7 @@ let
       color=${theme.colors.white}
     fi
 
-    ${sbar} --set battery label="''${percent}%" icon.color="$color"
+    ${sbar} --set battery icon.color="$color"
   '';
 
   batteryDetail = pkgs.writeShellScript "sketchybar-battery-detail.sh" ''
@@ -58,11 +58,12 @@ let
         label.color=${theme.colors.lavender} \
         label.padding_right=10 \
         label.align=right
+
   '';
 in
 {
   config = ''
-    ${sbar} --add item battery ${position} \
+    ${sbar} --add item battery right \
       --set battery \
         icon="${theme.icons.battery}" \
         icon.font="${theme.fonts.nerd}:Bold:14.0" \
