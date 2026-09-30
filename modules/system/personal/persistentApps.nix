@@ -1,13 +1,4 @@
-{
-  pkgs-unstable,
-  user,
-  ...
-}:
-{
-  system.defaults.dock = {
-    autohide = true;
-    orientation = "bottom";
-    persistent-apps = [
+[
       "/Applications/Ghostty.app"
       "/Applications/Jetbrains/IntelliJ IDEA.app"
       "/Applications/Jetbrains/Rider.app"
@@ -29,27 +20,4 @@
           small = true;
         };
       }
-    ];
-    persistent-others = [
-      {
-        folder = {
-          path = "${user.homeDirectory}/Documents/Screenshots";
-          arrangement = "date-added";
-          showas = "fan";
-        };
-      }
-      {
-        folder = {
-          path = "${user.homeDirectory}/Downloads";
-          arrangement = "date-added";
-          showas = "fan";
-        };
-      }
-    ];
-    autohide-delay = 0.0;
-    show-recents = false;
-    tilesize = 62;
-  };
-
-  system.defaults.loginwindow.LoginwindowText = "Hello!";
-}
+    ]
