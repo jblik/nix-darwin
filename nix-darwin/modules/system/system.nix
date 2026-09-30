@@ -31,7 +31,7 @@
   # can also think about system.defaults.CustomUserPreferences instead
   system.defaults.CustomSystemPreferences = {
     "com.apple.Safari" = {
-      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\017";
+      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\Uf70f";
       # "com.apple.Safari.NSUserKeyEquivalents.Fill = "@^f";
       "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\Uf70f";
     };
@@ -41,12 +41,4 @@
     "com.apple.swipescrolldirection" = false;
     "com.apple.keyboard.fnState" = true; # use f keys as f keys
   };
-
-  # system.defaults.WindowManager.EnableStandardClickToShowDesktop = false; # Disable/Enable standard click to show desktop
-  # You can add more Mac defaults here as well...
-
-  # system.activationScripts.postUserActivation.text = ''
-  #   # Following line should allow us to avoid a logout/login cycle
-  #   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-  # ''; # Activate settings after user activation
 }

@@ -5,7 +5,7 @@
 
   environment.systemPackages = with pkgs; [
     pkgs.alt-tab-macos      # windows like alt-tab
-    pkgs.docker             # docker!
+    pkgs.docker             # docker
     pkgs.ghostty-bin        # terminal emulator
     pkgs.jetbrains.rider    # c# ide
     pkgs.jetbrains.pycharm  # python ide
