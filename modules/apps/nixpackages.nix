@@ -9,6 +9,9 @@
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
     pkgs-unstable.docker # docker
+    pkgs-unstable.dotnet-aspnetcore_8
+    pkgs-unstable.dotnet-aspnetcore_9
+    pkgs-unstable.dotnet-aspnetcore_10
     pkgs.duti # tool to set default apps
     pkgs.fzf # fuzzy finder
     pkgs-unstable.helmfile
