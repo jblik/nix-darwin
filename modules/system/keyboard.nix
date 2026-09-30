@@ -2,7 +2,7 @@
 
 { 
     system.keyboard = {
-        enableKeyMapping = true; # Enable key mapping
+        enableKeyMapping = true;
         nonUS.remapTilde = true;
         remapCapsLockToControl = true;
     };
@@ -28,7 +28,6 @@
 
          # Following line should allow us to avoid a logout/login cycle when changing settings
          sudo -u ${username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-
      '';
 
     system.defaults.CustomUserPreferences = {
@@ -40,7 +39,7 @@
             "Full Screen" = ''@^$f''; #Cmd+Ctrl+Shift+F
         };
         pbs.NSServicesStatus = {
-         # this maps to Services>Files and Folders
+            # this maps to Services>Files and Folders
             "com.mitchellh.ghostty - New Ghostty Window Here - openWindow" = {
                 key_equivalent = ''^$t'';
             };
@@ -49,6 +48,7 @@
 
     system.defaults.CustomSystemPreferences = {
         "com.apple.Safari" = {
+            # this works though somehow :)
             "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = ''\\Uf70f''; # f12
             "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = ''\\Uf70f''; # f12
         };
