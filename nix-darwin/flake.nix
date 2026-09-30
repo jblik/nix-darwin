@@ -89,7 +89,6 @@
             home.stateVersion = "25.11";
             home.username = username;
             home.homeDirectory = lib.mkForce "/Users/${username}";
-            programs.zsh.enable  = true;
             imports = [
               ./modules/home-manager
             ];
