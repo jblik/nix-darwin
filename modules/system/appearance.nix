@@ -6,7 +6,7 @@
 {
   system.defaults = {
     dock = {
-      autohide = true;
+      autohide = false;
       orientation = "left";
       persistent-apps = import ./${user.profile}/persistentApps.nix pkgs;
       persistent-others = [
@@ -14,20 +14,21 @@
           folder = {
             path = "${user.homeDirectory}/Documents/Screenshots";
             arrangement = "date-added";
-            showas = "fan";
+            showas = "grid";
           };
         }
         {
           folder = {
             path = "${user.homeDirectory}/Downloads";
             arrangement = "date-added";
-            showas = "fan";
+            showas = "grid";
           };
         }
       ];
       autohide-delay = 0.0;
       show-recents = false;
-      tilesize = 62;
+      tilesize = 50
+;
       # mission control for aerospace
       mru-spaces = false;
     };
