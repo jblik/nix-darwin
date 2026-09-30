@@ -1,8 +1,8 @@
-{ profile, ... }:
+{ user, ... }:
 {
   imports = [
     ./homebrew.nix
     ./nixpackages.nix
-    ./${profile}
+    ./${user.profile}
   ];
 }

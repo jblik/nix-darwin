@@ -1,24 +1,22 @@
-{ users, ... }:
+{ user, ... }:
 let
   mkUser =
-    profile:
     { pkgs, lib, ... }:
     {
       programs.home-manager.enable = true;
       home.stateVersion = "25.11";
-      home.username = users.${profile}.username;
-      home.homeDirectory = lib.mkForce users.${profile}.homeDirectory;
+      home.username = user.username;
+      home.homeDirectory = lib.mkForce user.homeDirectory;
       imports = [
         ./git.nix
         ./karabiner.nix
         ./p10k.nix
         ./sublime.nix
         ./zsh.nix
-        ./${profile}
+        ./${user.profile}
       ];
     };
 in
 {
-  ${users.personal.username} = mkUser "personal";
-  ${users.work.username} = mkUser "work";
+  ${user.username} = mkUser;
 }

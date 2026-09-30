@@ -35,15 +35,13 @@
 
       darwinSystem =
         {
-          updateHomebrew,
           profile,
+          updateHomebrew,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
             inherit pkgs-unstable users updateHomebrew;
-            homeDirectory = users.${profile}.homeDirectory;
-            username = users.${profile}.username;
-            profile = users.${profile}.profile;
+            user = users.${profile};
           };
           modules = [
             {
@@ -67,10 +65,9 @@
                 verbose = true;
                 backupFileExtension = "backup";
                 extraSpecialArgs = {
-                  inherit pkgs-unstable;
-                  profile = users.${profile}.profile;
+                  user = users.${profile};
                 };
-                users = import ./modules/home-manager { inherit users; };
+                users = import ./modules/home-manager { user = users.${profile}; };
               };
             }
           ];
@@ -85,20 +82,20 @@
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
       darwinConfigurations."personal" = darwinSystem {
-        updateHomebrew = false;
         profile = "personal";
+        updateHomebrew = false;
       };
       darwinConfigurations."personal-updatehomebrew" = darwinSystem {
-        updateHomebrew = true;
         profile = "personal";
+        updateHomebrew = true;
       };
       darwinConfigurations."work" = darwinSystem {
-        updateHomebrew = false;
         profile = "work";
+        updateHomebrew = false;
       };
       darwinConfigurations."work-updatehomebrew" = darwinSystem {
-        updateHomebrew = true;
         profile = "work";
+        updateHomebrew = true;
       };
     };
 }
