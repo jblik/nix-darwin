@@ -60,6 +60,7 @@
       AppleMeasurementUnits = "Centimeters";
       AppleTemperatureUnit = "Celsius";
       AppleICUForce24HourTime = true;
+      NSStatusItemSelectionPadding = 0;
     };
 
     loginwindow = {
