@@ -17,10 +17,9 @@ with follows;
     };
   };
 
-  sdk =
-    dotnetCorePackages.combinePackages [
-      dotnetCorePackages.sdk_8_0
-      dotnetCorePackages.sdk_9_0
-      dotnetCorePackages.sdk_10_0
-    ];
+  sdk = dotnetCorePackages.combinePackages [
+    dotnetCorePackages.sdk_8_0
+    dotnetCorePackages.sdk_9_0
+    dotnetCorePackages.sdk_10_0
+  ];
 }

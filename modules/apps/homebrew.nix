@@ -2,7 +2,7 @@
 
 {
   options = {
-    updateHomebrew.enable = lib.mkEnableOption "enable Homebrew auto-update and upgrade during activation";
+    updateHomebrew = lib.mkEnableOption "enable Homebrew auto-update and upgrade during activation";
   };
 
   config = {
@@ -11,7 +11,7 @@
       onActivation = {
         cleanup = "zap";
       }
-      // lib.optionalAttrs config.updateHomebrew.enable {
+      // lib.optionalAttrs config.updateHomebrew {
         autoUpdate = true;
         upgrade = true;
       };
