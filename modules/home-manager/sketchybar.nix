@@ -119,7 +119,7 @@ in
               padding_left=0 \
               padding_right=0 \
               background.color=0xff45475a \
-              background.corner_radius=0 \
+              background.corner_radius=5 \
               background.height=30 \
               background.drawing=off \
               drawing=off \
