@@ -94,6 +94,7 @@
               mutableTaps = true; # set to false if you want to disable brew tap
             };
           }
+
           # todo get started with home-manager:
           # home-manager.darwinModules.home-manager {
           #   home-manager.useGlobalPkgs = true;
