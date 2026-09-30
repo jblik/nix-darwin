@@ -16,6 +16,7 @@ in
   fonts.packages = with pkgs; [
     # meslo-lgs-nf # font for powerlevel10k
     nerd-fonts.jetbrains-mono
+    pkgs.sketchybar-app-font
   ];
 
   # https://search.nixos.org/packages
