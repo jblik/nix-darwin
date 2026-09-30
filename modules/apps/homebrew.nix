@@ -20,12 +20,8 @@
         autoUpdate = true;
         upgrade = true;
       };
-      brews = [
-        "apfel"
-      ];
-      taps = [
-        "Arthur-Ficial/tap" # for apfel
-      ];
+      brews = [ ];
+      taps = [ ];
       casks = [
         "docker-desktop"
         "karabiner-elements"
@@ -33,6 +29,7 @@
         "jagex"
         "sublime-text"
         "homerow"
+        "wifiman"
       ];
       masApps = {
         "Actions" = 1586435171;
