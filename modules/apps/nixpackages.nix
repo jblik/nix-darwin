@@ -39,6 +39,7 @@ in
       forgejo-cli
       forgejo-runner
       fzf # fuzzy finder
+      git-lfs
       inetutils # gnu network utils
       jetbrains-toolbox
       jjui # ui for jj
