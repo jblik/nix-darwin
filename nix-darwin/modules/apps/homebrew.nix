@@ -26,6 +26,7 @@
     ];
     casks = [
         "sublime-text"
+        "ghostty"
     ];
     # mac app store:
     # mas search "<app name>"

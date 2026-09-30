@@ -8,7 +8,7 @@ in
     autohide = true;
     orientation = "bottom";
     persistent-apps = [
-      "${pkgs.ghostty-bin}/Applications/Ghostty.app"
+      "/Applications/Ghostty.app"
       "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
       "${pkgs-unstable.jetbrains.rider}/Applications/Rider.app"
       "${homeDirectory}/Applications/DataGrip.app"

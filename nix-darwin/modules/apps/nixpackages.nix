@@ -6,7 +6,6 @@
   environment.systemPackages = with pkgs; [
     pkgs.alt-tab-macos      # windows like alt-tab
     pkgs.docker             # docker
-    pkgs.ghostty-bin        # terminal emulator
     pkgs.k9s                # kubernetes cluster manager   
     pkgs.karabiner-elements # key remapping software
     pkgs.kubernetes-helm    # package manager for kubernetes
