@@ -6,6 +6,7 @@ let
   topAnchoredItems = [
     ./items/bar.nix
     ./items/apple.nix
+    ./items/battery.nix { position = "left"; }
     ./items/clock.nix
     ./items/front-app-menus.nix
   ];
@@ -13,7 +14,7 @@ let
   centerAnchoredItems = [ ./items/spaces.nix ];
 
   bottomAnchoredItemsBottomToTop = [
-    ./items/battery.nix
+    ./items/battery.nix { position = "right"; }
     ./items/network.nix
 #    ./items/cpu.nix
 #    ./items/ram.nix
