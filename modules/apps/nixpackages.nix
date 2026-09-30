@@ -14,7 +14,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = [
-    pkgs.meslo-lgs-nf # font for powerlevel10k
     pkgs.nerd-fonts.jetbrains-mono
   ];
 
