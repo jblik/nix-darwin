@@ -13,7 +13,6 @@ let
         ./p10k.nix
         ./sublime.nix
         ./zsh.nix
-        ./${user.profile}
       ];
     };
 in

@@ -4,6 +4,7 @@
   programs.git = {
     enable = true;
     settings = {
+      user = user.git;
       init.defaultBranch = "master";
       core.editor = "vim";
       core.autocrlf = "input";
