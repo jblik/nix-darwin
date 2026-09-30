@@ -6,6 +6,6 @@
         email = "jacob.steenblik@ost.ch";
       };
     };
-    condition = "hasconfig:remote.*.url:gitlab.ost.ch:*/**";
+    condition = "hasconfig:remote.*.url:git@gitlab.ost.ch:*/**";
   }
 ]
