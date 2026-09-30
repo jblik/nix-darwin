@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.aerospace = {
     enable = true;
@@ -15,12 +15,12 @@
 
       on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
 
-      after-startup-command = [ "exec-and-forget ${pkgs.sketchybar}/bin/sketchybar --reload" ];
+      after-startup-command = [ "exec-and-forget ${lib.getExe pkgs.sketchybar} --reload" ];
 
       exec-on-workspace-change = [
         "/bin/bash"
         "-c"
-        "${pkgs.sketchybar}/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
+        "${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
       ];
 
       key-mapping.preset = "qwerty";
