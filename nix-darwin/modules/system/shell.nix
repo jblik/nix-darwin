@@ -13,8 +13,17 @@ in
 
   environment.shellAliases = {
     nix-update = "nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeRef}";
-    nix-update-gc = "nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeRef} && nix-collect-garbage --delete-older-than 30d && nix-store --optimise";
+    nix-update-gc = "nix flake update --flake ${flakePath} && sudo darwin-rebuild switch --flake ${flakeRef} && nix-gc";
     nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
-    nix-gc = "nix-collect-garbage --delete-older-than 30d && nix-store --optimise";
   };
+  
+  programs.zsh.interactiveShellInit = ''
+    nix-gc() {
+      local days="''${1:-10}"
+      echo "Removing generations older than ''${days}d..."
+      nix-collect-garbage --delete-older-than "''${days}d"
+      echo "Optimizing Nix store..."
+      nix-store --optimise
+    }
+'';
 }
