@@ -15,13 +15,8 @@
         autoUpdate = true;
         upgrade = true;
       };
-
-      brews = [
-        "node"
-        "sbt" # Scala Build Tool for building and managing Scala projects.
-        # "hashicorp/tap/nomad"
-        "mongodb/brew/mongodb-community@7.0" # MongoDB Community Server version 7.0.
-      ];
+      brews = [];
+      taps = [];
       casks = [
         "karabiner-elements"
         "ghostty"
