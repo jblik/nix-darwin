@@ -40,12 +40,12 @@
             email = "jblik@noreply.codeberg.org";
           };
           commit.gpgsign = true; # todo: can setup everywhere and then put global
-          user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBu+qV9Gu9qUejqLlY4iuUWfP4aN9juK2qg9Wrobb/Tq";
+          user.signingKey = "${user.ssh."codeberg.org".IdentityFile}.pub";
         };
         condition = "hasconfig:remote.*.url:ssh://git@codeberg.org/**";
       }
     ]
-    ++ import ./${user.profile}/gitIncludeIf.nix;
+    ++ import ./${user.profile}/gitIncludeIf.nix user;
 
     ignores = [
       ".DS_Store"
