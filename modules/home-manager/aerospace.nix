@@ -79,7 +79,7 @@
           "layout floating tiling"
           "mode main"
         ];
-        "backspace" = [
+        "shift-w" = [
           "close-all-windows-but-current"
           "mode main"
         ];
