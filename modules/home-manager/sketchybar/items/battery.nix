@@ -64,7 +64,7 @@ let
       esac
     fi
 
-    ${sbar} --set battery icon="$icon" icon.color="$color""
+    ${sbar} --set battery icon="$icon" icon.color="$color"
   '';
 
   batteryDetail = pkgs.writeShellScript "sketchybar-battery-detail.sh" ''
@@ -101,7 +101,7 @@ let
         width=190 \
         icon.font="${theme.fonts.text}:Semibold:12.0" \
         icon.color=${theme.colors.white} \
-        icon.padding_left=10 \
+        icon.padding_left=15 \
         icon.align=left \
         label.font="${theme.fonts.text}:Semibold:12.0" \
         label.color=${theme.colors.lavender} \

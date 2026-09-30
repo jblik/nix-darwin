@@ -51,7 +51,7 @@ in
     ${sbar} --add item wifi right \
       --set wifi \
         icon="${theme.icons.wifi}" \
-        icon.font="${theme.fonts.nerd}:Bold:14.0" \
+        icon.font="${theme.fonts.nerd}:Bold:20.0" \
         icon.padding_left=6 \
         icon.padding_right=6 \
         label.drawing=off \

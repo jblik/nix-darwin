@@ -8,7 +8,7 @@ in
     ${sbar} --add item apple.logo left \
       --set apple.logo \
         icon="${theme.icons.apple}" \
-        icon.font="${theme.fonts.nerd}:Bold:16.0" \
+        icon.font="${theme.fonts.nerd}:Bold:26.0" \
         icon.color=${theme.colors.green} \
         background.padding_right=15 \
         label.drawing=off \
