@@ -21,5 +21,8 @@ with dotnetCorePackages;
     };
   };
 
-  sdk = sdk_10_0;
+  sdk = combinePackages [
+    sdk_10_0
+    sdk_11_0
+  ];
 }
