@@ -53,7 +53,7 @@
       tilesize = 62;
     };
 
-# todo: consolidate equal ones in a base appearance
+    # todo: consolidate equal ones in a base appearance
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
       AppleIconAppearanceTheme = "RegularDark";
