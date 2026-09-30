@@ -14,7 +14,7 @@
           push.autoSetupRemote = true;
 
           aliases = {
-            lg  = "log --oneline --graph --decorate";
+            lg  = log --oneline --graph --decorate;
             wip = ''"!git add . && git commit -m "wip" && git push"'';
             ac  = "!git add . && git commit -m";
             acp = ''"!f() { git add . && git commit -m \"$1\" && git push; }; f"'';
