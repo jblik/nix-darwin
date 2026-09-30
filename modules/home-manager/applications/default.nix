@@ -1,0 +1,9 @@
+{
+  user,
+  ...
+}:
+{
+  imports = [
+    ./${user.profile}
+  ];
+}
