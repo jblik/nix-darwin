@@ -1,16 +1,19 @@
 { follows }:
 {
   nuke = follows.buildDotnetGlobalTool {
-    pname = "Nuke.GlobalTool";
+    pname = "nuke";
     version = "10.1.0";
+    nugetName = "Nuke.GlobalTool";
+    nugetHash = "sha256-/7ET0onBQzCmqFzr64XlaS5gE7WD/lhGSRN9jbUdKHw=";
 
-    nugetSha256 = "sha256-/7ET0onBQzCmqFzr64XlaS5gE7WD/lhGSRN9jbUdKHw=";
+    dotnet-sdk = follows.dotnetCorePackages.sdk_10_0;
+    dotnet-runtime = follows.dotnetCorePackages.sdk_10_0;
 
     meta = with follows.lib; {
-      #            homepage = "https://cmd.petabridge.com/index.html";
-      #            changelog = "https://cmd.petabridge.com/articles/RELEASE_NOTES.html";
-      #            license = licenses.unfree;
-      #            platforms = platforms.linux;
+      homepage = "https://nuke.build/";
+      description = "NUKE build automation global tool";
+      license = licenses.mit;
+      platforms = platforms.darwin;
     };
   };
 
