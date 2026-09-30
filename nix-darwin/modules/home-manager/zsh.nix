@@ -7,7 +7,6 @@
         oh-my-zsh = {
           enable = true;
           plugins = [ "git" ];
-          theme = "powerlevel10k/powerlevel10k";
         };
     
         plugins = [
