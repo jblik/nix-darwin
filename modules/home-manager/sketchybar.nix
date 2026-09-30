@@ -17,6 +17,8 @@ let
   POPUP_OFF = "${lib.getExe pkgs.sketchybar} --set apple.logo popup.drawing=off";
   POPUP_CLICK_SCRIPT = "${lib.getExe pkgs.sketchybar} --set \\$NAME popup.drawing=toggle";
 
+
+  maxIcons = 10;
   # Runs on aerospace_workspace_change for a single workspace item, toggling
   # its highlight background depending on whether it's the focused space.
   # (sketchybar/plugins/aerospacer.sh)
@@ -124,6 +126,21 @@ in
             label.drawing=off \
             click_script="${lib.getExe pkgs.aerospace} workspace $sid" \
             script="${aerospacer} $sid"
+
+        for i in $(seq 1 ${toString maxIcons}); do
+          ${lib.getExe pkgs.sketchybar} --add item space.$sid.icon.$i left \
+            --set space.$sid.icon.$i \
+              icon.drawing=off \
+              label.font="sketchybar-app-font:Regular:16.0" \
+              padding_left=0 \
+              padding_right=0 \
+              background.color=0x44ffffff \
+              background.corner_radius=5 \
+              background.height=30 \
+              background.drawing=off \
+              drawing=off \
+              click_script="${lib.getExe pkgs.aerospace} workspace $sid"
+        done
       done
 
       ${lib.getExe pkgs.sketchybar} --add item separator left \
