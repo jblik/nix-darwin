@@ -42,6 +42,7 @@
       AppleICUForce24HourTime = true;
       NSStatusItemSelectionPadding = 5;
       NSStatusItemSpacing = 5;
+      _HIHideMenuBar = true;
     };
 
     loginwindow = {
