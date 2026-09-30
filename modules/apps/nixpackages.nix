@@ -57,6 +57,7 @@ in
       tailwindcss # css framework
       tmux # terminal multiplexer
       uv # python package manager
+      yubikey-manager
       zsh-powerlevel10k # zsh theme
     ]
     ++ (with pkgs-unstable; [
