@@ -24,10 +24,7 @@ in
   environment.systemPackages =
     with pkgs;
     [
-      _1password-cli
-      azure-cli
       ansible # configuration management tool
-      bruno # foss postman
       buf # protobuf
       container
       coreutils # gnu core utils
@@ -57,15 +54,12 @@ in
       spotify # music
       tailwindcss # css framework
       tmux # terminal multiplexer
-      uv # python package manager
-      yubikey-manager
       zsh-powerlevel10k # zsh theme
     ]
     ++ (with pkgs-unstable; [
       docker # docker
       helmfile # additional helm utils
       k9s # kubernetes cluster manager
-      opencode # local agent
       terraform # tool for building, changing, and versioning infrastructure
       vault # hcp tool for managing secrets
       velero # kubernetes cluster restore tool
