@@ -19,9 +19,44 @@ let
 
 
   maxIcons = 10;
-  # Runs on aerospace_workspace_change for a single workspace item, toggling
-  # its highlight background depending on whether it's the focused space.
-  # (sketchybar/plugins/aerospacer.sh)
+  updateSpaces = pkgs.writeShellScript "sketchybar-update-spaces.sh" ''
+    source ${pkgs.sketchybar-app-font}/bin/icon_map.sh
+
+    max=${toString maxIcons}
+
+    focused="$FOCUSED_WORKSPACE"
+    if [ -z "$focused" ]; then
+      focused="$(${lib.getExe pkgs.aerospace} list-workspaces --focused)"
+    fi
+
+    args=()
+    for sid in $(${lib.getExe pkgs.aerospace} list-workspaces --all); do
+      if [ "$focused" = "$sid" ]; then
+        hl=on
+      else
+        hl=off
+      fi
+      args+=(--set "space.$sid.bracket" "background.drawing=$hl")
+
+      apps="$(${lib.getExe pkgs.aerospace} list-windows --workspace "$sid" --format '%{app-name}' | sort -u)"
+      i=1
+      while IFS= read -r app; do
+        [ -z "$app" ] && continue
+        [ "$i" -gt "$max" ] && break
+        __icon_map "$app"
+        args+=(--set "space.$sid.icon.$i" "label=$icon_result" "drawing=on")
+        i=$((i + 1))
+      done <<< "$apps"
+
+      while [ "$i" -le "$max" ]; do
+        args+=(--set "space.$sid.icon.$i" "drawing=off")
+        i=$((i + 1))
+      done
+    done
+
+    ${lib.getExe pkgs.sketchybar} "''${args[@]}"
+  '';
+
   aerospacer = pkgs.writeShellScript "sketchybar-aerospacer.sh" ''
     if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
       ${lib.getExe pkgs.sketchybar} --set "$NAME" background.drawing=on
@@ -105,42 +140,46 @@ in
       # --- AeroSpace workspace indicators + separator (sketchybar/items/spaces.sh) ---
       ${lib.getExe pkgs.sketchybar} --add event aerospace_workspace_change
 
+      ${lib.getExe pkgs.sketchybar} --add item space_updater left \
+        --subscribe space_updater aerospace_workspace_change front_app_switched \
+        --set space_updater drawing=off updates=on width=0 padding_left=0 padding_right=0 \
+        script="${updateSpaces}"
+
       for sid in $(${lib.getExe pkgs.aerospace} list-workspaces --all); do
         ${lib.getExe pkgs.sketchybar} --add item "space.$sid" left \
-          --subscribe "space.$sid" aerospace_workspace_change \
           --set "space.$sid" \
             icon="$sid" \
-            icon.padding_left=22 \
-            icon.padding_right=22 \
-            label.padding_right=33 \
-            icon.highlight_color=${RED} \
-            background.color=0x44ffffff \
-            background.corner_radius=5 \
-            background.height=30 \
-            background.drawing=off \
-            label.font="sketchybar-app-font:Regular:16.0" \
-            label.background.height=30 \
-            label.background.drawing=on \
-            label.background.color=0xff494d64 \
-            label.background.corner_radius=9 \
+            icon.font="${NERD_FONT}:Bold:14.0" \
+            icon.color=${WHITE} \
+            icon.padding_left=6 \
+            icon.padding_right=6 \
             label.drawing=off \
-            click_script="${lib.getExe pkgs.aerospace} workspace $sid" \
-            script="${aerospacer} $sid"
+            background.drawing=off \
+            click_script="${lib.getExe pkgs.aerospace} workspace $sid"
 
+        icons=""
         for i in $(seq 1 ${toString maxIcons}); do
+          icons="$icons space.$sid.icon.$i"
           ${lib.getExe pkgs.sketchybar} --add item space.$sid.icon.$i left \
             --set space.$sid.icon.$i \
               icon.drawing=off \
               label.font="sketchybar-app-font:Regular:16.0" \
-              padding_left=0 \
-              padding_right=0 \
-              background.color=0x44ffffff \
-              background.corner_radius=5 \
-              background.height=30 \
+              label.color=${WHITE} \
+              label.padding_left=5 \
+              label.padding_right=5 \
               background.drawing=off \
               drawing=off \
               click_script="${lib.getExe pkgs.aerospace} workspace $sid"
         done
+
+        ${lib.getExe pkgs.sketchybar} --add bracket "space.$sid.bracket" "space.$sid" $icons \
+          --set "space.$sid.bracket" \
+            background.color=0xff494d64 \
+            background.corner_radius=9 \
+            background.height=40 \
+            background.padding_left=8 \
+            background.padding_right=8 \
+            background.drawing=off
       done
 
       ${lib.getExe pkgs.sketchybar} --add item separator left \
@@ -170,6 +209,8 @@ in
           background.color=0xffb8c0e0 \
           background.height=26 \
           background.corner_radius=11
+
+      FOCUSED_WORKSPACE=$(${lib.getExe pkgs.aerospace} list-workspaces --focused) ${updateSpaces}
 
       ${lib.getExe pkgs.sketchybar} --update
     '';
