@@ -614,11 +614,17 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
   function forgejo_icon() {
-    if [[ $VCS_STATUS_REMOTE_URL == (*forgejo*|*yoda.cloud*) ]]; then
+    local remote_url=$VCS_STATUS_REMOTE_URL
+    if [[ -z $remote_url && -n $VCS_STATUS_WORKDIR ]]; then
+      remote_url=$(git -C "$VCS_STATUS_WORKDIR" remote get-url origin 2>/dev/null) ||
+        remote_url=$(git -C "$VCS_STATUS_WORKDIR" remote get-url upstream 2>/dev/null)
+    fi
+
+    if [[ $remote_url == (*forgejo*|*yoda.cloud*) ]]; then
       print -n '\uf335'
-    elif [[ $VCS_STATUS_REMOTE_URL == *gitlab* ]]; then
+    elif [[ $remote_url == *gitlab* ]]; then
       print -n '\ue7eb'
-    elif [[ $VCS_STATUS_REMOTE_URL == *codeberg* ]]; then
+    elif [[ $remote_url == *codeberg* ]]; then
       print -n '\uf330'
     else
       print -n "$P9K_VISUAL_IDENTIFIER"
