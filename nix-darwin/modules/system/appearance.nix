@@ -19,7 +19,7 @@ in
       "${homeDirectory}/RustRover.app"
       "${homeDirectory}/CLion.app"
       "/Applications/Calendar.app"
-      "/${pkgs.sublimetext4}/Sublime Text.app"
+      "/${pkgs.sublime4}/Sublime Text.app"
       "/Applications/Messages.app"
       "/Applications/System Settings.app"
       "/Applications/iPhone Mirroring.app"
