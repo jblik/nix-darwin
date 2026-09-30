@@ -29,10 +29,17 @@
         };
         condition = "hasconfig:remote.*.url:git@github.com:*/**";
       }
-    ];
-    # todo: this isn't very generic
-    # broken for other profile
-#    ++ lib.optionals (user.profile == "personal") import ./personal/git.nix;
+      {
+        contents = {
+          user = {
+            name = "jblik";
+            email = "jblik@noreply.codeberg.org";
+          };
+        };
+        condition = "hasconfig:remote.*.url:ssh://git@codeberg.org/**";
+      }
+    ]
+    ++ import ./${user.profile}/gitIncludeIf.nix;
 
     ignores = [
       ".DS_Store"
