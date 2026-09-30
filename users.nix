@@ -60,6 +60,10 @@
         User = "git";
         IdentityFile = "/Users/wookie/.ssh/jblik_forgejo";
       };
+      "git.steenblik.ch" = {
+        User = "forgejo";
+        IdentityFile = "/Users/wookie/.ssh/git.steenblik.ch";
+      };
     };
   };
 }

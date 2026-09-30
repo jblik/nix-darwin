@@ -39,6 +39,14 @@
         };
         condition = "hasconfig:remote.*.url:ssh://git@codeberg.org/**";
       }
+      {
+        contents.user = {
+          name = "Jacob Steenblik";
+          email = "jacob@steenblik.ch";
+          signingKey = "${user.ssh."git.steenblik.ch".IdentityFile}.pub";
+        };
+        condition = "hasconfig:remote.*.url:ssh://forgejo@git.steenblik.ch:2222/**";
+      }
     ]
     ++ import ./${user.profile}/git-include-if.nix user;
 

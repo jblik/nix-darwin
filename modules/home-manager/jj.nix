@@ -27,10 +27,10 @@ in
           # jj matches the resolved path and /etc is a symlink to /private/etc
           "--when".repositories = [ "/private/etc/nix-darwin" ];
           user = {
-            name = "jblik";
-            email = "jblik@noreply.codeberg.org";
+            name = "Jacob Steenblik";
+            email = "jacob@steenblik.ch";
           };
-          signing.key = "${user.ssh."codeberg.org".IdentityFile}.pub";
+          signing.key = "${user.ssh."git.steenblik.ch".IdentityFile}.pub";
         }
       ];
     };
