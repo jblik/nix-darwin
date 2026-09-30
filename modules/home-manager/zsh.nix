@@ -56,11 +56,11 @@ in
       '';
       fzidea = ''
         local dir
-        dir=$(find ~ -type d -name .git -prune | sed -u 's|/\.git$||' | fzf --query "''${1:-}" --select-1 --exit-0) && idea "$dir"
+        dir=$(find ~ \( -name node_modules -o -name Library -o -name .cache \) -prune -o -type d -name .git -print -prune | sed -u 's|/\.git$||' | fzf --query "''${1:-}" --select-1 --exit-0) && idea "$dir"
       '';
       fzrider = ''
         local file
-        file=$(find ~ -type f \( -name "*.sln" -o -name "*.slnx" \) | fzf --query "''${1:-}" --select-1 --exit-0) && rider "$file"
+        file=$(find ~ \( -name node_modules -o -name Library -o -name .cache \) -prune -o -type f \( -name "*.sln" -o -name "*.slnx" \) -print | fzf --query "''${1:-}" --select-1 --exit-0) && rider "$file"
       '';
     };
 
