@@ -6,11 +6,6 @@ let
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
-  # todo
-  #  users.users.jblik = {
-  #    shell = "/bin/zsh";
-  #  };
-
   environment.variables = {
     EDITOR = "vim";
   };
