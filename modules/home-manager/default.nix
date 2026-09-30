@@ -17,6 +17,7 @@
     imports = [
       ./${user.profile}/applications.nix
       ./aerospace.nix
+      ./defaults
       ./ghostty.nix
       ./git.nix
       ./jankyborders.nix
