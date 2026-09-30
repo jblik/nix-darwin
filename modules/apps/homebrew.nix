@@ -20,7 +20,9 @@
         autoUpdate = true;
         upgrade = true;
       };
-      brews = [ ];
+      brews = [
+        "michaeldhopkins/tap/jjpr"
+      ];
       taps = [ ];
       casks = [
         "docker-desktop"
