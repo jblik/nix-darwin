@@ -1,14 +1,6 @@
 user: {
   "--scope" = [
     {
-      "--when".repositories = [ "~/nix-darwin" ];
-      user = {
-        name = "jblik";
-        email = "jblik@noreply.codeberg.org";
-      };
-      signing.key = "${user.ssh."codeberg.org".IdentityFile}.pub";
-    }
-    {
       "--when".repositories = [ "~/projects" ];
       user = {
         name = "jblik";
