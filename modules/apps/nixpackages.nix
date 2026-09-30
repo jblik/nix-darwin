@@ -13,6 +13,7 @@
       pkgs.duti # tool to set default apps
       pkgs.inetutils # gnu network utils
       pkgs.k9s # kubernetes cluster manager
+      # kubectl krew install kubens kubectx plugins
       pkgs.kubectl # kubernetes cli
       pkgs.kubernetes-helm # package manager for kubernetes
       pkgs.meslo-lgs-nf # font for powerlevel10k
