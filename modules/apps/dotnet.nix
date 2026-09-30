@@ -6,16 +6,16 @@
 with dotnetCorePackages;
 {
   nuke = buildDotnetGlobalTool {
-    pname = "nuke";
-    version = "10.1.0";
-    nugetName = "Nuke.GlobalTool";
-    nugetHash = "sha256-/7ET0onBQzCmqFzr64XlaS5gE7WD/lhGSRN9jbUdKHw=";
+    pname = "fallout";
+    version = "10.4.0";
+    nugetName = "Fallout.GlobalTool";
+    nugetHash = "sha256-pil2hq/fz7yPizNlfiyK6yEruEfuqH22iqHKk7USG7E=";
     dotnet-runtime = sdk_10_0;
     dotnet-sdk = sdk_10_0;
 
     meta = {
-      homepage = "https://nuke.build/";
-      description = "NUKE build automation global tool";
+      homepage = "https://docs.fallout.build/";
+      description = "FALLOUT build automation global tool";
       license = lib.licenses.mit;
       platforms = lib.platforms.darwin;
     };
