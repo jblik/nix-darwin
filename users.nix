@@ -20,6 +20,10 @@
         User = "git";
         IdentityFile = "/Users/jblik/.ssh/jblik_forgejo";
       };
+      "git.steenblik.ch" = {
+        User = "forgejo";
+        IdentityFile = "/Users/jblik/.ssh/git.steenblik.ch";
+      };
       "nixos-server" = {
         HostName = "192.168.1.100";
         User = "jblik";

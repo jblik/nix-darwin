@@ -15,4 +15,12 @@ user: [
     };
     condition = "hasconfig:remote.*.url:git@github.com:*/**";
   }
+  {
+    contents.user = {
+      name = "jblik";
+      email = "jacob@steenblik.ch";
+      signingKey = "${user.ssh."git.steenblik.ch".IdentityFile}.pub";
+    };
+    condition = "hasconfig:remote.*.url:ssh://forgejo@git.steenblik.ch:2222/**";
+  }
 ]

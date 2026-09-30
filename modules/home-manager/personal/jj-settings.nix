@@ -4,9 +4,9 @@ user: {
       "--when".repositories = [ "~/projects" ];
       user = {
         name = "jblik";
-        email = "jblik@noreply.codeberg.org";
+        email = "jacob@steenblik.ch";
       };
-      signing.key = "${user.ssh."codeberg.org".IdentityFile}.pub";
+      signing.key = "${user.ssh."git.steenblik.ch".IdentityFile}.pub";
     }
     {
       "--when".repositories = [ "~/projects/github" ];
