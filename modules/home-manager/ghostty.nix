@@ -33,6 +33,6 @@
 
     keybind = global:cmd+ctrl+t=toggle_quick_terminal
     quick-terminal-position = center
+    quick-terminal-size = 120%
   '';
 }
-# make quick term 6 lines bigger
