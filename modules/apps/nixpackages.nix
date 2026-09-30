@@ -2,9 +2,6 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  #  dotnet = import ./dotnet.nix;
-  #  todo make dotnet properly
-  #  dotnet = import ./dotnet.nix {pkgs-unstable = pkgs-unstable;};
 
   # https://search.nixos.org/packages
   environment.systemPackages = [
@@ -12,7 +9,7 @@
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
     pkgs-unstable.docker # docker
-    (import ./dotnet.nix { follows = pkgs-unstable; }).sdk
+    (import ./dotnet.nix { follows = pkgs-unstable; }).combined
     pkgs.duti # tool to set default apps
     pkgs.fzf # fuzzy finder
     pkgs-unstable.helmfile

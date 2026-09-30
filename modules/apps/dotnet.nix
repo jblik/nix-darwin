@@ -1,6 +1,6 @@
 { follows }:
 {
-  sdk = (
+  combined = (
     with follows.dotnetCorePackages;
     combinePackages [
       sdk_8_0
