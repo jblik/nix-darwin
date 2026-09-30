@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-  
+    pkgs.alt-tab-macos      # windows like alt-tab
     pkgs.docker             # docker!
     pkgs.iterm2             # terminal emulator (consider ghostty)
     pkgs.jetbrains-toolbox  # install jetbrains tooling
