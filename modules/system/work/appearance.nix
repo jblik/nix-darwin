@@ -21,6 +21,7 @@
         }
         "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
         "/Applications/Microsoft Teams.app"
+        "/Applications/Microsoft Outlook.app"
         "/System/Applications/System Settings.app"
         "/System/Applications/Utilities/Activity Monitor.app"
         {
