@@ -1,4 +1,4 @@
-{ username, homeDirectory, ... }:
+{ users, ... }:
 let
   mkUser =
     profile:
