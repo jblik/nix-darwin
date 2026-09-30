@@ -42,7 +42,6 @@
           system = {
             configurationRevision = self.rev or self.dirtyRev or null;
             stateVersion = 6;
-            primaryUser = users.work.username;
           };
         };
 
@@ -57,6 +56,7 @@
             username = users.personal.username;
           };
           modules = [
+            { system.primaryUser = users.personal.username; }
             baseConfiguration
 
             ./modules
@@ -91,6 +91,7 @@
             username = users.work.username;
           };
           modules = [
+            { system.primaryUser = users.work.username; }
             baseConfiguration
 
             ./modules
