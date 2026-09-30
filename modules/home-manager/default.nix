@@ -10,8 +10,6 @@ let
       home.homeDirectory = lib.mkForce users.${profile}.homeDirectory;
       imports = [
         ./common
-        #         todo: profile based import
-        #        "${profile}"
       ];
     };
 in
