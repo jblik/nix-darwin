@@ -76,7 +76,7 @@
 
       myDarwinConfiguration =
         {
-          homebrewUpdate ? false,
+          updateHomebrew ? false,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
@@ -86,7 +86,7 @@
             configuration # todo pass the primaryUser to the configuration instead of defining it in there
             ./modules
             {
-              homebrewUpdate.enable = homebrewUpdate;
+              updateHomebrew.enable = updateHomebrew;
             }
             home-manager.darwinModules.home-manager
             {
@@ -103,7 +103,7 @@
                   programs.home-manager.enable = true;
                   home.stateVersion = "25.11";
                   home.username = username;
-                  home.homeDirectory = lib.mkForce "/Users/${username}";
+                  home.homeDirectory = lib.mkForce homeDirectory;
                   imports = [
                     ./modules/home-manager
                   ];
@@ -130,11 +130,11 @@
 
     in
     {
-      darwinConfigurations.jsteenblik = myDarwinConfiguration {
-        homebrewUpdate = false;
+      darwinConfigurations."${username}" = myDarwinConfiguration {
+        updateHomebrew = false;
       };
-      darwinConfigurations.jsteenblik-updatehomebrew = myDarwinConfiguration {
-        homebrewUpdate = true;
+      darwinConfigurations."${username}-updatehomebrew" = myDarwinConfiguration {
+        updateHomebrew = true;
       };
     };
 }
