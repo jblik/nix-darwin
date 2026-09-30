@@ -13,6 +13,7 @@
       core.autocrlf = "input";
       push.autoSetupRemote = true;
       gpg.format = "ssh";
+      commit.gpgsign = true;
 
       alias = {
         lg = "log --oneline --graph --decorate";
@@ -26,18 +27,15 @@
 
     includes = [
       {
-        contents = {
-          user = {
-            name = "jblik";
-            email = "jblik@noreply.codeberg.org";
-          };
-          commit.gpgsign = true; # todo: can setup everywhere and then put global
-          user.signingKey = "${user.ssh."codeberg.org".IdentityFile}.pub";
+        contents.user = {
+          name = "jblik";
+          email = "jblik@noreply.codeberg.org";
+          signingKey = "${user.ssh."codeberg.org".IdentityFile}.pub";
         };
         condition = "hasconfig:remote.*.url:ssh://git@codeberg.org/**";
       }
     ]
-    ++ import ./${user.profile}/gitIncludeIf.nix user;
+    ++ import ./${user.profile}/git-include-if.nix user;
 
     ignores = [
       ".DS_Store"
