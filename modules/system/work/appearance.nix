@@ -52,8 +52,5 @@
     tilesize = 62;
   };
 
-  system.loginwindow = {
-    GuestEnabled = false;
-    LoginwindowText = "This is not the account you are looking for...";
-  };
+  system.defaults.loginwindow.LoginwindowText = "This is not the account you are looking for...";
 }
