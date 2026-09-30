@@ -48,5 +48,7 @@
     };
 
     menuExtraClock.IsAnalog = true;
+
+    WindowManager.EnableStandardClickToShowDesktop = false;
   };
 }
