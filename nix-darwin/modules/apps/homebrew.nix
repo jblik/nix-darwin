@@ -25,8 +25,8 @@
       "timescale/tap/timescaledb"           # TimescaleDB extension for PostgreSQL optimized for time-series workloads.
     ];
     casks = [
-        "sublime-text"
         "ghostty"
+        "sublime-text"
     ];
     # mac app store:
     # mas search "<app name>"
