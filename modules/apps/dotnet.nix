@@ -1,5 +1,8 @@
-{ follows }:
-with follows;
+{
+  buildDotnetGlobalTool,
+  dotnetCorePackages,
+  lib,
+}:
 with dotnetCorePackages;
 {
   nuke = buildDotnetGlobalTool {
