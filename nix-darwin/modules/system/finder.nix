@@ -12,6 +12,7 @@
         ShowRemovableMediaOnDesktop = true;
     };
 
+#todo is this needed
 #    system.defaults.NSGlobalDomain = {
 #        AppleShowAllExtensions = true;
 #        AppleShowAllFiles = true;
