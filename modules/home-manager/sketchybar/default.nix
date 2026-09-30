@@ -7,6 +7,7 @@ let
     ./items/bar.nix
     ./items/apple.nix
     ./items/clock.nix
+    ./items/front-app-menus.nix
     ./items/spaces.nix
   ];
 

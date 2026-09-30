@@ -34,5 +34,6 @@
   bar = {
     width = 50;
     maxWorkspaceIcons = 10;
+    maxAppMenus = 12;
   };
 }
