@@ -16,7 +16,7 @@
       ./karabiner.nix
       ./p10k.nix
       ./rectangle.nix
-      ./sketchybar.nix
+      ./sketchybar
       ./ssh.nix
       ./sublime.nix
       ./zsh.nix
