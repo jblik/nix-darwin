@@ -18,6 +18,7 @@
       brews = [ ];
       taps = [ ];
       casks = [
+      "docker-desktop"
         "karabiner-elements"
         "ghostty"
         "monitorcontrol"
