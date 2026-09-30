@@ -53,6 +53,7 @@
       tilesize = 62;
     };
 
+# todo: consolidate equal ones in a base appearance
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
       AppleIconAppearanceTheme = "RegularDark";
@@ -60,6 +61,7 @@
       AppleMeasurementUnits = "Centimeters";
       AppleTemperatureUnit = "Celsius";
       AppleICUForce24HourTime = true;
+      NSStatusItemSelectionPadding = 0;
     };
 
     loginwindow = {
