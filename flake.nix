@@ -58,7 +58,7 @@
             baseConfiguration
 
             ./modules
-            { updateHomebrew.enable = updateHomebrew; }
+            { updateHomebrew.enable = updateHomebrew;profile = "personal"; }
             
             ./modules/personal
 
@@ -88,7 +88,7 @@
                     baseConfiguration
         
                     ./modules
-                    { updateHomebrew.enable = updateHomebrew; }
+                    { updateHomebrew.enable = updateHomebrew; profile = "work"; }
                     
                     ./modules/work
         
@@ -111,10 +111,10 @@
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
       # personal
-      darwinConfigurations."work" = mkDarwinSystem { updateHomebrew = false; };
-      darwinConfigurations."work" = mkDarwinSystem { updateHomebrew = true; };
+      darwinConfigurations."personal" = darwinSystemPersonal { updateHomebrew = false; };
+      darwinConfigurations."personal-updatehomebrew" = darwinSystemPersonal { updateHomebrew = true; profile = "personal"; };
       # work
-      darwinConfigurations."work" = mkDarwinSystem { updateHomebrew = false; };
-      darwinConfigurations."work-updatehomebrew" = mkDarwinSystem { updateHomebrew = true; };
+      darwinConfigurations."work" = darwinSystemWork { updateHomebrew = false; };
+      darwinConfigurations."work-updatehomebrew" = darwinSystemWork { updateHomebrew = true; profile = "work"; };
     };
 }
