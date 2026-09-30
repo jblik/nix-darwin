@@ -2,14 +2,17 @@
   description = "My nix-darwin system flake";
 
   inputs = {
-    # nix
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    nix-darwin = {
+        url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    
-    # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -26,12 +29,6 @@
     homebrew-argoproj = {
       url = "github:argoproj/homebrew-tap";
       flake = false;
-    };
-    
-    # todo use home manager
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -75,41 +72,42 @@
         inherit username pkgs-unstable;
       };
       modules = [ 
-          configuration # todo pass the primaryUser to the configuration instead of defining it in there
-          ./modules/default.nix
-          inputs.nix-homebrew.darwinModules.nix-homebrew 
+        configuration # todo pass the primaryUser to the configuration instead of defining it in there
+        ./modules/default.nix
+        home-manager.darwinModules.home-manager 
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.verbose = true;
+          
+          home-manager.users.${username} = { pkgs, lib, ... }:
           {
-            nix-homebrew = {
-              enable = true;
-              enableRosetta = true;
-              user = username;
-              taps = {
-                "homebrew/homebrew-core"   = inputs.homebrew-core;
-                "homebrew/homebrew-cask"   = inputs.homebrew-cask;
-                "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-                "argoproj/homebrew-tap"    = inputs.homebrew-argoproj;
-              };
-              autoMigrate = true;
-              mutableTaps = true; # set to false if you want to disable brew tap
+            programs.home-manager.enable = true;
+            home.stateVersion = "25.11";
+            home.username = username;
+            home.homeDirectory = lib.mkForce "/Users/${username}";
+            programs.zsh.enable  = true;
+            imports = [
+              ./modules/home-manager/default.nix
+            ];
+          };
+        }
+        inputs.nix-homebrew.darwinModules.nix-homebrew 
+        {
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+            user = username;
+            taps = {
+              "homebrew/homebrew-core"   = inputs.homebrew-core;
+              "homebrew/homebrew-cask"   = inputs.homebrew-cask;
+              "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+              "argoproj/homebrew-tap"    = inputs.homebrew-argoproj;
             };
-          }
-          home-manager.darwinModules.home-manager {
-             home-manager.useGlobalPkgs = true;
-             home-manager.useUserPackages = true;
-             home-manager.verbose = true;
-            
-             home-manager.users.${username} = { pkgs, lib, ... }:
-             {
-               programs.home-manager.enable = true;
-               home.stateVersion = "25.11";
-               home.username = username;
-               home.homeDirectory = lib.mkForce "/Users/${username}";
-               programs.zsh.enable  = true;
-               imports = [
-                 ./modules/home-manager/default.nix
-               ];
-             };
-          }
+            autoMigrate = true;
+            mutableTaps = true; # set to false if you want to disable brew tap
+          };
+        }
       ];
     };
   };
