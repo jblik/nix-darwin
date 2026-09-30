@@ -23,8 +23,6 @@
       pkgs.meslo-lgs-nf # font for powerlevel10k
       pkgs.nmap # network discovery tool
       pkgs.nodejs_24
-      pkgs.ollama # local llms
-      pkgs.opencode # local agent
       pkgs.openssh # ssh tool
       pkgs.opentofu # open source fork of terraform
       pkgs.ripgrep # faster grep
@@ -35,6 +33,8 @@
     ++ [
       pkgs-unstable.helmfile #
       pkgs-unstable.k9s # kubernetes cluster manager
+      pkgs-unstable.ollama # local llms
+      pkgs-unstable.opencode # local agent
       pkgs-unstable.terraform # tool for building, changing, and versioning infrastructure
       pkgs-unstable.vault # hcp tool for managing secrets
     ];
