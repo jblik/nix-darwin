@@ -25,7 +25,7 @@
     for ext in .txt .md .json .yaml .yml .toml .ini .cfg .log .csv \
                .js .ts .tsx .fs .sh .zsh .bash .c .h .cpp \
                .xml .sql public.plain-text; do
-      run ${lib.getExe pkgs.duti} -s com.sublimetext.4 $ext all
+      run ${lib.getExe pkgs.duti} -s com.sublimetext.4 $ext all || echo "warning: duti failed for $ext" >&2
     done
   '';
 }
