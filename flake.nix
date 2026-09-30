@@ -65,7 +65,10 @@
                 extraSpecialArgs = {
                   user = users.${profile};
                 };
-                users = import ./modules/home-manager { inherit users; };
+                users = import ./modules/home-manager {
+                  user = users.${profile};
+                  lib = nixpkgs.lib;
+                };
               };
             }
           ];
