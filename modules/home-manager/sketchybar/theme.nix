@@ -78,6 +78,16 @@
     popupYOffsetLeft = 0;
     popupYOffsetMetricsLeft = -180;
     maxWorkspaceIcons = 10;
+    # Horizontal (top/menu-bar) layout only: the total number of app icons the
+    # workspace strip is allowed to show at once, matching the widest strip that
+    # still fits (see max-amount-right-icons.png in the repo root). Once the
+    # workspaces together hold more icons than this, every workspace but the
+    # focused one collapses its icons away.
+    maxRowAppIcons = 7;
+    # Easing curve and duration (frames at 60fps) of the collapse/reveal
+    # animation of the workspace app icons.
+    appIconAnimationCurve = "sin";
+    appIconAnimationFrames = 18;
     maxAppMenus = 12;
   };
 }

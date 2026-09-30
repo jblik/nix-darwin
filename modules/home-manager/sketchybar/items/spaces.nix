@@ -3,6 +3,12 @@ let
   aerospace = lib.getExe pkgs.aerospace;
   barMode = import ../helpers/bar-mode.nix { inherit pkgs lib; };
   maxIcons = theme.bar.maxWorkspaceIcons;
+  maxRowIcons = theme.bar.maxRowAppIcons;
+
+  # Padding an app icon has once it is revealed; collapsing animates all of
+  # these (and the label width) down to zero so a hidden icon takes no space.
+  iconLabelPadding = 5;
+  iconItemPadding = 3;
 
   highlightFocusedWorkspace = pkgs.writeShellScript "sketchybar-workspace-highlight.sh" ''
     if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
@@ -18,8 +24,66 @@ let
     mode=$(${barMode})
     focused=$(${aerospace} list-workspaces --focused)
 
+    anim=(--animate ${theme.bar.appIconAnimationCurve} ${toString theme.bar.appIconAnimationFrames})
+
+    # A revealed icon gets its natural (dynamic) label width back. A collapsed
+    # one keeps drawing in the horizontal layout -- at zero width and zero
+    # padding, so it is invisible and takes no room -- which is what lets the
+    # transition animate instead of popping. The vertical layout has no icon
+    # budget, so there unused slots are simply not drawn.
+    shown=(drawing=on label.drawing=on label.width=dynamic
+      label.padding_left=${toString iconLabelPadding}
+      label.padding_right=${toString iconLabelPadding}
+      background.padding_left=${toString iconItemPadding}
+      background.padding_right=${toString iconItemPadding})
+
+    if [ "$mode" = top ]; then
+      hidden=(drawing=on label.drawing=on label.width=0
+        label.padding_left=0 label.padding_right=0
+        background.padding_left=0 background.padding_right=0)
+    else
+      hidden=(drawing=off label.drawing=off)
+    fi
+
+    # --- collect the windows of every workspace ----------------------------
+    sids=()
+    workspace_apps=()
+    total=0
+
     for sid in $(${aerospace} list-workspaces --all); do
       apps=$(${aerospace} list-windows --workspace "$sid" --format '%{app-name}')
+
+      count=0
+      if [ -n "$apps" ]; then
+        count=$(printf '%s\n' "$apps" | grep -c .)
+        [ "$count" -gt ${toString maxIcons} ] && count=${toString maxIcons}
+      fi
+
+      sids+=("$sid")
+      workspace_apps+=("$apps")
+      total=$((total + count))
+    done
+
+    # Past the icon budget only the focused workspace keeps its icons, so the
+    # strip can never grow wider than ${toString maxRowIcons} icons.
+    collapse=0
+    if [ "$mode" = top ] && [ "$total" -gt ${toString maxRowIcons} ]; then
+      collapse=1
+    fi
+
+    # --- apply -------------------------------------------------------------
+    for idx in "''${!sids[@]}"; do
+      sid="''${sids[idx]}"
+      apps="''${workspace_apps[idx]}"
+
+      limit=${toString maxIcons}
+      if [ "$collapse" = 1 ]; then
+        if [ "$sid" = "$focused" ]; then
+          limit=${toString maxRowIcons}
+        else
+          limit=0
+        fi
+      fi
 
       args=()
       i=1
@@ -27,13 +91,19 @@ let
         while IFS= read -r app; do
           [ "$i" -gt ${toString maxIcons} ] && break
           __icon_map "$app"
-          args+=(--set "space.$sid.icon.$i" label="$icon_result" label.drawing=on drawing=on)
+          # The label stays set on collapsed icons so reopening only has to
+          # animate the width back out.
+          if [ "$i" -le "$limit" ]; then
+            args+=("''${anim[@]}" --set "space.$sid.icon.$i" label="$icon_result" "''${shown[@]}")
+          else
+            args+=("''${anim[@]}" --set "space.$sid.icon.$i" label="$icon_result" "''${hidden[@]}")
+          fi
           i=$((i + 1))
         done <<< "$apps"
       fi
 
       while [ "$i" -le ${toString maxIcons} ]; do
-        args+=(--set "space.$sid.icon.$i" drawing=off label.drawing=off)
+        args+=("''${anim[@]}" --set "space.$sid.icon.$i" label="" "''${hidden[@]}")
         i=$((i + 1))
       done
 
@@ -82,6 +152,9 @@ in
           click_script="${aerospace} workspace $sid" \
           script="${highlightFocusedWorkspace} $sid"
 
+      # App icons start collapsed (zero width, no padding) so the first update
+      # animates them open. `scroll_texts` clips the glyph to the animated label
+      # width instead of letting it spill over the neighbouring items.
       for i in $(seq 1 ${toString maxIcons}); do
         ${sbar} --add item space.$sid.icon.$i center \
           --subscribe "space.$sid" aerospace_workspace_change \
@@ -89,10 +162,14 @@ in
             icon.drawing=off \
             label.font="${theme.fonts.appIcons}:Regular:16.0" \
             label.color=${theme.colors.white} \
-            label.padding_left=5 \
-            label.padding_right=5 \
+            label.width=0 \
+            label.padding_left=0 \
+            label.padding_right=0 \
             background.drawing=off \
-            drawing=off \
+            background.padding_left=0 \
+            background.padding_right=0 \
+            scroll_texts=on \
+            drawing=on \
             click_script="${aerospace} workspace $sid"
       done
     done
