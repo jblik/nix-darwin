@@ -85,7 +85,7 @@ in
         icon.font="${theme.fonts.text}:Bold:13.0" \
         icon.color=${theme.colors.green} \
         icon.padding_left=10 \
-        icon.padding_right=10 \
+        icon.padding_right=100 \
         label.drawing=off
 
     ${row "battery.charge"}
