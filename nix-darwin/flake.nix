@@ -119,10 +119,10 @@
     # $ sudo darwin-rebuild switch --flake .#jsteenblik // apply
     # $ darwin-rebuild check // to check without applying 
     darwinConfigurations.jsteenblik = myDarwinConfiguration {
-     homebrewUpgrade = true;
+     homebrewUpdate = false;
    };
     darwinConfigurations.jsteenblik-updatehomebrew = myDarwinConfiguration {
-     homebrewUpgrade = true;
+     homebrewUpdate = true;
    };
   };
 }
