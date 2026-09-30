@@ -24,6 +24,7 @@ in
       "/System/Applications/iPhone Mirroring.app"
     ];
     persistent-others = [
+      { folder = { path = "${homeDirectory}/Documents/Screenshots"; arrangement = "date-added"; showas = "fan"; }; }
       { folder = { path = "${homeDirectory}/Downloads"; arrangement = "date-added"; showas = "fan"; }; }
       # "${homeDirectory}/Applications/Home Manager Apps"
     ];
