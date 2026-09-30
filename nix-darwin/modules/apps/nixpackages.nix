@@ -11,6 +11,7 @@
     pkgs.karabiner-elements # key remapping software
     pkgs.kubernetes-helm    # package manager for kubernetes
     pkgs.monitorcontrol     # for adjusting brightness of external monitors
+    pkgs.openssh
     pkgs.opentofu           # open source fork of terraform
     pkgs.stats              # show various mac-os stats
     pkgs.terraform          # tool for building, changing, and versioning infrastructure
