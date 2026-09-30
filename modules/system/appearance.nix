@@ -21,7 +21,7 @@
           };
         }
         "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
-        "/System/Applications/Microsoft Teams.app.app"
+        "/Applications/Microsoft Teams.app.app"
         "/System/Applications/System Settings.app"
         "/System/Applications/Utilities/Activity Monitor.app"
         "/System/Applications/iPhone Mirroring.app"
