@@ -14,8 +14,7 @@
       KeepAlive = false;
       ProgramArguments = [
         "/usr/bin/open"
-        "-a"
-        "Stats"
+        "${pkgs.stats}/Applications/Stats.app"
       ];
     };
   };
