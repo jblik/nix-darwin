@@ -9,9 +9,7 @@
     pkgs.ansible # configuration management tool
     pkgs.coreutils # gnu core utils
     pkgs-unstable.docker # docker
-    pkgs-unstable.dotnet-aspnetcore_8
-    pkgs-unstable.dotnet-aspnetcore_9
-    pkgs-unstable.dotnet-aspnetcore_10
+    # todo: https://nixos.org/manual/nixpkgs/unstable/index.html#using-many-sdks-in-a-workflow
     pkgs.duti # tool to set default apps
     pkgs.fzf # fuzzy finder
     pkgs-unstable.helmfile
