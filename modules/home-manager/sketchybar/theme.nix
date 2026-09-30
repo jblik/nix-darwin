@@ -24,6 +24,11 @@
     preferences = "";
     activity = "";
     lock = "";
+    ram = "";
+    cpu = "";
+    gpu = "󰢮";
+    wifi = "";
+    battery = "";
   };
 
   bar = {

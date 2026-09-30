@@ -3,12 +3,24 @@ let
   theme = import ./theme.nix;
   sbar = lib.getExe pkgs.sketchybar;
 
-  itemFiles = [
+  topAnchoredItems = [
     ./items/bar.nix
     ./items/apple.nix
     ./items/clock.nix
     ./items/spaces.nix
   ];
+
+  bottomAnchoredItemsTopToBottom = [
+    ./items/ram.nix
+    ./items/cpu.nix
+    ./items/gpu.nix
+    ./items/network.nix
+    ./items/battery.nix
+  ];
+
+  bottomAnchoredItemsInAddOrder = lib.reverseList bottomAnchoredItemsTopToBottom;
+
+  itemFiles = topAnchoredItems ++ bottomAnchoredItemsInAddOrder;
 
   items = map (file: import file { inherit pkgs lib theme sbar; }) itemFiles;
 
