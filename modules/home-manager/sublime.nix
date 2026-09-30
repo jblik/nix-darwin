@@ -1,4 +1,9 @@
 {
+  lib,
+  pkgs,
+  ...
+}:
+{
   home.file."Library/Application Support/Sublime Text/Packages/User/Default (OSX).sublime-keymap".text =
     ''
       [
@@ -13,4 +18,14 @@
         { "keys": ["super+shift+w"], "command": "soft_undo" }
       ]
     '';
+
+  home.activation.setDefaultApps = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    echo "setting default apps with duti..."
+
+    for ext in .txt .md .json .yaml .yml .toml .ini .cfg .log .csv \
+               .js .ts .tsx .fs .sh .zsh .bash .c .h .cpp \
+               .xml .sql public.plain-text; do
+      run ${lib.getExe pkgs.duti} -s com.sublimetext.4 $ext all
+    done
+  '';
 }
