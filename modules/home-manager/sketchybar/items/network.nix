@@ -1,4 +1,9 @@
-{ pkgs, theme, sbar, ... }:
+{
+  pkgs,
+  theme,
+  sbar,
+  ...
+}:
 let
   mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
 
@@ -54,13 +59,31 @@ in
         icon.color=${theme.colors.blue} \
         label.drawing=off
 
-    ${mkRow { name = "wifi.state"; parent = "wifi"; width = 220; }}
+    ${mkRow {
+      name = "wifi.state";
+      parent = "wifi";
+      width = 220;
+    }}
     ${sbar} --set wifi.state icon="Status"
-    ${mkRow { name = "wifi.ssid"; parent = "wifi"; width = 220; }}
+    ${mkRow {
+      name = "wifi.ssid";
+      parent = "wifi";
+      width = 220;
+    }}
     ${sbar} --set wifi.ssid icon="SSID"
-    ${mkRow { name = "wifi.ip"; parent = "wifi"; width = 220; labelColor = theme.colors.white; }}
+    ${mkRow {
+      name = "wifi.ip";
+      parent = "wifi";
+      width = 220;
+      labelColor = theme.colors.white;
+    }}
     ${sbar} --set wifi.ip icon="IP"
-    ${mkRow { name = "wifi.router"; parent = "wifi"; width = 220; labelColor = theme.colors.white; }}
+    ${mkRow {
+      name = "wifi.router";
+      parent = "wifi";
+      width = 220;
+      labelColor = theme.colors.white;
+    }}
     ${sbar} --set wifi.router icon="Router"
   '';
 

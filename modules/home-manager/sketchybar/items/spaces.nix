@@ -1,4 +1,10 @@
-{ pkgs, lib, theme, sbar, ... }:
+{
+  pkgs,
+  lib,
+  theme,
+  sbar,
+  ...
+}:
 let
   aerospace = lib.getExe pkgs.aerospace;
   barMode = import ../helpers/bar-mode.nix { inherit pkgs lib; };

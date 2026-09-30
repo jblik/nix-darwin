@@ -1,4 +1,9 @@
-{ pkgs, theme, sbar, ... }:
+{
+  pkgs,
+  theme,
+  sbar,
+  ...
+}:
 let
   sparkline = import ../helpers/sparkline.nix { inherit pkgs; };
   mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
@@ -76,16 +81,43 @@ in
         icon.padding_right=10 \
         label.drawing=off
 
-    ${mkRow { name = "ram.used"; parent = "ram"; width = 196; }}
+    ${mkRow {
+      name = "ram.used";
+      parent = "ram";
+      width = 196;
+    }}
     ${sbar} --set ram.used icon="Used"
-    ${mkRow { name = "ram.usedp"; parent = "ram"; width = 196; }}
+    ${mkRow {
+      name = "ram.usedp";
+      parent = "ram";
+      width = 196;
+    }}
     ${sbar} --set ram.usedp icon="Pressure"
-    ${mkRow { name = "ram.swap"; parent = "ram"; width = 196; }}
+    ${mkRow {
+      name = "ram.swap";
+      parent = "ram";
+      width = 196;
+    }}
     ${sbar} --set ram.swap icon="Swap"
 
-    ${mkRow { name = "ram.p1"; parent = "ram"; width = 196; labelColor = theme.colors.white; }}
-    ${mkRow { name = "ram.p2"; parent = "ram"; width = 196; labelColor = theme.colors.white; }}
-    ${mkRow { name = "ram.p3"; parent = "ram"; width = 196; labelColor = theme.colors.white; }}
+    ${mkRow {
+      name = "ram.p1";
+      parent = "ram";
+      width = 196;
+      labelColor = theme.colors.white;
+    }}
+    ${mkRow {
+      name = "ram.p2";
+      parent = "ram";
+      width = 196;
+      labelColor = theme.colors.white;
+    }}
+    ${mkRow {
+      name = "ram.p3";
+      parent = "ram";
+      width = 196;
+      labelColor = theme.colors.white;
+    }}
     ${sbar} --set ram.p1 drawing=off \
             --set ram.p2 drawing=off \
             --set ram.p3 drawing=off

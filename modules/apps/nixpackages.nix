@@ -42,6 +42,8 @@ in
       fzf # fuzzy finder
       inetutils # gnu network utils
       jetbrains-toolbox
+      jj # vcs
+      jjui # ui for vcs
       kubectl # kubernetes cli
       kubectx # kubernetes context tool
       kubernetes-helm # package manager for kubernetes

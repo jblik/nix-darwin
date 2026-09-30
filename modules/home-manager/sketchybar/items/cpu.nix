@@ -1,4 +1,9 @@
-{ pkgs, theme, sbar, ... }:
+{
+  pkgs,
+  theme,
+  sbar,
+  ...
+}:
 let
   sparkline = import ../helpers/sparkline.nix { inherit pkgs; };
   mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
@@ -66,16 +71,43 @@ in
         icon.padding_right=10 \
         label.drawing=off
 
-    ${mkRow { name = "cpu.user"; parent = "cpu"; width = 176; }}
+    ${mkRow {
+      name = "cpu.user";
+      parent = "cpu";
+      width = 176;
+    }}
     ${sbar} --set cpu.user icon="User"
-    ${mkRow { name = "cpu.sys"; parent = "cpu"; width = 176; }}
+    ${mkRow {
+      name = "cpu.sys";
+      parent = "cpu";
+      width = 176;
+    }}
     ${sbar} --set cpu.sys icon="System"
-    ${mkRow { name = "cpu.idle"; parent = "cpu"; width = 176; }}
+    ${mkRow {
+      name = "cpu.idle";
+      parent = "cpu";
+      width = 176;
+    }}
     ${sbar} --set cpu.idle icon="Idle"
 
-    ${mkRow { name = "cpu.p1"; parent = "cpu"; width = 176; labelColor = theme.colors.white; }}
-    ${mkRow { name = "cpu.p2"; parent = "cpu"; width = 176; labelColor = theme.colors.white; }}
-    ${mkRow { name = "cpu.p3"; parent = "cpu"; width = 176; labelColor = theme.colors.white; }}
+    ${mkRow {
+      name = "cpu.p1";
+      parent = "cpu";
+      width = 176;
+      labelColor = theme.colors.white;
+    }}
+    ${mkRow {
+      name = "cpu.p2";
+      parent = "cpu";
+      width = 176;
+      labelColor = theme.colors.white;
+    }}
+    ${mkRow {
+      name = "cpu.p3";
+      parent = "cpu";
+      width = 176;
+      labelColor = theme.colors.white;
+    }}
     ${sbar} --set cpu.p1 drawing=off \
             --set cpu.p2 drawing=off \
             --set cpu.p3 drawing=off
