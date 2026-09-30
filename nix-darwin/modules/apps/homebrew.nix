@@ -1,11 +1,22 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Darwin-level Homebrew configuration
+  # options = {
+  #   homebrew-update.enable = lib.mkEnableOption "enable homebrew updating";
+  # };
+  # config = lib.mkIf config.homebrew-update.enable {
+  #   homebrew.onActivation = {
+  #       autoUpdate = true;
+  #       upgrade = true;
+  #   };
+  # };
+  
   homebrew = {
     enable = true;
     taps = builtins.attrNames config.nix-homebrew.taps;
-    onActivation.cleanup = "uninstall";
+    onActivation = {
+        cleanup = "uninstall";
+    };
 
     brews = [
         # these need to be removed, this is to keep my current mac working
