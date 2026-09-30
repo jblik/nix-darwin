@@ -1,11 +1,7 @@
-# configuration
-Configuration files for various services I use.
-
-mostly nix-darwin setup
-## nix-darwin setup
+# nix-darwin flake
 ### first run on computer
 - [install nix](https://lix.systems/install/#on-any-other-linuxmacos-system) (this is the lix installer but it's recommended by nix as it has an uninstaller) 
-- `cd ~/repo/nix-darwin && sudo darwin-rebuild switch --flake .#jsteenblik`
+- `cd ~/nix-darwin && sudo darwin-rebuild switch --flake .#jsteenblik`
 ### once it's installed
 from any path you can run:
 - `nix-rebuild` which will rebuild configuration (darwin-rebuild switch)
