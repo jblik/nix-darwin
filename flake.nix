@@ -49,6 +49,7 @@
       darwinSystemPersonal =
         {
           updateHomebrew ? false,
+          profile,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
@@ -82,6 +83,7 @@
       darwinSystemWork =
         {
           updateHomebrew ? false,
+          profile,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
