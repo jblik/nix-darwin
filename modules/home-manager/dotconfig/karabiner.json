@@ -5,6 +5,36 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "left alt to shift (RuneLite, Go60)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "net.runelite.launcher"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 10203,
+                                                "vendor_id": 5824
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_shift" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Change right_control+yuio to home, pgup, pgdown, end on keychron",
                         "manipulators": [
                             {
@@ -401,6 +431,15 @@
                         "is_pointing_device": true,
                         "product_id": 45108,
                         "vendor_id": 1133
+                    },
+                    "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 10203,
+                        "vendor_id": 5824
                     },
                     "ignore": false
                 }
