@@ -9,12 +9,13 @@ let
     dotnetCorePackages = pkgs.dotnetCorePackages;
     lib = pkgs.lib;
   };
+  starwars-jetbrains-mono = pkgs.callPackage ./starwars-jetbrains-mono.nix { };
 in
 {
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
+    starwars-jetbrains-mono
     pkgs.sketchybar-app-font
   ];
 
