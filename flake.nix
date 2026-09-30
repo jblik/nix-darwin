@@ -31,80 +31,35 @@
         config.allowUnfree = true;
       };
 
-      users = import ./users.nix; # todo: could extend with different things such as git email etc
+      users = import ./users.nix;
 
-      # todo this is the base configuration and should be moved
-      baseConfiguration =
-        { ... }:
-        {
-          nix.settings.experimental-features = "nix-command flakes";
-          nixpkgs.hostPlatform = system;
-          system = {
-            configurationRevision = self.rev or self.dirtyRev or null;
-            stateVersion = 6;
-          };
-        };
-
-      darwinSystemPersonal =
+      darwinSystem =
         {
           updateHomebrew ? false,
+          profile,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
             inherit pkgs-unstable users;
-            homeDirectory = users.personal.homeDirectory;
-            username = users.personal.username;
-            profile = users.personal.profile;
+            homeDirectory = users.${profile}.homeDirectory;
+            username = users.${profile}.username;
+            profile = users.${profile}.profile;
           };
           modules = [
-            { system.primaryUser = users.personal.username; }
-            baseConfiguration
-
-            ./modules
             {
-              updateHomebrew.enable = updateHomebrew;
-            }
-
-            ./modules/personal
-
-            home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                verbose = true;
-                backupFileExtension = "backup";
-                extraSpecialArgs = {
-                  inherit pkgs-unstable;
-                  profile = users.personal.profile;
-                };
-                users = import ./modules/home-manager { inherit users; };
+              nix.settings.experimental-features = "nix-command flakes";
+              nixpkgs.hostPlatform = system;
+              system = {
+                configurationRevision = self.rev or self.dirtyRev or null;
+                stateVersion = 6;
+                primaryUser = users.${profile}.username;
               };
             }
-          ];
-        };
-
-      darwinSystemWork =
-        {
-          updateHomebrew ? false,
-        }:
-        nix-darwin.lib.darwinSystem {
-          specialArgs = {
-            inherit pkgs-unstable users;
-            homeDirectory = users.work.homeDirectory;
-            username = users.work.username;
-            profile = users.work.profile;
-          };
-          modules = [
-            { system.primaryUser = users.work.username; }
-            baseConfiguration
 
             ./modules
             {
               updateHomebrew.enable = updateHomebrew;
             }
-
-            ./modules/work
 
             home-manager.darwinModules.home-manager
             {
@@ -115,7 +70,7 @@
                 backupFileExtension = "backup";
                 extraSpecialArgs = {
                   inherit pkgs-unstable;
-                  profile = users.work.profile;
+                  profile = users.${profile}.profile;
                 };
                 users = import ./modules/home-manager { inherit users; };
               };
@@ -126,13 +81,21 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-      darwinConfigurations."personal" = darwinSystemPersonal { updateHomebrew = false; };
-      darwinConfigurations."personal-updatehomebrew" = darwinSystemPersonal {
-        updateHomebrew = true;
+      darwinConfigurations."personal" = darwinSystem {
+        updateHomebrew = false;
+        profile = "personal";
       };
-      darwinConfigurations."work" = darwinSystemWork { updateHomebrew = false; };
-      darwinConfigurations."work-updatehomebrew" = darwinSystemWork {
+      darwinConfigurations."personal-updatehomebrew" = darwinSystem {
         updateHomebrew = true;
+        profile = "personal";
+      };
+      darwinConfigurations."work" = darwinSystem {
+        updateHomebrew = false;
+        profile = "work";
+      };
+      darwinConfigurations."work-updatehomebrew" = darwinSystem {
+        updateHomebrew = true;
+        profile = "work";
       };
     };
 }

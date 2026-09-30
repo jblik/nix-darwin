@@ -1,7 +1,6 @@
 { ... }:
 
 {
-  # todo: https://seansantry.com/development/2022/12/14/split-git-nix/
   programs.git = {
     enable = true;
     settings = {
