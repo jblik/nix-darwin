@@ -1,5 +1,7 @@
 { pkgs, sbar, theme, ... }:
 let
+  mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
+
   updateBattery = pkgs.writeShellScript "sketchybar-battery.sh" ''
     info=$(pmset -g batt)
     percent=$(echo "$info" | grep -Eo '[0-9]+%' | head -1 | tr -d '%')
@@ -94,19 +96,6 @@ let
             --set battery.time   label="$remaining" \
             --set battery.health label="''${health:-?}"
   '';
-
-  row = name: ''
-    ${sbar} --add item ${name} popup.battery \
-      --set ${name} \
-        width=190 \
-        icon.font="${theme.fonts.text}:Semibold:12.0" \
-        icon.color=${theme.colors.white} \
-        icon.align=left \
-        label.font="${theme.fonts.text}:Semibold:12.0" \
-        label.color=${theme.colors.lavender} \
-        label.align=right
-
-  '';
 in
 {
   config = ''
@@ -118,7 +107,7 @@ in
         update_freq=30 \
         background.padding_right=15 \
         script="${updateBattery}" \
-        click_script="${batteryDetail}; ${sbar} --set battery popup.drawing=toggle popup.y_offset=-240" \
+        click_script="${batteryDetail}; ${sbar} --set battery popup.drawing=toggle" \
       --subscribe battery power_source_change system_woke
 
     ${sbar} --add item battery.header popup.battery \
@@ -128,13 +117,13 @@ in
         icon.color=${theme.colors.green} \
         label.drawing=off
 
-    ${row "battery.charge"}
+    ${mkRow { name = "battery.charge"; parent = "battery"; width = 190; }}
     ${sbar} --set battery.charge icon="Charge"
-    ${row "battery.status"}
+    ${mkRow { name = "battery.status"; parent = "battery"; width = 190; }}
     ${sbar} --set battery.status icon="Status"
-    ${row "battery.time"}
+    ${mkRow { name = "battery.time"; parent = "battery"; width = 190; }}
     ${sbar} --set battery.time icon="Time"
-    ${row "battery.health"}
+    ${mkRow { name = "battery.health"; parent = "battery"; width = 190; }}
     ${sbar} --set battery.health icon="Health"
   '';
 

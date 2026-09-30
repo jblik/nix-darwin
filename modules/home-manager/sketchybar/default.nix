@@ -5,7 +5,7 @@ let
 
   topAnchoredItems = [
     ./items/bar.nix
-    ./items/bar-position.nix
+    ./items/layout.nix
     ./items/apple.nix
     ./items/clock.nix
     ./items/front-app-menus.nix
@@ -16,9 +16,9 @@ let
   bottomAnchoredItemsBottomToTop = [
     ./items/battery.nix
     ./items/network.nix
-#    ./items/cpu.nix
-#    ./items/ram.nix
-#    ./items/gpu.nix
+    ./items/cpu.nix
+    ./items/ram.nix
+    ./items/gpu.nix
   ];
 
   itemFiles = topAnchoredItems ++ centerAnchoredItems ++ bottomAnchoredItemsBottomToTop;

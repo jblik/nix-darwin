@@ -1,5 +1,7 @@
 { pkgs, theme, sbar, ... }:
 let
+  mkRow = import ../helpers/popup-row.nix { inherit sbar theme; };
+
   updateNetwork = pkgs.writeShellScript "sketchybar-network.sh" ''
     device=$(networksetup -listallhardwareports | awk '/Wi-Fi/ { getline; print $2 }')
     [ -z "$device" ] && device=en0
@@ -31,18 +33,6 @@ let
             --set wifi.ip     label="''${address:-—}" \
             --set wifi.router label="''${router:-—}"
   '';
-
-  row = name: ''
-    ${sbar} --add item ${name} popup.wifi \
-      --set ${name} \
-        width=220 \
-        icon.font="${theme.fonts.text}:Semibold:12.0" \
-        icon.color=${theme.colors.white} \
-        icon.align=left \
-        label.font="${theme.fonts.text}:Semibold:12.0" \
-        label.color=${theme.colors.lavender} \
-        label.align=right
-  '';
 in
 {
   config = ''
@@ -54,9 +44,7 @@ in
         update_freq=30 \
         script="${updateNetwork}" \
         background.padding_right=15 \
-        click_script="${networkDetail};
-
-    ${sbar} --set wifi popup.drawing=toggle popup.y_offset=-240" \
+        click_script="${networkDetail}; ${sbar} --set wifi popup.drawing=toggle" \
       --subscribe wifi wifi_change system_woke
 
     ${sbar} --add item wifi.header popup.wifi \
@@ -66,14 +54,14 @@ in
         icon.color=${theme.colors.blue} \
         label.drawing=off
 
-    ${row "wifi.state"}
+    ${mkRow { name = "wifi.state"; parent = "wifi"; width = 220; }}
     ${sbar} --set wifi.state icon="Status"
-    ${row "wifi.ssid"}
+    ${mkRow { name = "wifi.ssid"; parent = "wifi"; width = 220; }}
     ${sbar} --set wifi.ssid icon="SSID"
-    ${row "wifi.ip"}
-    ${sbar} --set wifi.ip icon="IP" label.color=${theme.colors.white}
-    ${row "wifi.router"}
-    ${sbar} --set wifi.router icon="Router" label.color=${theme.colors.white}
+    ${mkRow { name = "wifi.ip"; parent = "wifi"; width = 220; labelColor = theme.colors.white; }}
+    ${sbar} --set wifi.ip icon="IP"
+    ${mkRow { name = "wifi.router"; parent = "wifi"; width = 220; labelColor = theme.colors.white; }}
+    ${sbar} --set wifi.router icon="Router"
   '';
 
   init = "${updateNetwork}";
