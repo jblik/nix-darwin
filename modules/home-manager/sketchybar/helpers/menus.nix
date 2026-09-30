@@ -1,15 +1,9 @@
 { pkgs }:
-let
-  rev = "67ad686ea6d4c29ccd54fdaa42cdf35f37a7219c";
-in
 pkgs.stdenv.mkDerivation {
   pname = "sketchybar-menus";
   version = "0-unstable-2024-05-01";
 
-  src = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/FelixKratz/dotfiles/${rev}/.config/sketchybar/helpers/menus/menus.c";
-    hash = "sha256-2irDrD75TZaQHPvRSPNm0tzsM5yppYazFrv/sTpIPgQ=";
-  };
+  src = ./menus.c;
 
   dontUnpack = true;
 
