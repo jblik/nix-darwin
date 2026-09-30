@@ -40,25 +40,25 @@
     activationScripts.postActivation.text = ''
       echo "adding additional keyboard settings defined in keyboard.nix..."
       # resets manually defined keyboard shortcuts (settings/keyboard shortcuts/all applications)
-      sudo -u ${users.personal.username} defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
-      sudo -u ${users.personal.username} defaults delete /${users.personal.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents 2>/dev/null || true
+      sudo -u ${users.work.username} defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
+      sudo -u ${users.work.username} defaults delete /${users.work.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents 2>/dev/null || true
 
       # see the above issues as to why these aren't declared in the CustomUserPreferences block:
-      sudo -u ${users.personal.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to SAMSUNG" '@~^\U2192'
-      sudo -u ${users.personal.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to Built-in Retina Display" '@~^\U2192'
-      sudo -u ${users.personal.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to E241N" '@~^\U2190'
-      sudo -u ${users.personal.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to S34C65xV" '@~^\U2190'
+      sudo -u ${users.work.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to SAMSUNG" '@~^\U2192'
+      sudo -u ${users.work.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to Built-in Retina Display" '@~^\U2192'
+      sudo -u ${users.work.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to E241N" '@~^\U2190'
+      sudo -u ${users.work.username} defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move to S34C65xV" '@~^\U2190'
 
       # Safari is sandboxed and ignores NSGlobalDomain
-      sudo -u ${users.personal.username} defaults write /${users.personal.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Fill" '@^f'
-      sudo -u ${users.personal.username} defaults write /${users.personal.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Full Screen" '@^$f'
-      sudo -u ${users.personal.username} defaults write /${users.personal.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Enter Full Screen" '@^$f'
-      sudo -u ${users.personal.username} defaults write /${users.personal.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Toggle Full Screen" '@^$f'
-      sudo -u ${users.personal.username} defaults write /${users.personal.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Show Web Inspector" '\\Uf70f'
-      sudo -u ${users.personal.username} defaults write /${users.personal.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Close Web Inspector" '\\Uf70f'
+      sudo -u ${users.work.username} defaults write /${users.work.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Fill" '@^f'
+      sudo -u ${users.work.username} defaults write /${users.work.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Full Screen" '@^$f'
+      sudo -u ${users.work.username} defaults write /${users.work.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Enter Full Screen" '@^$f'
+      sudo -u ${users.work.username} defaults write /${users.work.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Toggle Full Screen" '@^$f'
+      sudo -u ${users.work.username} defaults write /${users.work.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Show Web Inspector" '\\Uf70f'
+      sudo -u ${users.work.username} defaults write /${users.work.homeDirectory}/Library/Preferences/com.apple.Safari.plist NSUserKeyEquivalents -dict-add "Close Web Inspector" '\\Uf70f'
 
       # Following line should allow us to avoid a logout/login cycle when changing settings
-      sudo -u ${users.personal.username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+      sudo -u ${users.work.username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
   };
 }
