@@ -6,8 +6,8 @@ let
   itemFiles = [
     ./items/bar.nix
     ./items/apple.nix
+    ./items/clock.nix
     ./items/spaces.nix
-    ./items/calendar.nix
   ];
 
   items = map (file: import file { inherit pkgs lib theme sbar; }) itemFiles;
