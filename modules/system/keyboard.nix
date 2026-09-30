@@ -12,6 +12,7 @@
         NSAutomaticInlinePredictionEnabled = false;
         NSAutomaticPeriodSubstitutionEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = false;
+        AppleKeyboardUIMode = 2; # enable keyboard navigation
     };
 
      # deletes all CUSTOM keyboard shortcuts for all apps (settings/keyboard shortcuts/all applications)
@@ -27,8 +28,8 @@
                "Move to Built-in Retina Display" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow (left arrow seems to be '\') todo not working
                "Move to E241N" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
                "Move to S34C65xV" = ''@~^\\U2190''; # Cmd+Alt+Ctrl+Left Arrow
-               "Fill" = ''@^F''; #Cmd+Ctrl+F
-               "Full Screen" = ''@^$F''; #Cmd+Ctrl+Shift+F
+               "Fill" = ''@^f''; #Cmd+Ctrl+F
+               "Full Screen" = ''@^$f''; #Cmd+Ctrl+Shift+F
            };
         };
         pbs = {
