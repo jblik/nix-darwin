@@ -101,7 +101,7 @@ let
         width=190 \
         icon.font="${theme.fonts.text}:Semibold:12.0" \
         icon.color=${theme.colors.white} \
-        icon.padding_left=15 \
+        icon.padding_left=10 \
         icon.align=left \
         label.font="${theme.fonts.text}:Semibold:12.0" \
         label.color=${theme.colors.lavender} \
@@ -119,7 +119,7 @@ in
         icon.padding_left=6 \
         icon.padding_right=3 \
         label.font="${theme.fonts.text}:Semibold:11.0" \
-        label.padding_left=0 \
+        label.padding_left=15 \
         label.padding_right=6 \
         update_freq=30 \
         script="${updateBattery}" \
