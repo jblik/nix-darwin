@@ -119,8 +119,8 @@ in
         icon.padding_left=6 \
         icon.padding_right=3 \
         label.font="${theme.fonts.text}:Semibold:11.0" \
-        label.padding_left=15 \
-        label.padding_right=6 \
+        label.padding_left=0 \
+        label.padding_right=15 \
         update_freq=30 \
         script="${updateBattery}" \
         click_script="${batteryDetail}; ${sbar} --set battery popup.drawing=toggle popup.y_offset=-240" \
