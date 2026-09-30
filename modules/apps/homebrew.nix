@@ -43,8 +43,7 @@
 
     system.activationScripts.postActivation.text = lib.mkIf updateHomebrew ''
       echo >&2 "Upgrading Mac App Store apps (mas upgrade)..."
-      PATH="${config.homebrew.prefix}/bin:${lib.makeBinPath [ pkgs.mas ]}:$PATH" \
-        mas upgrade || echo >&2 "warning: mas upgrade failed (continuing)"
+      ${lib.getExe pkgs.mas} upgrade || echo >&2 "warning: mas upgrade failed (continuing)"
     '';
   };
 }
