@@ -33,16 +33,7 @@
     };
   };
 
-  outputs = inputs@{ 
-    self,
-    nix-darwin,
-    nixpkgs,
-    nix-homebrew,
-    homebrew-core,
-    homebrew-cask,
-    homebrew-bundle,
-    homebrew-argoproj
-  }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-argoproj }:
   # todo can delete this whole block as it'll come from the modules
   let 
   username = "jsteenblik";
