@@ -33,7 +33,7 @@
 
     keybind = global:cmd+ctrl+t=toggle_quick_terminal
     quick-terminal-position = center
-    quick-terminal-size = 25%,520px
+    quick-terminal-size = 25%,500px
   '';
 }
 # make quick term 6 lines taller
