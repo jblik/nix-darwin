@@ -5,8 +5,6 @@
 }:
 let
   flakePath = "/etc/nix-darwin";
-  flakeRef = "${flakePath}#default";
-  flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
   programs.zsh = {
@@ -32,7 +30,7 @@ in
       ktx = "kubectx";
       kns = "kubens";
       tf = "terraform";
-      nix-rebuild = "sudo darwin-rebuild switch --flake ${flakeRef}";
+      nix-rebuild = "sudo darwin-rebuild switch";
     };
 
     siteFunctions = {
@@ -45,7 +43,7 @@ in
           git -C ${flakePath} commit -m "update flake.lock" || return 1
         fi
 
-        sudo darwin-rebuild switch --flake ${flakeUpdateRef}
+        sudo darwin-rebuild switch --flake ${flakePath}#brew-update
       '';
       nix-update-gc = ''
         local days="''${1:-30}"

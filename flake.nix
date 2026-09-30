@@ -29,6 +29,7 @@
         config.allowUnfree = true;
       };
       system = "aarch64-darwin";
+      hostname = "Jacobs-MacBook-Pro";
       users = import ./users.nix;
 
       darwinSystem =
@@ -85,10 +86,10 @@
       #              };
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-      darwinConfigurations."default" = darwinSystem {
+      darwinConfigurations.${hostname} = darwinSystem {
         updateHomebrew = false;
       };
-      darwinConfigurations."default-updatehomebrew" = darwinSystem {
+      darwinConfigurations."brew-update" = darwinSystem {
         updateHomebrew = true;
       };
     };
