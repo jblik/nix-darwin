@@ -7,7 +7,7 @@
     unfocused-split-opacity = 0.5
     background-blur = 5
     background = black
-    foreground = green
+    foreground = gray
     macos-titlebar-style = hidden
 
     shell-integration-features = no-cursor
