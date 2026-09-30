@@ -342,9 +342,9 @@
   # back to POWERLEVEL9K_DIR_FOREGROUND.
   #
      typeset -g POWERLEVEL9K_DIR_CLASSES=(
-       '~/nix-darwin(|/*)'  NIX     ''
-       '~(|/*)'             HOME     ''
-       '*'                  DEFAULT  '')
+       '/etc/nix-darwin(|/*)'         NIX      ''
+       '~(|/*)'                       HOME     ''
+       '*'                            DEFAULT  '')
 
      # Shared NIX styling. Profile-specific directory classes and icons are appended by Home Manager.
      typeset -g POWERLEVEL9K_DIR_NIX_VISUAL_IDENTIFIER_EXPANSION='󱄅'
