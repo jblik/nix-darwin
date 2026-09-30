@@ -30,7 +30,7 @@
         inner.vertical = 10;
         outer.left = 10;
         outer.right = 70;
-        outer.top = 10;
+        outer.top = 5;
         outer.bottom = 10;
       };
 
