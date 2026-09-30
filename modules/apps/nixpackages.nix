@@ -16,7 +16,6 @@
       pkgs.kubernetes-helm # package manager for kubernetes
       pkgs.meslo-lgs-nf # font for powerlevel10k
       pkgs.monitorcontrol # for adjusting brightness of external monitors
-      pkgs.nixfmt # nix formatter
       pkgs.nmap # network discovery tool
       pkgs.openssh # ssh tool
       pkgs.opentofu # open source fork of terraform

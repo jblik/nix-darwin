@@ -130,6 +130,7 @@
 
     in
     {
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
       darwinConfigurations."${username}" = myDarwinConfiguration {
         updateHomebrew = false;
       };
