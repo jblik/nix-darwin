@@ -54,6 +54,14 @@ in
         echo "optimizing Nix store..."
         nix-store --optimise
       '';
+      fzidea = ''
+        local dir
+        dir=$(find ~ -type d -name .git -prune | sed -u 's|/\.git$||' | fzf --query "''${1:-}" --select-1 --exit-0) && idea "$dir"
+      '';
+      fzrider = ''
+        local file
+        file=$(find ~ -type f \( -name "*.sln" -o -name "*.slnx" \) | fzf --query "''${1:-}" --select-1 --exit-0) && rider "$file"
+      '';
     };
 
     initContent = lib.mkBefore ''
