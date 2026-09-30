@@ -17,7 +17,7 @@
   };
 
     # Force macOS to re-read trackpad preferences
-    system.activationScripts.postActivation.text = lib.mkAfter ''
-      /usr/bin/killall cfprefsd 2>/dev/null || true
-    '';
+  system.activationScripts.postActivation.text = lib.mkAfter ''
+    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  '';
 }
