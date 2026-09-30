@@ -38,7 +38,7 @@ in
     pkgs.kubernetes-helm # package manager for kubernetes
     pkgs.nmap # network discovery tool
     pkgs.nodejs_24
-    pkgs-unstable.ollama # local llms
+#    pkgs-unstable.ollama # local llms todo: xcode install MLX Metal!
     pkgs-unstable.opencode # local agent
     pkgs.openssh # ssh tool
     pkgs.opentofu # open source fork of terraform
