@@ -42,8 +42,8 @@
   # can also think about system.defaults.CustomUserPreferences instead
   system.defaults.CustomSystemPreferences = {
     "com.apple.Safari" = {
-      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = ''\\Uf70f''; # f12
       "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = ''\\Uf70f''; # f12
+      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = ''\\Uf70f''; # f12
     };
   };
 
