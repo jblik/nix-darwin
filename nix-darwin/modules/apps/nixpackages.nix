@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -7,8 +7,6 @@
     pkgs.alt-tab-macos      # windows like alt-tab
     pkgs.docker             # docker
     pkgs.ghostty-bin        # terminal emulator
-    pkgs.jetbrains.rider    # c# ide
-    pkgs.jetbrains.pycharm  # python ide
     pkgs.k9s                # kubernetes cluster manager   
     pkgs.karabiner-elements # key remapping software
     pkgs.kubernetes-helm    # package manager for kubernetes
@@ -19,5 +17,8 @@
     pkgs.terraform          # tool for building, changing, and versioning infrastructure
     pkgs.uv                 # python package manager
     pkgs.vault              # tool for managing secrets
+  ] ++ [
+    pkgs-unstable.jetbrains.rider   # c# ide
+    pkgs-unstable.jetbrains.pycharm # python ide
   ];
 }
