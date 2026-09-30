@@ -83,7 +83,7 @@
             inherit pkgs-unstable username homeDirectory;
           };
           modules = [
-            configuration # todo pass the primaryUser to the configuration instead of defining it in there
+            configuration
             ./modules
             {
               updateHomebrew.enable = updateHomebrew;
@@ -131,9 +131,7 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-      darwinConfigurations."${username}" = myDarwinConfiguration {
-        updateHomebrew = false;
-      };
+      darwinConfigurations.${username} = myDarwinConfiguration { updateHomebrew = false; };
       darwinConfigurations."${username}-updatehomebrew" = myDarwinConfiguration {
         updateHomebrew = true;
       };
