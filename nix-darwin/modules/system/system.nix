@@ -1,16 +1,23 @@
+# find these here: https://nix-darwin.github.io/nix-darwin/manual/index.html
 { config, lib, ... }:
 
 { 
   system.defaults.screencapture = {
     location = "~/Documents/Screenshots"; # Set default screenshot location
     # Add more screencapture settings here
-    };
+  };
+
 
   system.defaults.trackpad = {
-    TrackpadThreeFingerDrag = true;
-    FirstClickThreshold = 1;
-    SecondClickThreshold = 1;
-    # Set up your trackpad preferences here
+    ActuationStrength = 0; # haptic feedback
+    Clicking = true; # tap to click
+    FirstClickThreshold = 0;
+    SecondClickThreshold = 0;
+    TrackpadPinch = true;
+    TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
+    TrackpadThreeFingerHorizSwipeGesture = 2;
+    TrackpadThreeFingerTapGesture = 0;
+
   };
 
   system.keyboard = {
@@ -18,6 +25,22 @@
     enableKeyMapping = true; # Enable key mapping
     # Set up your keyboard preferences here
   };
+
+  # check this:
+  # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.defaults.CustomSystemPreferences
+  # can also think about system.defaults.CustomUserPreferences instead
+  system.defaults.CustomSystemPreferences = {
+    "com.apple.Safari" = {
+      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\017";
+      # "com.apple.Safari.NSUserKeyEquivalents.Fill = "@^f";
+      "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\Uf70f";
+    };
+  };
+
+  system.defaults.NSGlobalDomain = {
+    "com.apple.swipescrolldirection" = false;
+    "com.apple.keyboard.fnState" = true; # use f keys as f keys
+  }
 
   # system.defaults.WindowManager.EnableStandardClickToShowDesktop = false; # Disable/Enable standard click to show desktop
   # You can add more Mac defaults here as well...
