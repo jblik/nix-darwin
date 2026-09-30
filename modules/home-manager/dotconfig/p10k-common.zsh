@@ -620,8 +620,10 @@
         remote_url=$(git -C "$VCS_STATUS_WORKDIR" remote get-url upstream 2>/dev/null)
     fi
 
-    if [[ $remote_url == (*forgejo*|*yoda.cloud*) ]]; then
+    if [[ $remote_url == (*forgejo*) ]]; then
       print -n '\uf335'
+    elif [[ $remote_url == *yoda* ]]; then
+      print -n '󱬤'
     elif [[ $remote_url == *gitlab* ]]; then
       print -n '\ue7eb'
     elif [[ $remote_url == *codeberg* ]]; then
