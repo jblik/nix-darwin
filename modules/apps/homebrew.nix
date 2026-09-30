@@ -22,7 +22,6 @@
       };
       brews = [
         "apfel"
-        "gonzo" # k8s log tui
       ];
       taps = [
         "Arthur-Ficial/tap" # for apfel
