@@ -1,12 +1,12 @@
-{ username, ... }:
+{ ... }:
 
 let
   flakePath = "~/nix-darwin";
-  flakeRef = "${flakePath}#${username}";
+  flakeRef = "${flakePath}#jsteenblik";
   flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
-  users.users.${username} = {
+  users.users.jsteenblik = {
     shell = "/bin/zsh";
   };
 

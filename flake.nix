@@ -1,5 +1,5 @@
 {
-  description = "My nix-darwin system flake";
+  description = "Multi-user nix-darwin system flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
@@ -25,44 +25,41 @@
 
     let
       system = "aarch64-darwin";
-      username = "jsteenblik";
-      homeDirectory = "/Users/${username}";
 
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
 
-      configuration =
-        { pkgs, ... }:
+      users = import ./modules/system/users; # todo: should probably not be modules
+
+      # todo this is the base configuration and should be moved
+      baseConfiguration =
+        { ... }:
         {
           nix.settings.experimental-features = "nix-command flakes";
-
+          nixpkgs.hostPlatform = system;
           system = {
             configurationRevision = self.rev or self.dirtyRev or null;
-            # $ darwin-rebuild changelog
             stateVersion = 6;
-            primaryUser = username;
+            primaryUser = users.personal.username;
           };
-
-          # The platform the configuration will be used on.
-          nixpkgs.hostPlatform = system;
         };
 
-      myDarwinConfiguration =
+      mkDarwinSystem =
         {
           updateHomebrew ? false,
         }:
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit pkgs-unstable username homeDirectory;
+            inherit pkgs-unstable users;
           };
           modules = [
-            configuration
+            baseConfiguration
+
             ./modules
-            {
-              updateHomebrew.enable = updateHomebrew;
-            }
+            { updateHomebrew.enable = updateHomebrew; }
+
             home-manager.darwinModules.home-manager
             {
               home-manager = {
@@ -70,17 +67,8 @@
                 useUserPackages = true;
                 verbose = true;
                 backupFileExtension = "backup";
-                users.${username} =
-                  { pkgs, lib, ... }:
-                  {
-                    programs.home-manager.enable = true;
-                    home.stateVersion = "25.11";
-                    home.username = username;
-                    home.homeDirectory = lib.mkForce homeDirectory;
-                    imports = [
-                      ./modules/home-manager
-                    ];
-                  };
+                extraSpecialArgs = { inherit pkgs-unstable; };
+                users = import ./modules/home-manager/users;
               };
             }
           ];
@@ -89,9 +77,7 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-      darwinConfigurations.${username} = myDarwinConfiguration { updateHomebrew = false; };
-      darwinConfigurations."${username}-updatehomebrew" = myDarwinConfiguration {
-        updateHomebrew = true;
-      };
+      darwinConfigurations.jsteenblik = mkDarwinSystem { updateHomebrew = false; };
+      darwinConfigurations."jsteenblik-updatehomebrew" = mkDarwinSystem { updateHomebrew = true; };
     };
 }
