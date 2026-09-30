@@ -52,7 +52,7 @@ in
         echo "removing generations older than ''${days}d..."
         sudo nix-collect-garbage --delete-older-than "''${days}d"
         echo "optimizing Nix store..."
-        sudo nix-store --optimise
+        nix-store --optimise
       '';
     };
 
