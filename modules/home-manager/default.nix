@@ -9,6 +9,10 @@
     home.stateVersion = "25.11";
     home.username = user.username;
     home.homeDirectory = lib.mkForce user.homeDirectory;
+    home.sessionPath = [
+      "${user.homeDirectory}/.local/bin"
+      "${user.homeDirectory}/.dotnet/tools" # todo: could build my global tools in nix as well
+    ];
     imports = [
       ./applications
       ./ghostty.nix
