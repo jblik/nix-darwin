@@ -2,8 +2,8 @@
   description = "My nix-darwin system flake";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,24 +11,6 @@
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
-    homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
-      flake = false;
-    };
-    homebrew-argoproj = {
-      url = "github:argoproj/homebrew-tap";
-      flake = false;
     };
   };
 
@@ -38,11 +20,6 @@
       nix-darwin,
       nixpkgs,
       nixpkgs-unstable,
-      nix-homebrew,
-      homebrew-core,
-      homebrew-cask,
-      homebrew-bundle,
-      homebrew-argoproj,
       home-manager,
     }:
 
@@ -93,34 +70,17 @@
                 useUserPackages = true;
                 verbose = true;
                 backupFileExtension = "backup";
-              };
-
-              home-manager.users.${username} =
-                { pkgs, lib, ... }:
-                {
-                  programs.home-manager.enable = true;
-                  home.stateVersion = "25.11";
-                  home.username = username;
-                  home.homeDirectory = lib.mkForce homeDirectory;
-                  imports = [
-                    ./modules/home-manager
-                  ];
-                };
-            }
-            inputs.nix-homebrew.darwinModules.nix-homebrew
-            {
-              nix-homebrew = {
-                enable = true;
-                enableRosetta = true;
-                user = username;
-                taps = {
-                  "homebrew/homebrew-core" = inputs.homebrew-core;
-                  "homebrew/homebrew-cask" = inputs.homebrew-cask;
-                  "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-                  "argoproj/homebrew-tap" = inputs.homebrew-argoproj;
-                };
-                autoMigrate = true;
-                mutableTaps = true;
+                users.${username} =
+                  { pkgs, lib, ... }:
+                  {
+                    programs.home-manager.enable = true;
+                    home.stateVersion = "25.11";
+                    home.username = username;
+                    home.homeDirectory = lib.mkForce homeDirectory;
+                    imports = [
+                      ./modules/home-manager
+                    ];
+                  };
               };
             }
           ];
