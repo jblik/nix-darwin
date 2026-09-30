@@ -45,6 +45,8 @@
         # Resize.
         "alt-minus" = "resize smart -50";
         "alt-equal" = "resize smart +50";
+        "alt-shift-minus" = "resize smart -150";
+        "alt-shift-equal" = "resize smart +150";
 
         # Switch to workspace.
         "alt-1" = "workspace 1";
