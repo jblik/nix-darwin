@@ -43,7 +43,7 @@ in
         sudo darwin-rebuild switch --flake ${flakeUpdateRef}
       '';
       nix-update-gc = ''
-        local days="''${1:-10}"
+        local days="''${1:-30}"
         nix-update
         nix-gc "''${days}"
       '';
