@@ -17,7 +17,7 @@ in
 
   fonts.packages = with pkgs; [
     starwars-jetbrains-mono
-    pkgs.sketchybar-app-font
+    sketchybar-app-font
   ];
 
   # https://search.nixos.org/packages
@@ -31,7 +31,6 @@ in
       codex
       container
       coreutils # gnu core utils
-      gnupg # gpg todo: configure this and pinentry also with home-manager
       dotnet.fallout # for packaging dotnet projects
       dotnet.sdk # dotnet sdk
       duti # tool to set default apps
@@ -49,7 +48,7 @@ in
       kubernetes-helm # package manager for kubernetes
       mas # Mac App Store command-line interface
       nmap # network discovery tool
-      nodejs_26 # latest version
+      nodejs_26 # node
       opentofu # open source fork of terraform
       postgresql # just use postgres
       playball # baseball scoreboard tui
@@ -65,7 +64,6 @@ in
       helmfile # additional helm utils
       k9s # kubernetes cluster manager
       opencode # local agent
-      ollama # local llms
       terraform # tool for building, changing, and versioning infrastructure
       vault # hcp tool for managing secrets
       velero # kubernetes cluster restore tool
