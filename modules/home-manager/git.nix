@@ -17,6 +17,7 @@
       # the flake repo in /etc/nix-darwin is owned by one user but shared with all users
       safe.directory = [
         "/etc/nix-darwin"
+        "/private/etc/nix-darwin"
       ];
 
       alias = {
