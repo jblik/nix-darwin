@@ -15,12 +15,11 @@
         autoUpdate = true;
         upgrade = true;
       };
-      brews = [ ];
+      brews = [ "apfel" ];
       taps = [ 
-        "Arthur-Ficial/tap"
+        "Arthur-Ficial/tap" # for apfel
       ];
       casks = [
-      "apfel"
       "docker-desktop"
         "karabiner-elements"
         "ghostty"
