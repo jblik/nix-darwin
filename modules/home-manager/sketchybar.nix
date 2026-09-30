@@ -76,7 +76,7 @@ in
       ${lib.getExe pkgs.sketchybar} --add item apple.logo left \
         --set apple.logo \
           icon="${ICON_APPLE}" \
-          icon.font="${NERD_FONT}:Black:16.0" \
+          icon.font="${NERD_FONT}:Bold:16.0" \
           icon.color=${GREEN} \
           background.padding_right=15 \
           label.drawing=off \
@@ -84,16 +84,19 @@ in
         --add item apple.prefs popup.apple.logo \
         --set apple.prefs \
           icon="${ICON_PREFERENCES}" \
+          icon.font="${NERD_FONT}:Bold:16.0" \
           label="Preferences" \
           click_script="open -a 'System Settings'; ${POPUP_OFF}" \
         --add item apple.activity popup.apple.logo \
         --set apple.activity \
           icon="${ICON_ACTIVITY}" \
+          icon.font="${NERD_FONT}:Bold:16.0" \
           label="Activity" \
           click_script="open -a 'Activity Monitor'; ${POPUP_OFF}" \
         --add item apple.lock popup.apple.logo \
         --set apple.lock \
           icon="${ICON_LOCK}" \
+          icon.font="${NERD_FONT}:Bold:16.0" \
           label="Lock Screen" \
           click_script="pmset displaysleepnow; ${POPUP_OFF}"
 
