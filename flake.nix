@@ -42,7 +42,7 @@
           system = {
             configurationRevision = self.rev or self.dirtyRev or null;
             stateVersion = 6;
-            primaryUser = users.work.username;
+            primaryUser = users.personal.username;
           };
         };
 
@@ -54,7 +54,7 @@
           specialArgs = {
             inherit pkgs-unstable users;
             homeDirectory = users.personal.homeDirectory;
-                                          username = users.personal.username;
+            username = users.personal.username;
           };
           modules = [
             baseConfiguration
@@ -88,7 +88,7 @@
           specialArgs = {
             inherit pkgs-unstable users;
             homeDirectory = users.work.homeDirectory;
-                            username = users.work.username;
+            username = users.work.username;
           };
           modules = [
             baseConfiguration
@@ -97,7 +97,6 @@
             {
               updateHomebrew.enable = updateHomebrew;
             }
-
 
             ./modules/work
 
@@ -118,11 +117,11 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
-      darwinConfigurations."personal" = darwinSystemPersonal { updateHomebrew = false;};
+      darwinConfigurations."personal" = darwinSystemPersonal { updateHomebrew = false; };
       darwinConfigurations."personal-updatehomebrew" = darwinSystemPersonal {
         updateHomebrew = true;
       };
-      darwinConfigurations."work" = darwinSystemWork { updateHomebrew = false;};
+      darwinConfigurations."work" = darwinSystemWork { updateHomebrew = false; };
       darwinConfigurations."work-updatehomebrew" = darwinSystemWork {
         updateHomebrew = true;
       };

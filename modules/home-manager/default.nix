@@ -1,4 +1,4 @@
-{ users, ... }:
+{ username, homeDirectory, ... }:
 let
   mkUser =
     profile:
@@ -16,7 +16,7 @@ let
     };
 in
 {
-  #${users.personal.username} = mkUser "personal";
+  ${users.personal.username} = mkUser "personal";
   # todo: make the work one
   ${users.work.username} = mkUser "work";
 }
