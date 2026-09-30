@@ -27,6 +27,7 @@
       ];
       casks = [
         "alt-tab"
+        "claude-code"
         "docker-desktop"
         "karabiner-elements"
         "ghostty"
