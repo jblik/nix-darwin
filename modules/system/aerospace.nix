@@ -3,9 +3,8 @@ let
   refreshIcons = "exec-and-forget ${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(${lib.getExe pkgs.aerospace} list-workspaces --focused)";
 in
 {
-  programs.aerospace = {
+  services.aerospace = {
     enable = true;
-    launchd.enable = true;
 
     settings = {
       default-root-container-layout = "tiles";
