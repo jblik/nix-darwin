@@ -30,22 +30,21 @@
     system.defaults.CustomUserPreferences = {
       NSGlobalDomain = {
         NSUserKeyEquivalents = {
-            "Move to SAMSUNG" = "@^~\\Uf703"; # Cmd+Ctrl+Alt+Right Arrow
-            "Move to E241N" = "@^~\\Uf702"; # Cmd+Ctrl+Alt+Left Arrow
-            "Move to S34C65xV" = "@^~\\Uf702"; # Cmd+Ctrl+Alt+Left Arrow
+            "Move to SAMSUNG" = "@^~\\UF703"; # Cmd+Ctrl+Alt+Right Arrow
+            "Move to E241N" = "@^~\\UF702"; # Cmd+Ctrl+Alt+Left Arrow
+            "Move to S34C65xV" = "@^~\\UF702"; # Cmd+Ctrl+Alt+Left Arrow
       };
     };
+      "com.apple.Safari" = {
+        NSUserKeyEquivalents = {
+          "Show Web Inspector" = "\\UF70C"; # F12
+          "Close Web Inspector" = "\\UF70C"; # F12
+        };
   };
   
   # check this:
   # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.defaults.CustomSystemPreferences
   # can also think about system.defaults.CustomUserPreferences instead
-  system.defaults.CustomSystemPreferences = {
-    "com.apple.Safari" = {
-#      "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = "\\Uf70f"; # f12
-      "com.apple.Safari.NSUserKeyEquivalents.Show Web Inspector" = "\\Uf70f"; # f12
-    };
-  };
 
   system.defaults.NSGlobalDomain = {
     "com.apple.swipescrolldirection" = false;
