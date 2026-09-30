@@ -16,7 +16,7 @@
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
     ];
-    
+
     # todo: homebrew not in path
 
     initContent = lib.mkBefore ''

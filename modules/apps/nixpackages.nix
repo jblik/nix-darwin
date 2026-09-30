@@ -26,6 +26,7 @@
       pkgs.openssh # ssh tool
       pkgs.opentofu # open source fork of terraform
       pkgs.ripgrep # faster grep
+      pkgs.spotify
       pkgs.terraform # tool for building, changing, and versioning infrastructure
       pkgs.uv # python package manager
       pkgs.vault # tool for managing secrets

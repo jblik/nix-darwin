@@ -1,4 +1,5 @@
 {
+  pkgs,
   pkgs-unstable,
   users,
   ...
@@ -20,6 +21,7 @@
           };
         }
         "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
+        "${pkgs.spotify}/Applications/Spotify.app"
         "/Applications/Microsoft Teams.app"
         "/Applications/Microsoft Outlook.app"
         "/System/Applications/System Settings.app"
