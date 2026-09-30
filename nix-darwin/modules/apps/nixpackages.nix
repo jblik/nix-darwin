@@ -5,8 +5,8 @@
     pkgs.alt-tab-macos      # windows like alt-tab
     pkgs.docker             # docker!
     pkgs.iterm2             # terminal emulator (consider ghostty)
-    pkgs.jetbrains-toolbox  # install jetbrains tooling
-    pkgs.k9s                # kubernetes cluster manager   
+#    pkgs.jetbrains-toolbox  # install jetbrains tooling
+    pkgs.k9s                # kubernetes cluster manager
     pkgs.karabiner-elements # key remapping software
     pkgs.kubernetes-helm    # package manager for kubernetes
     pkgs.monitorcontrol     # for adjusting brightness of external monitors
