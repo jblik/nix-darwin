@@ -2,7 +2,7 @@
 let
   updateClock = pkgs.writeShellScript "sketchybar-clock.sh" ''
     ${sbar} --set clock.time label="$(date '+%H:%M')" \
-            --set clock.date label="$(date '+%a %d %b')"
+            --set clock.date label="$(date '+%d %b')"
   '';
 in
 {
@@ -25,7 +25,7 @@ in
         label.align=center \
         label.padding_left=4 \
         label.padding_right=4 \
-        background.padding_bottom=10
+        background.padding_right=10
   '';
 
   init = "${updateClock}";
