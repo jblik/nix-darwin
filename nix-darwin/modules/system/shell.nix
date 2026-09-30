@@ -1,10 +1,10 @@
 { config, lib, username, ... }:
 
 let
-  repoPath = "/Users/${username}/configuration";
-  flakePath = "/Users/${username}/configuration/nix-darwin";
+  repoPath = "~/configuration";
+  flakePath = "${repoPath}/nix-darwin";
   flakeRef = "${flakePath}#${username}";
-  flakeUpdateRef = "${flakePath}#${username}-updatehomebrew";
+  flakeUpdateRef = "${flakeRef}-updatehomebrew";
 in
 {
   users.users.${username} = {
@@ -24,7 +24,7 @@ in
         nix flake update --flake ${flakePath} || return 1
         
         if ! git -C ${repoPath} diff --quiet -- ${flakePath}/flake.lock; then
-          git add ${flakePath}/flake.lock || return 1
+          git -C ${repoPath} add ${flakePath}/flake.lock || return 1
           git -C ${repoPath} commit -m "update flake.lock" || return 1
         fi
         

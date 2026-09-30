@@ -25,7 +25,6 @@
                 "telnet"                              # Classic command-line Telnet client, mostly used for simple network connectivity testing now.
       #          "hashicorp/tap/nomad"
                 "mongodb/brew/mongodb-community@7.0"  # MongoDB Community Server version 7.0.
-                "timescale/tap/timescaledb"           # TimescaleDB extension for PostgreSQL optimized for time-series workloads.
             ];
             casks = [
                 "ghostty"
