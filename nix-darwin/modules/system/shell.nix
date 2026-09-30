@@ -31,14 +31,7 @@ in
         sudo darwin-rebuild switch --flake ${flakeUpdateRef}
     }
     nix-update-gc() {
-        nix flake update --flake ${flakePath} || return 1
-        
-        if ! git -C ${repoPath} diff --quiet -- ${flakePath}/flake.lock; then
-          git add ${flakePath}/flake.lock || return 1
-          git -C ${repoPath} commit -m "update flake.lock" || return 1
-        fi
-        
-        sudo darwin-rebuild switch --flake ${flakeUpdateRef} || return 1
+        nix-update
         nix-gc
     }
     nix-gc() {
