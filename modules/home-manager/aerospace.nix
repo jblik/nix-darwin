@@ -23,6 +23,15 @@
         "${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
       ];
 
+      # Refresh the workspace app icons when a window opens/moves, so changes
+      # within the current workspace update without a workspace switch. Query
+      # the focused workspace so the highlight isn't cleared.
+      on-window-detected = [
+        {
+          run = "exec-and-forget ${lib.getExe pkgs.sketchybar} --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(${lib.getExe pkgs.aerospace} list-workspaces --focused)";
+        }
+      ];
+
       key-mapping.preset = "qwerty";
 
       gaps = {

@@ -17,7 +17,6 @@ let
   POPUP_OFF = "${lib.getExe pkgs.sketchybar} --set apple.logo popup.drawing=off";
   POPUP_CLICK_SCRIPT = "${lib.getExe pkgs.sketchybar} --set \\$NAME popup.drawing=toggle";
 
-
   maxIcons = 10;
 
   aerospacer = pkgs.writeShellScript "sketchybar-aerospacer.sh" ''
@@ -26,6 +25,33 @@ let
     else
       ${lib.getExe pkgs.sketchybar} --set "$NAME" background.drawing=off
     fi
+  '';
+
+  updateAppIcons = pkgs.writeShellScript "sketchybar-workspace-apps.sh" ''
+    source ${pkgs.sketchybar-app-font}/bin/icon_map.sh
+
+    for sid in $(${lib.getExe pkgs.aerospace} list-workspaces --all); do
+      apps=$(${lib.getExe pkgs.aerospace} list-windows --workspace "$sid" --format '%{app-name}')
+
+      args=()
+      i=1
+      if [ -n "$apps" ]; then
+        while IFS= read -r app; do
+          [ "$i" -gt ${toString maxIcons} ] && break
+          __icon_map "$app"
+          args+=(--set "space.$sid.icon.$i" label="$icon_result" label.drawing=on drawing=on)
+          i=$((i + 1))
+        done <<< "$apps"
+      fi
+
+      # Hide the leftover slots.
+      while [ "$i" -le ${toString maxIcons} ]; do
+        args+=(--set "space.$sid.icon.$i" drawing=off label.drawing=off)
+        i=$((i + 1))
+      done
+
+      ${lib.getExe pkgs.sketchybar} "''${args[@]}"
+    done
   '';
 in
 {
@@ -103,6 +129,10 @@ in
       # --- AeroSpace workspace indicators + separator (sketchybar/items/spaces.sh) ---
       ${lib.getExe pkgs.sketchybar} --add event aerospace_workspace_change
 
+      ${lib.getExe pkgs.sketchybar} --add item apps_updater left \
+        --set apps_updater drawing=off script="${updateAppIcons}" \
+        --subscribe apps_updater aerospace_workspace_change
+
       for sid in $(${lib.getExe pkgs.aerospace} list-workspaces --all); do
         ${lib.getExe pkgs.sketchybar} --add item "space.$sid" left \
           --subscribe "space.$sid" aerospace_workspace_change \
@@ -136,7 +166,7 @@ in
               label.padding_left=5 \
               label.padding_right=5 \
               background.drawing=off \
-              drawing=on \
+              drawing=off \
               click_script="${lib.getExe pkgs.aerospace} workspace $sid"
         done
       done
@@ -168,6 +198,9 @@ in
           background.color=0xffb8c0e0 \
           background.height=26 \
           background.corner_radius=11
+
+      # Populate workspace app icons on startup (the event handler keeps them fresh afterwards).
+      ${updateAppIcons}
 
       ${lib.getExe pkgs.sketchybar} --update
     '';
