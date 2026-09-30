@@ -13,6 +13,10 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
+  fonts.packages = [
+    pkgs.meslo-lgs-nf # font for powerlevel10k
+  ];
+
   # https://search.nixos.org/packages
   environment.systemPackages = [
     pkgs.azure-cli
@@ -30,7 +34,6 @@ in
     pkgs.kubectl # kubernetes cli
     pkgs.kubectx # kubernetes context tool
     pkgs.kubernetes-helm # package manager for kubernetes
-    pkgs.meslo-lgs-nf # font for powerlevel10k
     pkgs.nmap # network discovery tool
     pkgs.nodejs_24
     pkgs-unstable.ollama # local llms
