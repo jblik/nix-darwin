@@ -5,6 +5,7 @@
 {
   programs.jujutsu = {
     enable = true;
+    package = null;
     settings = {
       user = user.git;
       signing = {
