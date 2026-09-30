@@ -620,7 +620,7 @@
         remote_url=$(git -C "$VCS_STATUS_WORKDIR" remote get-url upstream 2>/dev/null)
     fi
 
-    if [[ $remote_url == (*forgejo*) ]]; then
+    if [[ $remote_url == *forgejo* ]]; then
       print -n '\uf335'
     elif [[ $remote_url == *yoda* ]]; then
       print -n '󱬤'
@@ -628,6 +628,8 @@
       print -n '\ue7eb'
     elif [[ $remote_url == *codeberg* ]]; then
       print -n '\uf330'
+    elif [[ $remote_url == (*visualstudio*|*azure*) ]]; then
+      print -n ''
     else
       print -n "$P9K_VISUAL_IDENTIFIER"
     fi
