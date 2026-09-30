@@ -15,6 +15,8 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
+  environment.variables.DOTNET_ROOT = "${dotnet.sdk}/share/dotnet";
+
   fonts.packages = with pkgs; [
     starwars-jetbrains-mono
     sketchybar-app-font
