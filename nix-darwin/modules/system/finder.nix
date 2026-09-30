@@ -2,14 +2,18 @@
 
 {
     system.defaults.finder = {
-        FXPreferredViewStyle = "Nlsv";
+        FXPreferredViewStyle = "Nlsv"; # list view default
         NewWindowTarget = "Home";
+        ShowPathbar = true; # shows the path bar on the bottom of finder
+        QuitMenuItem = true; # allows quitting finder
+        AppleShowAllFiles = true;
+        AppleShowAllExtensions = true;
         ShowMountedServersOnDesktop = true;
-        ShowPathbar = true;
+        ShowRemovableMediaOnDesktop = true;
     };
 
-    system.defaults.NSGlobalDomain = {
-        AppleShowAllExtensions = true;
-        AppleShowAllFiles = true;
-    };
+#    system.defaults.NSGlobalDomain = {
+#        AppleShowAllExtensions = true;
+#        AppleShowAllFiles = true;
+#    };
 }
