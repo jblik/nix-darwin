@@ -1,27 +1,26 @@
 { follows }:
+with follows;
 {
-  nuke = follows.buildDotnetGlobalTool {
+  nuke = buildDotnetGlobalTool {
     pname = "nuke";
     version = "10.1.0";
     nugetName = "Nuke.GlobalTool";
     nugetHash = "sha256-/7ET0onBQzCmqFzr64XlaS5gE7WD/lhGSRN9jbUdKHw=";
+    dotnet-sdk = dotnetCorePackages.sdk_10_0;
+    dotnet-runtime = dotnetCorePackages.sdk_10_0;
 
-    dotnet-sdk = follows.dotnetCorePackages.sdk_10_0;
-    dotnet-runtime = follows.dotnetCorePackages.sdk_10_0;
-
-    meta = with follows.lib; {
+    meta = {
       homepage = "https://nuke.build/";
       description = "NUKE build automation global tool";
-      license = licenses.mit;
-      platforms = platforms.darwin;
+      license = lib.licenses.mit;
+      platforms = lib.platforms.darwin;
     };
   };
 
   sdk =
-    with follows.dotnetCorePackages;
-    combinePackages [
-      sdk_8_0
-      sdk_9_0
-      sdk_10_0
+    dotnetCorePackages.combinePackages [
+      dotnetCorePackages.sdk_8_0
+      dotnetCorePackages.sdk_9_0
+      dotnetCorePackages.sdk_10_0
     ];
 }
