@@ -10,6 +10,12 @@
         "com.apple.keyboard.fnState" = true; # use f keys as f keys
     };
 
+     # deletes all CUSTOM keyboard shortcuts for all apps (settings/keyboard shortcuts/all applications)
+     system.activationScripts.postActivation.text = ''
+         echo "Resetting 'All Application' declared keyboard shortcuts to declarative-only..."
+         defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
+     '';
+
     system.defaults.CustomUserPreferences = {
         NSGlobalDomain = {
             NSUserKeyEquivalents = {
@@ -27,10 +33,4 @@
             "com.apple.Safari.NSUserKeyEquivalents.Close Web Inspector" = ''\\Uf70f''; # f12
         };
     };
-    
-    # deletes all CUSTOM keyboard shortcuts for all apps (settings/keyboard shortcuts/all applications)
-    system.activationScripts.postActivation.text = lib.mkAfter ''
-        echo "Resetting 'All Application' declared keyboard shortcuts to declarative-only..."
-        defaults delete NSGlobalDomain NSUserKeyEquivalents 2>/dev/null || true
-    '';
 }
