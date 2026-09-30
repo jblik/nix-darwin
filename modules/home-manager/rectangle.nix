@@ -1,6 +1,6 @@
 {
-programs.rectangle = {
-enable = true;
+  programs.rectangle = {
+    enable = true;
 
-};
+  };
 }

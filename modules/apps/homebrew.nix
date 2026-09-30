@@ -42,7 +42,7 @@
       masApps = {
         "Tailscale" = 1475387142;
         "uBlock Origin Lite" = 6745342698;
-	"Xcode" = 497799835;
+        "Xcode" = 497799835;
       };
     };
   };

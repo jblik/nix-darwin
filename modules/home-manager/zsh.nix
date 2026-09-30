@@ -48,11 +48,11 @@ in
         nix-gc "''${days}"
       '';
       nix-gc = ''
-        local days="''${1:-10}"
+        local days="''${1:-30}"
         echo "removing generations older than ''${days}d..."
-        nix-collect-garbage --delete-older-than "''${days}d"
+        sudo nix-collect-garbage --delete-older-than "''${days}d"
         echo "optimizing Nix store..."
-        nix-store --optimise
+        sudo nix-store --optimise
       '';
     };
 
