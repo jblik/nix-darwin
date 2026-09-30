@@ -15,12 +15,14 @@ let
       focused="$(${pkgs.aerospace}/bin/aerospace list-workspaces --focused)"
     fi
 
-    # Highlight the entire group (number + icons) via the shared bracket.
+    # Highlight the whole group by giving every visible item in the focused
+    # workspace the same background (brackets don't span on a vertical bar).
     if [ "$focused" = "$sid" ]; then
-      sketchybar --set "space.$sid.bracket" background.drawing=on
+      hl=on
     else
-      sketchybar --set "space.$sid.bracket" background.drawing=off
+      hl=off
     fi
+    sketchybar --set "$NAME" background.drawing="$hl"
 
     # One glyph per distinct app that has a window in this workspace, each in its
     # own slot item so they stack vertically under the number.
@@ -30,7 +32,7 @@ let
       [ -z "$app" ] && continue
       [ "$i" -gt "$max" ] && break
       __icon_map "$app"
-      sketchybar --set "space.$sid.icon.$i" label="$icon_result" drawing=on
+      sketchybar --set "space.$sid.icon.$i" label="$icon_result" drawing=on background.drawing="$hl"
       i=$((i + 1))
     done <<EOF
     $apps
@@ -75,7 +77,7 @@ in
       # Custom event AeroSpace triggers on workspace change (see aerospace.nix).
       # On a right-positioned bar, "left" means the top, and items stack downward
       # in the order they're added: number first, then its app-icon slots below.
-      # A bracket groups each workspace's items under one shared highlight.
+      # The focused workspace's items all share the same background highlight.
       sketchybar --add event aerospace_workspace_change
 
       for sid in $(aerospace list-workspaces --all); do
@@ -86,10 +88,14 @@ in
             icon="$sid" \
             icon.font="JetBrainsMono Nerd Font:Bold:14.0" \
             label.drawing=off \
+            padding_left=0 \
+            padding_right=0 \
+            background.color=0xff45475a \
+            background.corner_radius=0 \
+            background.height=30 \
+            background.drawing=off \
             click_script="aerospace workspace $sid" \
             script="${aerospaceItem}"
-
-        members="space.$sid"
 
         # App-icon slots stacked under the number (filled by the updater).
         for i in $(seq 1 ${toString maxIcons}); do
@@ -97,17 +103,13 @@ in
             --set space.$sid.icon.$i \
               icon.drawing=off \
               label.font="sketchybar-app-font:Regular:16.0" \
+              background.color=0x44ffffff \
+              background.corner_radius=6 \
+              background.height=26 \
+              background.drawing=off \
               drawing=off \
               click_script="aerospace workspace $sid"
-          members="$members space.$sid.icon.$i"
         done
-
-        # One shared, rounded highlight around the whole group.
-        sketchybar --add bracket space.$sid.bracket $members \
-          --set space.$sid.bracket \
-            background.color=0x44ffffff \
-            background.corner_radius=8 \
-            background.drawing=off
       done
 
       # Populate icons + highlight the currently focused workspace (initial state).
