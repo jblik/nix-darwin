@@ -16,7 +16,8 @@
       pkgs.kubectl # kubernetes cli
       pkgs.kubernetes-helm # package manager for kubernetes
       pkgs.meslo-lgs-nf # font for powerlevel10k
-      pkgs.nmap # network discovery tool
+      pkgs.node # network discovery tool
+      pkgs.nodejs_24
       pkgs.openssh # ssh tool
       pkgs.opentofu # open source fork of terraform
       pkgs.ripgrep # faster grep
